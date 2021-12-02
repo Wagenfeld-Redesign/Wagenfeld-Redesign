@@ -22,7 +22,7 @@
 	} from 'svelthree';
 
 	import { GLTFLoader } from 'svelthree-three';
-	import LoadedGltf from 'svelthree/src/components/LoadedGLTF.svelte';
+	// import LoadedGltf from 'svelthree/src/components/LoadedGLTF.svelte'; //Crash if not used in html
 
 	let cubeGeometry = new BoxBufferGeometry(1, 1, 1);
 	let cubeMaterial = new MeshStandardMaterial();
