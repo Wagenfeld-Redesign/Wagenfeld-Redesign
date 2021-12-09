@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import gsap from 'gsap';
 
 	import {
 		Canvas,
@@ -18,73 +19,113 @@
 		WebGLRenderer,
 		OrbitControls,
 		DoubleSide,
-		MathUtils
+		MathUtils,
+		Vector3
 	} from 'svelthree';
 
 	import { GLTFLoader } from 'svelthree-three';
-	// import LoadedGltf from 'svelthree/src/components/LoadedGLTF.svelte'; //Crash if not used in html
+	import PointLight from 'svelthree/src/components/PointLight.svelte';
+	import LoadedGltf from 'svelthree/src/components/LoadedGLTF.svelte'; //Crash if not used in html
+	const loader = new GLTFLoader();
 
-	let cubeGeometry = new BoxBufferGeometry(1, 1, 1);
+	let cubeGeometry = new BoxBufferGeometry(0.8, 0.8, 0.8);
+	cubeGeometry.translate(0, 0, 0);
+	cubeGeometry.rotateY(0, MathUtils.degToRad(180), 0);
+
 	let cubeMaterial = new MeshStandardMaterial();
-
-	let floorGeometry = new PlaneBufferGeometry(4, 4, 1);
-	let floorMaterial = new MeshStandardMaterial();
 
 	let scene;
 	let bauhausleuchte;
-	const loader = new GLTFLoader();
+	let canvas;
+	let loadedGLTFTest;
 
-	onMount(async () => {
+	onMount(() => {
 		showLamp();
+
+		// Resize Canvas
+		window.addEventListener('resize', function () {
+			canvas.doResize(window.innerWidth, window.innerHeight);
+		});
 	});
 
 	function showLamp() {
 		scene = scene.getScene();
 
-		loader.load('src/lib/assets/3DModels/Bauhauslampe/model.gltf', function (gltf) {
+		loader.load('src/assets/3DModels/Bauhauslampe/model.gltf', function (gltf) {
 			bauhausleuchte = gltf.scene;
+			bauhausleuchte.position.set(0, 0, 0);
+			bauhausleuchte.rotation.set(130, 0, 200);
+			bauhausleuchte.scale.set(0.2, 0.2, 0.2);
 
 			scene.add(bauhausleuchte);
-
-			gltf.animations; // Array<THREE.AnimationClip>
-			gltf.scene; // THREE.Group
-			gltf.scenes; // Array<THREE.Group>
-			gltf.cameras; // Array<THREE.Camera>
-			gltf.asset; // Object
 		});
+	}
+
+	// Functions
+	const triggerOnClickAni = (e) => {
+		let obj = e.detail.target;
+		gsap.to(obj.scale, {
+			duration: 1,
+			x: 1.5,
+			y: 1.5,
+			z: 1.5,
+			ease: 'elastic.out'
+		});
+	};
+
+	const triggerOnOverAni = (e) => {
+		let obj = e.detail.target;
+		gsap.to(obj.scale, {
+			duration: 1,
+			x: 0.8,
+			y: 1.25,
+			z: 0.8,
+			ease: 'elastic.out'
+		});
+	};
+
+	const triggerOnOutAni = (e) => {
+		let obj = e.detail.target;
+		gsap.to(obj.scale, { duration: 1, x: 1, y: 1, z: 1, ease: 'elastic.out' });
+	};
+
+	function onPointerMove(e) {
+		let obj = e.detail.target;
+
+		let unpr = new Vector3().copy(e.detail.unprojected);
+		let unprwtl = obj.worldToLocal(unpr).add(new Vector3(0, 0, 1));
+		obj.lookAt(unprwtl);
 	}
 </script>
 
-<Canvas let:sti w={window.innerWidth} h={window.innerHeight}>
-	<Scene {sti} let:scene bind:this={scene} id="scene1" props={{ background: 0xedf2f7 }}>
-		<PerspectiveCamera {scene} id="cam1" pos={[0, 0, 3]} lookAt={[0, 0, 0]} />
-		<AmbientLight {scene} intensity={1.25} />
+<Canvas let:sti bind:this={canvas} w={window.innerWidth} h={window.innerHeight}>
+	<Scene {sti} let:scene bind:this={scene} id="scene1" props={{ background: 0x282848 }}>
+		<PerspectiveCamera {scene} id="cam1" pos={[8, -6, -10]} lookAt={[0, 0, 0]} />
+		<AmbientLight {scene} intensity={0.25} />
 		<DirectionalLight {scene} pos={[1, 2, 1]} intensity={0.8} shadowMapSize={512 * 8} castShadow />
 
-		<!-- <LoadedGltf {scene} path={'src/lib/assets/3DModels/Car/scene.gltf'} bind:this={test} /> -->
-		<!-- <Mesh
+		<PointLight {scene} pos={[2.5, 1, 1]} intensity={10} color={0xf15a24} />
+		<PointLight {scene} pos={[-2.5, 1, 1]} intensity={10} color={0x518ad0} />
+
+		<LoadedGltf
 			{scene}
-			geometry={cubeGeometry}
-			material={cubeMaterial}
-			mat={{ roughness: 0.5, metalness: 0.5, color: 0xff3e00 }}
-			pos={[0, 0, 0]}
-			rot={[0, 0, 0]}
-			castShadow
-			receiveShadow
+			path={'src/assets/3DModels/Bauhauslampe/model.gltf'}
+			bind:this={loadedGLTFTest}
 		/>
+		<!-- <Mesh
+					{scene}
+					geometry={cubeGeometry}
+					material={cubeMaterial}
+					mat={{ roughness: 0.5, metalness: 0.5, color: 0xf15a24 }}
+					pos={[0, 0, 0]}
+					interact
+					on:pointermove={onPointerMove}
+					onClick={triggerOnClickAni}
+					onPointerOver={triggerOnOverAni}
+					onPointerLeave={triggerOnOutAni}
+				/> -->
 
-		<Mesh
-			{scene}
-			geometry={floorGeometry}
-			material={floorMaterial}
-			mat={{ roughness: 0.5, metalness: 0.5, side: DoubleSide, color: 0xf7fafc }}
-			pos={[0, -0.501, 0]}
-			rot={[MathUtils.degToRad(-90), 0, 0]}
-			scale={[1, 1, 1]}
-			receiveShadow
-		/> -->
-
-		<OrbitControls {scene} enableDamping />
+		<OrbitControls {scene} />
 	</Scene>
 
 	<WebGLRenderer
