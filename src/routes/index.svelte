@@ -3,7 +3,7 @@
 
 	let ThreeModel;
 	onMount(async () => {
-		ThreeModel = (await import('../components/ThreeModel.svelte')).default;
+		ThreeModel = (await import('../components/Threlte.svelte')).default;
 	});
 </script>
 
@@ -12,7 +12,7 @@
 		<svelte:component this={ThreeModel} />
 	</div>
 
-	<div class="hero min-h-screen text-neutral-content z-10">
+	<!-- <div class="hero min-h-screen text-neutral-content z-10">
 		<div class="text-center hero-content">
 			<div class="max-w-md">
 				<h1 class="mb-5 text-5xl font-bold">Wagenfeld Redesign</h1>
@@ -35,5 +35,5 @@
 				<button class="btn btn-accent">Mehr Infos</button>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
