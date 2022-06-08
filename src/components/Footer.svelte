@@ -1,4 +1,6 @@
-<footer class="p-10 footer bg-neutral text-neutral-content flex justify-around">
+<footer
+	class="p-10 footer bg-neutral text-neutral-content flex justify-around absolute bottom-0 left-0 right-0 z-10"
+>
 	<div>
 		<span class="footer-title">Services</span>
 		<a class="link link-hover">Branding</a>

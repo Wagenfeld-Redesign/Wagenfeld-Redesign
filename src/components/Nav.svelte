@@ -1,7 +1,8 @@
 <div class="header w-screen absolute top-0 z-10">
 	<div class="navbar shadow-lg bg-[#0A0B1C] text-neutral-content">
 		<div class="px-2 mx-2 navbar-start">
-			<img class="object-contain h-16" src="src/assets/images/Logos/logo_5.png" alt="Logo" />
+			<!-- <img class="object-contain h-16" src="src/assets/images/Logos/logo_5.png" alt="Logo" /> -->
+			<object data="src\assets\images\Element 4.svg" />
 		</div>
 		<div class="hidden px-2 mx-2 navbar-center lg:flex">
 			<div class="flex items-stretch">

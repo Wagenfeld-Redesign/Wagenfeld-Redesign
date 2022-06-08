@@ -41,17 +41,10 @@
 	let rotationX = 0;
 	let animationFrameHandle;
 
-	// CameraSmooth Animation
-	let cameraPos = { x: 0, y: 0, z: 10 };
-	let cameraFinal = { x: 0, y: 3, z: 20 };
-
 	const geometry = new SphereBufferGeometry(0.5);
 	const material = new MeshStandardMaterial();
 
-	const camera = new PerspectiveCamera();
-	// camera.position.x = cameraPos.x;
-	// camera.position.y = cameraPos.y;
-	// camera.position.z = cameraPos.z;
+	const camera = new PerspectiveCamera(60);
 
 	let dn = Date.now();
 
@@ -67,17 +60,39 @@
 	});
 
 	mesh = new Meshi(geometry1, material1);
-	mesh.position.set(200, 200, 200);
+	mesh.position.set(0, 0, 0);
 
+	// CameraSmooth Animation
 	function animateCamera() {
+		let oldValue = 0;
+		let newValue = 0;
 		var count = {
-			numberCount: 0
+			numberCount: 0.75
 		};
+		const pos = curve.getPointAt(count.numberCount);
+		camera.position.copy(pos);
+		camera.lookAt(0, 0, 0);
+		// document.addEventListener('scroll', function (e) {
+		// 	newValue = window.pageYOffset;
+		// 	if (oldValue < newValue) {
+		// 		//Bottom
+		// 		count.numberCount -= 0.0025;
+		// 	} else if (oldValue > newValue) {
+		// 		//Top
+		// 		count.numberCount += 0.0025;
+		// 	}
+		// 	oldValue = newValue;
+
+		// 	const pos = curve.getPointAt(count.numberCount);
+		// 	camera.position.copy(pos);
+		// 	camera.lookAt(0, 0, 0);
+		// });
+
 		anime({
 			targets: count,
 			easing: 'easeInOutSine',
-			duration: 5000,
-			numberCount: 0.5,
+			duration: 4000,
+			numberCount: 0.86,
 			direction: 'alternate',
 			loop: true,
 			update: function (anim) {
@@ -158,7 +173,7 @@
 			color={'#518ad0'}
 		/>
 
-		<HemisphereLight skyColor={0x518ad0} groundColor={0xf15a24} intensity={2} />
+		<HemisphereLight skyColor={0x518ad0} groundColor={0xf15a24} intensity={1} />
 
 		<InstancedMesh {geometry} {material}>
 			<Instance position={{ x: -2, y: Math.sin(dn / 1000 + 40) }} />

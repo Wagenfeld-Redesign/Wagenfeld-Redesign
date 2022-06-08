@@ -21,7 +21,7 @@ const config = {
 					accent: '#f15a24',
 					'accent-focus': '#d24719',
 					'accent-content': '#ffffff',
-					neutral: '#0a0b1c',
+					neutral: '#0a1828',
 					'neutral-focus': '#0f1129',
 					'neutral-content': '#ffffff',
 					'base-100': '#ffffff',
