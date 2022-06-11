@@ -5,3 +5,6 @@ node_modules
 /package
 .env
 .env.*
+
+src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.obj
+

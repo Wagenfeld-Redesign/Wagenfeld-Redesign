@@ -5,8 +5,9 @@
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
 	import LoadingScreen from '../components/Loadings/QuoteLoading.svelte';
+	import NavigationScreen from '../components/NavigationScreen.svelte';
 
-	let timerLoading = true;
+	let timerLoading = false;
 
 	onMount(() => {
 		const t1 = gsap.timeline({ paused: true, defaults: { duration: 0.4 } });
@@ -37,8 +38,12 @@
 	});
 </script>
 
-<div id="content" style="margin: 0 auto; opacity: 0;" hidden>
-	<!-- <div id="content" style="margin: 0 auto; opacity: 1;"> -->
+<!-- <div id="content" style="margin: 0 auto; opacity: 0;" hidden> -->
+<div id="content" style="margin: 0 auto; opacity: 1;">
+	<!-- {#if openNav} -->
+	<NavigationScreen />
+	<!-- {/if} -->
+
 	<Nav />
 	<slot />
 	<Footer />
