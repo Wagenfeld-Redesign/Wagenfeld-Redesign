@@ -1,14 +1,25 @@
 <script>
 	import { onMount } from 'svelte';
+	import NavigationScreen from './NavigationScreen.svelte';
+	let open;
 
 	onMount(() => {
 		document.getElementById('menu-toggle').addEventListener('click', function () {
 			document.body.classList.toggle('nav-open');
+			open = !open;
+
+			if (open) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = 'visible';
+			}
 		});
 	});
-
-	// export let openNav;
 </script>
+
+{#if open}
+	<NavigationScreen />
+{/if}
 
 <a id="menu-toggle" class="menu-toggle !z-40">
 	<span class="menu-toggle-bar menu-toggle-bar--top bg-secondary" />

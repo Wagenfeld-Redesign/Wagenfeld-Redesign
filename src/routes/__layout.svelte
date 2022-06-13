@@ -5,7 +5,6 @@
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
 	import LoadingScreen from '../components/Loadings/QuoteLoading.svelte';
-	import NavigationScreen from '../components/NavigationScreen.svelte';
 
 	let timerLoading = false;
 
@@ -21,7 +20,7 @@
 			opacity: 0,
 			onComplete: () => {
 				timerLoading = false;
-				loadingScreen.style.visibility = 'hidden';
+				// loadingScreen.style.visibility = 'hidden';
 			}
 		});
 
@@ -40,10 +39,6 @@
 
 <!-- <div id="content" style="margin: 0 auto; opacity: 0;" hidden> -->
 <div id="content" style="margin: 0 auto; opacity: 1;">
-	<!-- {#if openNav} -->
-	<NavigationScreen />
-	<!-- {/if} -->
-
 	<Nav />
 	<slot />
 	<Footer />

@@ -31,8 +31,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@glidejs/glide": "^3.5.2",
 		"animejs": "^3.2.1",
 		"gsap": "^3.8.0",
+		"jquery": "^3.6.0",
+		"svelte-cubed": "^0.2.1",
 		"three": "^0.140.0",
 		"threlte": "^3.1.2"
 	}
