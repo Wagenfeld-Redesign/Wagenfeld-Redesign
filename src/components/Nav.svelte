@@ -5,8 +5,8 @@
 	onMount(() => {});
 </script>
 
-<div class="header w-screen absolute top-0">
-	<div class="navbar shadow-lg bg-[#0A0B1C] text-neutral-content py-4">
+<header class="header w-screen top-0 z-20">
+	<div class="navbar shadow-lg bg-neutral text-neutral-content py-4">
 		<div class="px-2 mx-2 navbar-start">
 			<Hamburger />
 		</div>
@@ -15,4 +15,4 @@
 		</div>
 		<div class="navbar-end gap-0" />
 	</div>
-</div>
+</header>

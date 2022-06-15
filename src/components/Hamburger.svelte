@@ -9,9 +9,9 @@
 			open = !open;
 
 			if (open) {
-				document.body.style.overflow = 'hidden';
+				document.body.style.overflowY = 'hidden';
 			} else {
-				document.body.style.overflow = 'visible';
+				document.body.style.overflowY = 'visible';
 			}
 		});
 	});

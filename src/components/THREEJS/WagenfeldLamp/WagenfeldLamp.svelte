@@ -23,8 +23,8 @@
 		$camera.setViewOffset(
 			window.innerWidth * 1,
 			window.innerHeight,
-			window.innerWidth * 0.4,
-			-200,
+			window.innerWidth * 0.3,
+			-120,
 			window.innerWidth,
 			window.innerHeight
 		);
@@ -57,6 +57,16 @@
 			},
 			y: Math.PI
 		});
+
+		// gsap.to($gltf.scene.position, {
+		// 	scrollTrigger: {
+		// 		trigger: '#content',
+		// 		start: 'top top',
+		// 		scrub: true,
+		// 		toggleActions: 'restart pause resume pause'
+		// 	},
+		// 	y: 3
+		// });
 	}
 </script>
 

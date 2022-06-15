@@ -12,16 +12,16 @@ const config = {
 		themes: [
 			{
 				standardTheme: {
-					primary: '#004589',
-					'primary-focus': '#003975',
+					primary: '#0B1420',
+					'primary-focus': '#0A1828',
 					'primary-content': '#ffffff',
-					secondary: '#f15a24',
-					'secondary-focus': '#d24719',
+					secondary: '#F05A23',
+					'secondary-focus': '#FF7033',
 					'secondary-content': '#ffffff',
-					accent: '#f15a24',
-					'accent-focus': '#d24719',
+					accent: '#F05A23',
+					'accent-focus': '#FF7033',
 					'accent-content': '#ffffff',
-					neutral: '#0a1828',
+					neutral: '#0A1828',
 					'neutral-focus': '#0f1129',
 					'neutral-content': '#ffffff',
 					'base-100': '#ffffff',

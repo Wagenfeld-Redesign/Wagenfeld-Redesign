@@ -38,10 +38,15 @@
 </script>
 
 <!-- <div id="content" style="margin: 0 auto; opacity: 0;" hidden> -->
-<div id="content" style="margin: 0 auto; opacity: 1;">
+
+<div class="flex flex-col min-h-screen">
 	<Nav />
-	<slot />
-	<Footer />
+
+	<div class="flex flex-col flex-1 sm:flex-row">
+		<slot />
+	</div>
+
+	<!-- <Footer /> -->
 </div>
 
 {#if timerLoading}
