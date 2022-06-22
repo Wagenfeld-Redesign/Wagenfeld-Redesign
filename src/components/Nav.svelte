@@ -1,18 +1,40 @@
 <script>
 	import { onMount } from 'svelte';
 	import Hamburger from './Hamburger.svelte';
+	import gsap from 'gsap';
+	import { goto } from '$app/navigation';
 
-	onMount(() => {});
+	onMount(() => {
+		gsap.from(document.querySelector('.logo'), {
+			width: 0,
+			x: -900,
+			opacity: 0,
+			duration: 1,
+			ease: 'Power3.easeOut'
+		});
+	});
+
+	function gotoHome() {
+		goto('/');
+	}
 </script>
 
-<header class="header w-screen top-0 z-20">
-	<div class="navbar shadow-lg bg-neutral text-neutral-content py-4">
-		<div class="px-2 mx-2 navbar-start">
+<header class="absolute top-0 z-50 w-screen">
+	<div class="py-8 navbar text-neutral-content">
+		<div class="py-8 px-14 navbar-start">
+			<div class="absolute !z-50 logo">
+				<a style="display: block;" on:click={gotoHome} class="cursor-pointer"
+					><object
+						style="width:unset; pointer-events: none;"
+						data="src/assets/images/Logos/logo_white.svg"
+						height="60px"
+					/>
+				</a>
+			</div>
+		</div>
+		<div class="hidden navbar-center" />
+		<div class="px-14 navbar-end">
 			<Hamburger />
 		</div>
-		<div class="hidden px-2 mx-2 navbar-center lg:flex">
-			<object data="src\assets\images\Element 4.svg" height="35px" />
-		</div>
-		<div class="navbar-end gap-0" />
 	</div>
 </header>

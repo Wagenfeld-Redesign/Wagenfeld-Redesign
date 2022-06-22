@@ -34,21 +34,21 @@
 			camera={cameraVariable}
 			useCamera={true}
 			viewportAware={true}
-			position={{ x: 0, y: 2.7, z: 4.86 }}
+			position={{ x: 0, y: 2.5, z: 4.86 }}
 		>
 			<!-- <OrbitControls autoRotate={false} enableZoom={false} target={{ z: -5, y: -3.2, x: 0 }} /> -->
 		</CameraInstance>
 
 		<AmbientLight color={0xffffff} intensity={0.1} />
 
-		<HemisphereLight skyColor={0xf15a24} groundColor={0xf15a24} intensity={1} />
+		<HemisphereLight skyColor={0xff03ed} groundColor={0xff03ed} intensity={1} />
 
 		<DirectionalLight
 			shadow
 			intensity={1}
 			position={{ z: -2, y: -6, x: -1 }}
 			target={{ z: -5, y: -3, x: -3.2 }}
-			color={'#f15a24'}
+			color={'#FF03ED'}
 		/>
 
 		<WagenfeldLamp />

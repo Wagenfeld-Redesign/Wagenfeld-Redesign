@@ -37,12 +37,12 @@
 	});
 </script>
 
-<div class="w-screen h-screen bg-neutral m-0 overflow-hidden absolute">
+<div class="absolute w-screen h-screen m-0 overflow-hidden bg-neutral">
 	<div id="lampScreen" class="absolute invisible">
 		<div class="w-screen h-screen">
-			<div class="flex justify-center items-center h-screen">
+			<div class="flex items-center justify-center h-screen">
 				<img
-					class="w-1/6 h-auto"
+					class="w-1/6 h-auto -hue-rotate-60 "
 					src="src\assets\3DModels\Wagenfeldlampe\WA24_transparent.png"
 					alt=""
 					srcset=""
@@ -55,7 +55,7 @@
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 512 512"
-			class="w-auto h-48 absolute -bottom-12 left-28 z-10 fill-current text-secondary"
+			class="absolute z-10 w-auto h-48 fill-current -bottom-12 left-28 text-accent"
 		>
 			<path
 				d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"
@@ -65,7 +65,7 @@
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 512 512"
-			class="w-auto h-48 absolute -top-12 right-28 z-10 fill-current text-secondary rotate-180"
+			class="absolute z-10 w-auto h-48 rotate-180 fill-current -top-12 right-28 text-accent"
 		>
 			<path
 				d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"
@@ -73,13 +73,13 @@
 		</svg>
 
 		<div
-			class="w-screen h-screen flex justify-center items-center text-white text-center font-semibold -mb-24"
+			class="flex items-center justify-center w-screen h-screen -mb-24 font-semibold text-center text-white"
 		>
 			<div class="flex flex-col gap-6">
 				<p class="max-w-xs text-base lg:max-w-3xl lg:text-2xl md:max-w-md md:text-xl">
 					{quotesArray[randomIndex]}
 				</p>
-				<p class="text-xs font-normal lg:text-base">
+				<p class="text-xs lg:text-xl">
 					{authorArray[randomIndex]}
 				</p>
 			</div>

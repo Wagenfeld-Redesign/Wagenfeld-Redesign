@@ -3,7 +3,14 @@ const config = {
 	purge: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontSize: {
+				'8xl': '5.75rem'
+			},
+			fontFamily: {
+				SpaceGrotesk: ['Space Grotesk', 'sans-serif']
+			}
+		}
 	},
 
 	plugins: [require('daisyui')],
@@ -12,17 +19,17 @@ const config = {
 		themes: [
 			{
 				standardTheme: {
-					primary: '#0B1420',
-					'primary-focus': '#0A1828',
+					primary: '#0A0A0A',
+					'primary-focus': '#0A0A0A',
 					'primary-content': '#ffffff',
-					secondary: '#F05A23',
-					'secondary-focus': '#FF7033',
+					secondary: '#ffffff',
+					'secondary-focus': '#ffffff',
 					'secondary-content': '#ffffff',
-					accent: '#F05A23',
-					'accent-focus': '#FF7033',
+					accent: '#FF03ED',
+					'accent-focus': '#FF03ED',
 					'accent-content': '#ffffff',
-					neutral: '#0A1828',
-					'neutral-focus': '#0f1129',
+					neutral: '#0A0A0A',
+					'neutral-focus': '#0A0A0A',
 					'neutral-content': '#ffffff',
 					'base-100': '#ffffff',
 					'base-200': '#f9fafb',

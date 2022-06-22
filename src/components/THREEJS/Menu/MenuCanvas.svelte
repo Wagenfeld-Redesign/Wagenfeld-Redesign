@@ -1,57 +1,76 @@
 <script lang="ts">
 	import Sketch from './scriptMenu';
+	import { TweenMax } from 'gsap/all';
+	import { navPosition } from '../../../store/stores.js';
 
 	let sketch = new Sketch({
 		dom: document.getElementById('container')
 	});
 
+	let menuTitles = [
+		'Wilhelm Wagenfelds Werke',
+		'Wer ist Wagenfeld?',
+		'Das Wilhelm Wagenfeld Haus',
+		'Aktuelle Austellung'
+	];
+
+	let leftArrow = document.getElementById('arrow-left');
+	let rightArrow = document.getElementById('arrow-right');
+	let menuTitleElement = document.getElementById('currentMenuTitle');
+
 	let speed = 0;
 	let oldPosition = 0;
-	let position = 0;
+	let position = { value: 0 };
 	let rounded = 0;
+
+	rightArrow.addEventListener('click', function () {
+		TweenMax.to(position, 0.4, {
+			value: position.value + 1,
+			ease: 'Circ.easeOut'
+		});
+	});
+
+	leftArrow.addEventListener('click', function () {
+		TweenMax.to(position, 0.4, {
+			value: position.value - 1,
+			ease: 'Circ.easeOut'
+		});
+	});
 
 	// let elems = [...document.querySelectorAll('.n')];
 
 	window.addEventListener('wheel', (e) => {
+		// speed += e.deltaY * 0.0003;
+
 		if (e.deltaY < 0) {
-			if (Math.round(position) >= 1) speed += e.deltaY * 0.0003;
+			if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
 		} else if (e.deltaY > 0) {
-			if (Math.round(position) <= 3) speed += e.deltaY * 0.0003;
+			if (Math.round(position.value) <= 2) speed += e.deltaY * 0.0003;
 		}
 	});
 
-	let objs = Array(5).fill({ dist: 0 });
-
-	// useFrame(() => {
-	// 	try {
-	// 		raf();
-	// 	} catch (e) {}
-	// });
+	let objs = Array(menuTitles.length).fill({ dist: 0 });
 
 	// Functions
 	function raf() {
 		try {
-			position += speed;
+			position.value += speed;
 			speed *= 0.89;
 
 			objs.forEach((o, i) => {
-				o.dist = Math.min(Math.abs(position - i), 1);
+				o.dist = Math.min(Math.abs(position.value - i), 1);
 				o.dist = 1 - o.dist ** 2;
 
 				let scale = 1 + 0.1 * o.dist;
-				sketch.meshes[i].position.y = i * 1.2 - position * 1.2;
+				sketch.meshes[i].position.x = i * 1.6 - position.value * 1.6;
 				sketch.meshes[i].scale.set(scale, scale, scale);
 				sketch.meshes[i].material.uniforms.distanceFromCenter.value = o.dist;
 			});
 
-			rounded = Math.round(position);
-			let diff = rounded - position;
+			rounded = Math.round(position.value);
+			let diff = rounded - position.value;
 
-			position += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.035;
-
-			// sketch.meshes.forEach((mesh, i) => {
-
-			// });
+			position.value += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.035;
 
 			checkPositionChange();
 			window.requestAnimationFrame(raf);
@@ -59,10 +78,40 @@
 	}
 
 	function checkPositionChange() {
-		let roundedPosition = Math.round(position);
+		let roundedPosition = Math.round(position.value);
 		if (oldPosition != roundedPosition) {
 			oldPosition = roundedPosition;
+
+			navPosition.set(roundedPosition);
 		}
+
+		menuTitleElement.innerHTML = menuTitles[roundedPosition];
+
+		if (roundedPosition == 0) {
+			leftArrow.style.visibility = 'hidden';
+			rightArrow.style.visibility = 'visible';
+		} else if (roundedPosition >= 1 && roundedPosition <= 2) {
+			leftArrow.style.visibility = 'visible';
+			rightArrow.style.visibility = 'visible';
+		} else if (roundedPosition == 3) {
+			leftArrow.style.visibility = 'visible';
+			rightArrow.style.visibility = 'hidden';
+		}
+
+		// objs.forEach((o, i) => {
+		// 	o.dist = Math.min(Math.abs(position - i), 1);
+		// 	o.dist = 1 - o.dist ** 2;
+
+		// 	if (i == roundedPosition) {
+		// 		sketch.meshes[i].rotation.y = 21 + 0.1 * -o.dist;
+		// 	} else if (i < roundedPosition) {
+		// 		// sketch.meshes[i].rotation.y = -1;
+		// 	} else if (i > roundedPosition) {
+		// 		// sketch.meshes[i].rotation.y = 1;
+		// 	} else {
+		// 		sketch.meshes[i].rotation.y = 0;
+		// 	}
+		// });
 	}
 
 	raf();

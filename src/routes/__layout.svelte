@@ -4,53 +4,58 @@
 	import { onMount } from 'svelte';
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
-	import LoadingScreen from '../components/Loadings/QuoteLoading.svelte';
+	import Popup from '../components/Popup.svelte';
+	import LoadingScreen from '../components/Loadings/PatternLoading.svelte';
+	import { gltfLamp } from '../store/stores';
+	import { useGltf } from 'threlte/extras';
+	const { gltf } = useGltf('src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
 
-	let timerLoading = false;
+	let timerLoading = true; //default: true
+	let t1;
 
-	onMount(() => {
-		const t1 = gsap.timeline({ paused: true, defaults: { duration: 0.4 } });
+	$: if ($gltf) {
+		gltfLamp.set($gltf);
+
 		setTimeout(function () {
 			t1.play();
-		}, 7000);
+		}, 0);
+	}
+
+	onMount(() => {
+		t1 = gsap.timeline({ paused: true, defaults: { duration: 0.4 } });
 
 		const loadingScreen = document.getElementById('quoteLoading');
-		const content = document.getElementById('content');
+
 		t1.to(loadingScreen, {
 			opacity: 0,
 			onComplete: () => {
 				timerLoading = false;
-				// loadingScreen.style.visibility = 'hidden';
 			}
 		});
-
-		t1.to(
-			content,
-			{
-				opacity: 1,
-				onStart: () => {
-					content.removeAttribute('hidden');
-				}
-			},
-			'-=0.2'
-		);
 	});
 </script>
 
-<!-- <div id="content" style="margin: 0 auto; opacity: 0;" hidden> -->
+<div id="content" style="margin: 0 auto;">
+	<div class="flex flex-col min-h-screen">
+		{#if !timerLoading}
+			<Nav />
+		{/if}
 
-<div class="flex flex-col min-h-screen">
-	<Nav />
+		<div class="flex flex-col flex-1 sm:flex-row bg-primary">
+			{#if !timerLoading}
+				<slot />
+				<Popup />
+			{/if}
 
-	<div class="flex flex-col flex-1 sm:flex-row">
-		<slot />
+			{#if timerLoading}
+				<div id="quoteLoading" class="z-50">
+					<LoadingScreen />
+				</div>
+			{/if}
+		</div>
+
+		{#if !timerLoading}
+			<!-- <Footer /> -->
+		{/if}
 	</div>
-
-	<!-- <Footer /> -->
 </div>
-
-{#if timerLoading}
-	<div id="quoteLoading" class="z-50">
-		<LoadingScreen />
-	</div>
-{/if}

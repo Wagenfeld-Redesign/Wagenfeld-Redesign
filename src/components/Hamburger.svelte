@@ -1,23 +1,38 @@
 <script>
 	import { onMount } from 'svelte';
 	import NavigationScreen from './NavigationScreen.svelte';
-	let open;
+	import gsap from 'gsap';
+	import { navOpen, navPosition } from '../store/stores';
+
+	$: navOpenToggle($navOpen);
+
+	function navOpenToggle(open) {
+		document.body.classList.toggle('nav-open');
+
+		if ($navOpen) {
+			document.body.style.overflowY = 'hidden';
+		} else {
+			document.body.style.overflowY = 'visible';
+		}
+	}
 
 	onMount(() => {
+		document.body.classList.toggle('nav-open');
 		document.getElementById('menu-toggle').addEventListener('click', function () {
-			document.body.classList.toggle('nav-open');
-			open = !open;
+			navOpen.set(!$navOpen);
+			navPosition.set(0);
+		});
 
-			if (open) {
-				document.body.style.overflowY = 'hidden';
-			} else {
-				document.body.style.overflowY = 'visible';
-			}
+		gsap.from(document.querySelectorAll('.menu-toggle'), {
+			x: 9000,
+			opacity: 0,
+			duration: 0.7,
+			ease: 'Power3.easeOut'
 		});
 	});
 </script>
 
-{#if open}
+{#if $navOpen}
 	<NavigationScreen />
 {/if}
 
@@ -30,30 +45,29 @@
 	.menu-toggle {
 		position: absolute;
 		height: 24px;
-		width: 24px;
-		z-index: 40 !important;
+		width: 60px;
+		z-index: 999 !important;
 	}
 	.menu-toggle,
 	.menu-toggle:hover {
-		color: #000;
 		cursor: pointer;
 	}
 	.menu-toggle-bar {
 		display: block;
 		position: absolute;
 		top: 50%;
-		margin-top: -1px;
+		/* margin-top: px; */
 		right: 0;
 		width: 100%;
-		height: 2px;
+		height: 5px;
 		border-radius: 4px;
 		transition: all 0.3s ease;
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--top) {
-		transform: translate(0, -4px);
+		transform: translate(0, -12px);
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--bottom) {
-		transform: translate(0, 4px);
+		transform: translate(0, 12px);
 	}
 	:global(.nav-open .menu-toggle-bar.menu-toggle-bar--top) {
 		transform: translate(0, 0) rotate(45deg);

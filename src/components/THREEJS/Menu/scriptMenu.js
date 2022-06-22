@@ -2,6 +2,10 @@ import * as THREE from 'three';
 
 import shader from './shader.glsl';
 import fragment from './fragment.glsl.js';
+import * as $j from 'jquery';
+import { goto } from '$app/navigation';
+import { navOpen, navPosition } from '../../../store/stores.js';
+import { get } from 'svelte/store';
 
 // import { TimelineMax } from 'gsap';
 
@@ -16,7 +20,9 @@ export default class Sketch {
 		});
 		this.renderer.setPixelRatio(window.devicePixelRatio);
 		this.renderer.setSize(this.width, this.height);
-		this.renderer.setClearColor(0x0a1828, 1);
+		// this.renderer.setClearColor(0x0a0a0a, 1);
+		this.renderer.setClearColor(0x0a0a0a, 0); // the default
+
 		this.renderer.physicallyCorrectLights = true;
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 		this.container.appendChild(this.renderer.domElement);
@@ -41,7 +47,30 @@ export default class Sketch {
 		this.materials = [];
 		this.meshes = [];
 		this.groups = [];
+		this.links = ['/werke', '/', '/', '/'];
 		this.handleImages();
+
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
+		$j(document).on('click', (event) => {
+			event.preventDefault();
+
+			mouse.x = (event.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
+			mouse.y = -(event.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+
+			raycaster.setFromCamera(mouse, this.camera);
+
+			var intersects = raycaster.intersectObjects(this.groups);
+
+			if (intersects.length > 0) {
+				if (this.links[get(navPosition)] == intersects[0].object.name) {
+					goto(intersects[0].object.name);
+
+					navOpen.set(false);
+				}
+			}
+		});
 	}
 
 	handleImages() {
@@ -60,8 +89,14 @@ export default class Sketch {
 			};
 			mat.uniforms.texture1.value.needsUpdate = true;
 
-			let geo = new THREE.PlaneBufferGeometry(1.5, 1, 20, 20);
+			let geo = new THREE.PlaneBufferGeometry(1.25, 1.5, 20, 20);
 			let mesh = new THREE.Mesh(geo, mat);
+
+			let url = '';
+			if (images[i].dataset.url != null) {
+				url = images[i].dataset.url;
+			}
+			mesh.name = '/' + url;
 
 			let group = new THREE.Group();
 
@@ -71,11 +106,11 @@ export default class Sketch {
 			this.meshes.push(mesh);
 			this.scene.add(group);
 
-			mesh.position.y = i * 1.2;
+			mesh.position.x = i * 1.6;
 
-			group.rotation.x = -0.3;
-			group.rotation.y = -0.5;
-			group.rotation.z = -0.1;
+			// mesh.rotation.x = -0.1;
+			// mesh.rotation.y = -0.5;
+			// mesh.rotation.z = -0.1;
 		});
 	}
 
@@ -98,7 +133,7 @@ export default class Sketch {
 		this.camera.aspect = this.width / this.height;
 
 		// image cover
-		this.imageAspect = 853 / 1280;
+		this.imageAspect = 1.25 / 1.5;
 		let a1;
 		let a2;
 		if (this.height / this.width > this.imageAspect) {
