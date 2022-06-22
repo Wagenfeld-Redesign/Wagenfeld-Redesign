@@ -3,6 +3,7 @@
 	import Hamburger from './Hamburger.svelte';
 	import gsap from 'gsap';
 	import { goto } from '$app/navigation';
+	import { navOpen } from '../store/stores.js';
 
 	onMount(() => {
 		gsap.from(document.querySelector('.logo'), {
@@ -15,6 +16,7 @@
 	});
 
 	function gotoHome() {
+		navOpen.set(false);
 		goto('/');
 	}
 </script>

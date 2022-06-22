@@ -53,6 +53,24 @@ export default class Sketch {
 		var raycaster = new THREE.Raycaster();
 		var mouse = new THREE.Vector2();
 
+		// $j(document).on('mousemove', (event) => {
+		// 	event.preventDefault();
+
+		// 	mouse.x = (event.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
+		// 	mouse.y = -(event.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+
+		// 	raycaster.setFromCamera(mouse, this.camera);
+
+		// 	var intersects = raycaster.intersectObjects(this.groups);
+
+		// 	if (intersects.length > 0) {
+		// 		if (this.links[get(navPosition)] == intersects[0].object.name) {
+		// 			$j('html,body').css('cursor', 'pointer');
+		// 		} else {
+		// 			$j('html,body').css('cursor', 'default');
+		// 		}
+		// 	}
+		// });
 		$j(document).on('click', (event) => {
 			event.preventDefault();
 
@@ -65,9 +83,8 @@ export default class Sketch {
 
 			if (intersects.length > 0) {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
-					goto(intersects[0].object.name);
-
 					navOpen.set(false);
+					goto(intersects[0].object.name);
 				}
 			}
 		});
