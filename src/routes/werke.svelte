@@ -47,8 +47,8 @@
 	let currentTitlesArray = [];
 	onMount(() => {
 		for (const modulePath in pathPictures) {
-			var currentCount = modulePath.split('/')[5].split('.')[0].split('-')[0];
-			var currentName = modulePath.split('/')[5].split('.')[0].split('-')[1];
+			var currentCount = modulePath.split('/')[5].split('.')[0].split('_')[0];
+			var currentName = modulePath.split('/')[5].split('.')[0].split('_')[1];
 
 			if (initOldPathLetter == modulePath.split('/')[4]) {
 				currentTitlesArray.push(currentName);
@@ -106,7 +106,7 @@
 
 			position.value += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.035;
 
-			wrap.style.transform = `translate(${-position.value * 72 + 25}px,0)`;
+			wrap.style.transform = `translate(${-position.value * 72.8 + 25}px,0)`;
 
 			checkPositionChange();
 			window.requestAnimationFrame(raf);
@@ -140,7 +140,7 @@
 			{#each currentArray as i, index}
 				<div id="portrait" class="w-96">
 					<img
-						src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}.jpg"
+						src="src/assets/images/werkePictures/{currentLetter}/{index + 1}_{i[index]}.jpg"
 						alt=""
 						srcset=""
 						class="transition-all duration-100 grayscale hover:grayscale-0"
@@ -187,14 +187,14 @@
 				<p id="letter" class="text-6xl font-bold text-center text-secondary">Z</p>
 			</div>
 		</div>
-		<hr id="divider" class="self-center float-right w-16 mb-12 mr-2 -mt-4 border-2 border-accent" />
+		<hr id="divider" class="self-center float-right w-16 mb-12 mr-2 -mt-4 border-4 border-accent" />
 	</div>
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+	@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 	#letter {
-		font-family: 'Roboto Mono', monospace;
+		font-family: 'Space Mono', monospace;
 	}
 
 	#content {
