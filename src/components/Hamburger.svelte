@@ -47,6 +47,7 @@
 		height: 24px;
 		width: 60px;
 		z-index: 999 !important;
+		margin-bottom: 10px;
 	}
 	.menu-toggle,
 	.menu-toggle:hover {
@@ -59,8 +60,7 @@
 		/* margin-top: px; */
 		right: 0;
 		width: 100%;
-		height: 5px;
-		border-radius: 4px;
+		height: 8px;
 		transition: all 0.3s ease;
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--top) {

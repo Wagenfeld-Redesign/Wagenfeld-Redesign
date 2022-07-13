@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { showPopup, popupText } from '../store/stores';
 
 	let wagenfeldLamp;
 	onMount(async () => {
@@ -24,6 +25,20 @@
 			ease: 'Power3.easeOut'
 		});
 	});
+
+	function popupToggle(subheadline) {
+		showPopup.set(!$showPopup);
+		if ($showPopup) popupText.set(subheadline);
+	}
+
+	const subheadlineText1 = `LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM NONUMY EIRMOD TEMPOR
+			INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM ERAT, SED DIAM VOLUPTUA. AT VERO EOS ET ACCUSAM ET
+			JUSTO DUO DOLORES ET EA REBUM. STET CLITA KASD GUBERGREN, NO SEA TAKIMATA SANCTUS EST LOREM
+			IPSUM DOLOR SIT AMET. LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM NONUMY
+			EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM ERAT, SED DIAM VOLUPTUA. AT VERO EOS
+			ET ACCUSAM ET JUSTO DUO DOLORES ET EA REBUM. STET CLITA KASD GUBERGREN, NO SEA TAKIMATA
+			SANCTUS EST LOREM IPSUM DOLOR SIT AMET. LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING
+			ELITR, SED DIAM NONUMY EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM.`;
 </script>
 
 <div id="content" class="relative w-screen min-h-screen px-4">
@@ -39,25 +54,15 @@
 					id="headline"
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
+					on:mouseenter={() => {
+						popupToggle(subheadlineText1);
+					}}
+					on:mouseleave={popupToggle}
 				>
 					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
 				</h1>
 
-				<hr id="divider" class="float-right w-4/5 border-4 rounded border-accent" />
-				<p class="h-6" />
-				<hr id="divider" class="float-right w-1/3 border-4 rounded border-accent" />
-				<!-- <p
-					class="px-4 mt-1 text-base text-justify text-neutral-content sm:text-lg sm:max-w-3xl sm:mx-auto md:text-xl lg:mx-0"
-				>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis doloribus aspernatur
-					quaerat expedita, rerum vel! Sint libero amet dignissimos provident inventore sapiente?
-					Incidunt, labore cumque eligendi saepe officia nesciunt nulla voluptas soluta alias est
-					qui rem dolor, natus dolorem esse asperiores iure! Nostrum a debitis asperiores! Vitae
-					ullam eos fugiat dignissimos rerum, repudiandae, suscipit quae totam odit ratione tempore!
-					Eveniet itaque dolorem voluptatum iure animi rerum beatae, a quae libero numquam provident
-					modi obcaecati magnam asperiores nostrum voluptatibus doloremque! Facilis tempore cum
-					pariatur enim. Consequuntur nemo delectus nulla ex. Itaque?
-				</p> -->
+				<hr id="divider" class="float-right -mt-4 mr-2 w-[70%] border-[14px] border-accent" />
 			</div>
 		</div>
 	</div>
@@ -69,13 +74,14 @@
 					id="headline"
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
+					on:mouseenter={() => {
+						popupToggle('TEST');
+					}}
+					on:mouseleave={popupToggle}
 				>
 					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
 				</h1>
-
-				<hr id="divider" class="float-right w-4/5 border-4 rounded border-accent" />
-				<p class="h-6" />
-				<hr id="divider" class="float-right w-1/3 border-4 rounded border-accent" />
+				<hr id="divider" class="float-right -mt-4 mr-2 w-[70%] border-[14px] border-accent" />
 			</div>
 		</div>
 	</div>

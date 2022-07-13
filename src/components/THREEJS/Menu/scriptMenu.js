@@ -4,7 +4,7 @@ import shader from './shader.glsl';
 import fragment from './fragment.glsl.js';
 import * as $j from 'jquery';
 import { goto } from '$app/navigation';
-import { navOpen, navPosition } from '../../../store/stores.js';
+import { navOpen, navPosition, showPopup } from '../../../store/stores.js';
 import { get } from 'svelte/store';
 
 // import { TimelineMax } from 'gsap';
@@ -47,7 +47,7 @@ export default class Sketch {
 		this.materials = [];
 		this.meshes = [];
 		this.groups = [];
-		this.links = ['/werke', '/', '/', '/'];
+		this.links = ['/werke', '/werke', '/werke', '/werke'];
 		this.handleImages();
 
 		var raycaster = new THREE.Raycaster();
@@ -84,6 +84,9 @@ export default class Sketch {
 			if (intersects.length > 0) {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
 					navOpen.set(false);
+					setTimeout(() => {
+						showPopup.set(false);
+					}, 10);
 					goto(intersects[0].object.name);
 				}
 			}

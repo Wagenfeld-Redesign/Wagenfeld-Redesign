@@ -8,8 +8,10 @@
 </script>
 
 <div id="contentNavigation" class="absolute top-0 left-0 z-40 w-screen h-screen cursor-pointer">
-	<div class="flex justify-center w-screen mt-12">
-		<p class="absolute z-40 text-4xl font-bold text-center text-white md:text-4xl xl:text-7xl">
+	<div class="flex justify-center w-screen">
+		<p
+			class="absolute z-40 pt-16 font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-[5.75rem]"
+		>
 			MENU
 		</p>
 	</div>

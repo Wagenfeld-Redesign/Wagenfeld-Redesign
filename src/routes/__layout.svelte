@@ -22,6 +22,9 @@
 	}
 
 	onMount(() => {
+		// setTimeout(function () {
+		// 	t1.play();
+		// }, 0);
 		t1 = gsap.timeline({ paused: true, defaults: { duration: 0.4 } });
 
 		const loadingScreen = document.getElementById('quoteLoading');
