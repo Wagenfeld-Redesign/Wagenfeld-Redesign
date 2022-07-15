@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# �Make�-Datenbank; erstellt am: Thu Jul 14 09:31:59 2022
+# �Make�-Datenbank; erstellt am: Fri Jul 15 22:11:23 2022
 
 # Variablen
 
@@ -51,8 +51,7 @@ PROGRAMDATA = C:\ProgramData
 # Umgebung
 VSCODE_CWD = C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code
 # Umgebung
-PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GnuWin32\bin;C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\phlif\AppData\Local 
-\Programs\Python\Python310\;C:\Users\phlif\AppData\Local\Microsoft\WindowsApps;;C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\phlif\AppData\Roaming\npm
+PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GnuWin32\bin;D:\Users\Phil\Program\Strawberry_Perl\c\bin;D:\Users\Phil\Program\Strawberry_Perl\perl\site\bin;D:\Users\Phil\Program\Strawberry_Perl\perl\bin;C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\phlif\AppData\Local\Programs\Python\Python310\;C:\Users\phlif\AppData\Local\Microsoft\WindowsApps;C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\phlif\AppData\Roaming\npm;C:\Users\phlif\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 # Umgebung
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # Umgebung
@@ -70,7 +69,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatisch
 %F = $(notdir $%)
 # Umgebung
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10164_FKKNPZPJSTKWNBBG
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_20800_RSGYOBLDQPZNUCQP
 # Umgebung
 COMPUTERNAME = DESKTOP-AIB0N1O
 # Umgebung
@@ -174,7 +173,7 @@ LANG = C
 # Umgebung
 PROCESSOR_LEVEL = 6
 # Umgebung
-VSCODE_PID = 10164
+VSCODE_PID = 20800
 # Umgebung
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-AIB0N1O
 # variable set hash-table stats:
@@ -186,28 +185,30 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AIB0N1O
 
 # Verzeichnisse
 
-# : Konnte den Status nicht feststellen.
 # C:\Program Files\Common Files\Oracle\Java\javapath (Schl�ssel (key) C:/Program Files/Common Files/Oracle/Java/javapath,  letzte �nderung (mtime) 1650901481): 6 Dateien, keine Unm�glichkeiten.
 # C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (Schl�ssel (key) C:/WINDOWS/System32/WindowsPowerShell/v1.0/,  letzte �nderung (mtime) 1643552556): 31 Dateien, keine Unm�glichkeiten.
 # C:\WINDOWS\System32\Wbem (Schl�ssel (key) C:/WINDOWS/System32/Wbem,  letzte �nderung (mtime) 1655320644): 172 Dateien, keine Unm�glichkeiten.
 # . (Schl�ssel (key) d:/Users/Phil/repos/website,  letzte �nderung (mtime) 1657783324): 17 Dateien, keine Unm�glichkeiten.
 # C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (Schl�ssel (key) C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common,  letzte �nderung (mtime) 1643555736): 10 Dateien, keine Unm�glichkeiten.
 # C:\Program Files\nodejs\ (Schl�ssel (key) C:/Program Files/nodejs/,  letzte �nderung (mtime) 1652856604): 13 Dateien, keine Unm�glichkeiten.
+# D:\Users\Phil\Program\Strawberry_Perl\perl\site\bin (Schl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/perl/site/bin,  letzte �nderung (mtime) 1657915809): 2 Dateien, keine Unm�glichkeiten.
 # C:\WINDOWS\System32\OpenSSH\: Konnte den Status nicht feststellen.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (Schl�ssel (key) C:/Program Files (x86)/Common Files/Oracle/Java/javapath,  letzte �nderung (mtime) 1653066241): 5 Dateien, keine Unm�glichkeiten.
 # C:\WINDOWS (Schl�ssel (key) C:/WINDOWS,  letzte �nderung (mtime) 1655320642): 111 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Local\Programs\Python\Python310\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Python/Python310/,  letzte �nderung (mtime) 1643710229): 18 Dateien, keine Unm�glichkeiten.
-# C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Python/Python310/Scripts/,  letzte �nderung (mtime) 1657783232): 34 Dateien, keine Unm�glichkeiten.
+# D:\Users\Phil\Program\Strawberry_Perl\c\bin (Schl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/c/bin,  letzte �nderung (mtime) 1657915818): 115 Dateien, keine Unm�glichkeiten.
+# C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Python/Python310/Scripts/,  letzte �nderung (mtime) 1657914022): 35 Dateien, keine Unm�glichkeiten.
+# D:\Users\Phil\Program\Strawberry_Perl\perl\bin (Schl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/perl/bin,  letzte �nderung (mtime) 1657915833): 184 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Microsoft VS Code/bin,  letzte �nderung (mtime) 1657782430): 4 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Roaming\npm (Schl�ssel (key) C:/Users/phlif/AppData/Roaming/npm,  letzte �nderung (mtime) 1652856936): 12 Dateien, keine Unm�glichkeiten.
 # C:\Program Files\Git\cmd (Schl�ssel (key) C:/Program Files/Git/cmd,  letzte �nderung (mtime) 1652853137): 8 Dateien, keine Unm�glichkeiten.
-# C:\WINDOWS\system32 (Schl�ssel (key) C:/WINDOWS/system32,  letzte �nderung (mtime) 1657781963): 3005 Dateien, keine Unm�glichkeiten.
+# C:\WINDOWS\system32 (Schl�ssel (key) C:/WINDOWS/system32,  letzte �nderung (mtime) 1657909977): 3005 Dateien, keine Unm�glichkeiten.
+# C:\Users\phlif\AppData\Local\Programs\MiKTeX\miktex\bin\x64\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/MiKTeX/miktex/bin/x64/,  letzte �nderung (mtime) 1657915424): 736 Dateien, keine Unm�glichkeiten.
 # C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR (Schl�ssel (key) C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR,  letzte �nderung (mtime) 1643555744): 5 Dateien, keine Unm�glichkeiten.
-# C:\Users\phlif\AppData\Local\Microsoft\WindowsApps (Schl�ssel (key) C:/Users/phlif/AppData/Local/Microsoft/WindowsApps,  letzte �nderung (mtime) 1657702754): 19 Dateien, keine Unm�glichkeiten.
-# C:\Program Files (x86)\GnuWin32\bin (Schl�ssel (key) C:/Pr 
-ogram Files (x86)/GnuWin32/bin,  letzte �nderung (mtime) 1657783762): 5 Dateien, keine Unm�glichkeiten.
+# C:\Users\phlif\AppData\Local\Microsoft\WindowsApps (Schl�ssel (key) C:/Users/phlif/AppData/Local/Microsoft/WindowsApps,  letzte �nderung (mtime) 1657909724): 19 Dateien, keine Unm�glichkeiten.
+# C:\Program Files (x86)\GnuWin32\bin (Schl�ssel (key) C:/Program Files (x86)/GnuWin32/bin,  letzte �nderung (mtime) 1657783762): 5 Dateien, keine Unm�glichkeiten.
 
-# 3475 Dateien, keine Unm�glichkeiten in 19 Verzeichnissen.
+# 4513 Dateien, keine Unm�glichkeiten in 22 Verzeichnissen.
 
 # Implicit Rules
 
@@ -242,8 +243,7 @@ makefile:
 
 # Dies ist kein Ziel:
 .SUFFIXES:
-#  Suche nach  
-impliziten Regeln wurde nicht durchgef�hrt.
+#  Suche nach impliziten Regeln wurde nicht durchgef�hrt.
 #  Zeit der letzten �nderung wurde nicht �berpr�ft.
 #  Datei wurde nicht aktualisiert.
 
@@ -258,8 +258,7 @@ GNUmakefile:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=5/1024=0%, Rehash=0, Collisions=0 
-/16=0%
+# Load=5/1024=0%, Rehash=0, Collisions=0/16=0%
 # VPATH-Suchpfade
 
 # Keine �vpath�-Suchpfade.
@@ -271,7 +270,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# �Make�-Datenbank; beendet am: Thu Jul 14 09:31:59 2022
+# �Make�-Datenbank; beendet am: Fri Jul 15 22:11:23 2022
 
  
 make.exe: *** Keine Regel, um �all� zu erstellen.  Schluss.
