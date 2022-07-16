@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# �Make�-Datenbank; erstellt am: Fri Jul 15 22:11:23 2022
+# �Make�-Datenbank; erstellt am: Sat Jul 16 03:04:49 2022
 
 # Variablen
 
@@ -51,7 +51,8 @@ PROGRAMDATA = C:\ProgramData
 # Umgebung
 VSCODE_CWD = C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code
 # Umgebung
-PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GnuWin32\bin;D:\Users\Phil\Program\Strawberry_Perl\c\bin;D:\Users\Phil\Program\Strawberry_Perl\perl\site\bin;D:\Users\Phil\Program\Strawberry_Perl\perl\bin;C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\phlif\AppData\Local\Programs\Python\Python310\;C:\Users\phlif\AppData\Local\Microsoft\WindowsApps;C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\phlif\AppData\Roaming\npm;C:\Users\phlif\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
+PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GnuWin32\bin;D:\Users\Phil\Program\Strawberry_Perl\c\bin;D:\Users\Phil\Program\Strawberry_Perl\perl\site\ 
+bin;D:\Users\Phil\Program\Strawberry_Perl\perl\bin;C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\phlif\AppData\Local\Programs\Python\Python310\;C:\Users\phlif\AppData\Local\Microsoft\WindowsApps;C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\phlif\AppData\Roaming\npm;C:\Users\phlif\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 # Umgebung
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # Umgebung
@@ -69,7 +70,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatisch
 %F = $(notdir $%)
 # Umgebung
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_20800_RSGYOBLDQPZNUCQP
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9984_LYYTHLNJXTTYFERT
 # Umgebung
 COMPUTERNAME = DESKTOP-AIB0N1O
 # Umgebung
@@ -167,13 +168,14 @@ SESSIONNAME = Console
 # Umgebung
 PROCESSOR_REVISION = 9e09
 # Umgebung
-MAKELEVEL := 0
+MAK 
+ELEVEL := 0
 # Umgebung
 LANG = C
 # Umgebung
 PROCESSOR_LEVEL = 6
 # Umgebung
-VSCODE_PID = 20800
+VSCODE_PID = 9984
 # Umgebung
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-AIB0N1O
 # variable set hash-table stats:
@@ -198,7 +200,8 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AIB0N1O
 # C:\Users\phlif\AppData\Local\Programs\Python\Python310\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Python/Python310/,  letzte �nderung (mtime) 1643710229): 18 Dateien, keine Unm�glichkeiten.
 # D:\Users\Phil\Program\Strawberry_Perl\c\bin (Schl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/c/bin,  letzte �nderung (mtime) 1657915818): 115 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Local\Programs\Python\Python310\Scripts\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Python/Python310/Scripts/,  letzte �nderung (mtime) 1657914022): 35 Dateien, keine Unm�glichkeiten.
-# D:\Users\Phil\Program\Strawberry_Perl\perl\bin (Schl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/perl/bin,  letzte �nderung (mtime) 1657915833): 184 Dateien, keine Unm�glichkeiten.
+# D:\Users\Phil\Program\Strawberry_Perl\perl\bin (S 
+chl�ssel (key) D:/Users/Phil/Program/Strawberry_Perl/perl/bin,  letzte �nderung (mtime) 1657915833): 184 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Local\Programs\Microsoft VS Code\bin (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/Microsoft VS Code/bin,  letzte �nderung (mtime) 1657782430): 4 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Roaming\npm (Schl�ssel (key) C:/Users/phlif/AppData/Roaming/npm,  letzte �nderung (mtime) 1652856936): 12 Dateien, keine Unm�glichkeiten.
 # C:\Program Files\Git\cmd (Schl�ssel (key) C:/Program Files/Git/cmd,  letzte �nderung (mtime) 1652853137): 8 Dateien, keine Unm�glichkeiten.
@@ -206,7 +209,8 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AIB0N1O
 # C:\Users\phlif\AppData\Local\Programs\MiKTeX\miktex\bin\x64\ (Schl�ssel (key) C:/Users/phlif/AppData/Local/Programs/MiKTeX/miktex/bin/x64/,  letzte �nderung (mtime) 1657915424): 736 Dateien, keine Unm�glichkeiten.
 # C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR (Schl�ssel (key) C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR,  letzte �nderung (mtime) 1643555744): 5 Dateien, keine Unm�glichkeiten.
 # C:\Users\phlif\AppData\Local\Microsoft\WindowsApps (Schl�ssel (key) C:/Users/phlif/AppData/Local/Microsoft/WindowsApps,  letzte �nderung (mtime) 1657909724): 19 Dateien, keine Unm�glichkeiten.
-# C:\Program Files (x86)\GnuWin32\bin (Schl�ssel (key) C:/Program Files (x86)/GnuWin32/bin,  letzte �nderung (mtime) 1657783762): 5 Dateien, keine Unm�glichkeiten.
+# C:\Program Files (x86)\GnuWin32\bin (Schl�ssel (key) C:/Program Files (x86)/GnuWin32/bin,  letzte �nderung (mtime) 1657783762): 5 Dateien, k 
+eine Unm�glichkeiten.
 
 # 4513 Dateien, keine Unm�glichkeiten in 22 Verzeichnissen.
 
@@ -228,7 +232,8 @@ all:
 # Dies ist kein Ziel:
 .DEFAULT:
 #  Suche nach impliziten Regeln wurde nicht durchgef�hrt.
-#  Zeit der letzten �nderung wurde nicht �berpr�ft.
+#  Zeit der letz 
+ten �nderung wurde nicht �berpr�ft.
 #  Datei wurde nicht aktualisiert.
 
 # Dies ist kein Ziel:
@@ -244,7 +249,8 @@ makefile:
 # Dies ist kein Ziel:
 .SUFFIXES:
 #  Suche nach impliziten Regeln wurde nicht durchgef�hrt.
-#  Zeit der letzten �nderung wurde nicht �berpr�ft.
+#  Zeit der letzten �nderung wurde nic 
+ht �berpr�ft.
 #  Datei wurde nicht aktualisiert.
 
 # Dies ist kein Ziel:
@@ -263,15 +269,16 @@ GNUmakefile:
 
 # Keine �vpath�-Suchpfade.
 
-# Kein allgemeiner Suchpfad (Variable �VPATH�).
+# Kein allgemeiner Suchpfad  
+make.exe: *** Keine Regel, um �all� zu erstellen.  Schluss.
+
+(Variable �VPATH�).
 
 # # of strings in strcache: 0
 # # of strcache buffers: 0
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# �Make�-Datenbank; beendet am: Fri Jul 15 22:11:23 2022
+# �Make�-Datenbank; beendet am: Sat Jul 16 03:04:49 2022
 
  
-make.exe: *** Keine Regel, um �all� zu erstellen.  Schluss.
-
