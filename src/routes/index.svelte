@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText } from '../store/stores';
+	import { showPopup, popupText, popupHeadline } from '../store/stores';
 
 	let wagenfeldLamp;
 	onMount(async () => {
@@ -26,19 +26,16 @@
 		});
 	});
 
-	function popupToggle(subheadline) {
+	function popupToggle(subheadline, subheadlineText) {
 		showPopup.set(!$showPopup);
-		if ($showPopup) popupText.set(subheadline);
+		if ($showPopup) {
+			popupHeadline.set(subheadline);
+			popupText.set(subheadlineText);
+		}
 	}
 
-	const subheadlineText1 = `LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM NONUMY EIRMOD TEMPOR
-			INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM ERAT, SED DIAM VOLUPTUA. AT VERO EOS ET ACCUSAM ET
-			JUSTO DUO DOLORES ET EA REBUM. STET CLITA KASD GUBERGREN, NO SEA TAKIMATA SANCTUS EST LOREM
-			IPSUM DOLOR SIT AMET. LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM NONUMY
-			EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM ERAT, SED DIAM VOLUPTUA. AT VERO EOS
-			ET ACCUSAM ET JUSTO DUO DOLORES ET EA REBUM. STET CLITA KASD GUBERGREN, NO SEA TAKIMATA
-			SANCTUS EST LOREM IPSUM DOLOR SIT AMET. LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING
-			ELITR, SED DIAM NONUMY EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM.`;
+	const subHeadline1 = 'This is a headline';
+	const subheadlineText1 = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
 </script>
 
 <div id="content" class="relative w-screen min-h-screen px-4">
@@ -55,7 +52,7 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupToggle(subheadlineText1);
+						popupToggle(subHeadline1, subheadlineText1);
 					}}
 					on:mouseleave={popupToggle}
 				>
@@ -75,7 +72,7 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupToggle('TEST');
+						popupToggle('Test', 'TEST');
 					}}
 					on:mouseleave={popupToggle}
 				>

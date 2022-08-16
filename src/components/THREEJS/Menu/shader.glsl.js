@@ -13,11 +13,11 @@ const vertexShader = `
         vUv = (uv - vec2(0.5)) * (1.-0.1 *distanceFromCenter*(2. - distanceFromCenter)) + vec2(0.5);
 
         vec3 pos = position;
-        pos.y += sin(PI * uv.x) *0.03;
+        // pos.y += sin(PI * uv.x) *0.03;
         // pos.x += sin(PI * uv.x) *0.02;
         
-        pos.x += sin(time*0.3) * 0.01;
-        vUv.x -= sin(time*0.3) * 0.01;
+        // pos.x += sin(time*0.3) * 0.01;
+        // vUv.x -= sin(time*0.3) * 0.01;
 
         // vUv.y -= 0.005;
 

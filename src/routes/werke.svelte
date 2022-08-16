@@ -47,8 +47,8 @@
 	let currentTitlesArray = [];
 	onMount(() => {
 		for (const modulePath in pathPictures) {
-			var currentCount = modulePath.split('/')[5].split('.')[0].split('_')[0];
-			var currentName = modulePath.split('/')[5].split('.')[0].split('_')[1];
+			var currentCount = modulePath.split('/')[5].split('.')[0].split('-')[0];
+			var currentName = modulePath.split('/')[5].split('.')[0].split('-')[1];
 
 			if (initOldPathLetter == modulePath.split('/')[4]) {
 				currentTitlesArray.push(currentName);
@@ -70,7 +70,7 @@
 		wrap = document.querySelector('#wrap');
 		elems = [...document.querySelectorAll('#letter')];
 
-		window.addEventListener('wheel', (e) => {
+		document.addEventListener('wheel', (e) => {
 			if (e.deltaY < 0) {
 				if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
 			} else if (e.deltaY > 0) {
@@ -129,25 +129,35 @@
 <div id="content" class="relative w-screen min-h-screen overflow-hidden">
 	<div class="flex justify-center w-screen">
 		<p
-			class="absolute z-40 pt-16 font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-[5.75rem]"
+			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl  xl:text-8xl"
 		>
 			WERKE
 		</p>
 	</div>
 
 	<div class="flex items-center justify-center w-screen h-screen">
-		<div class="grid items-center justify-start grid-flow-col grid-rows-1 gap-4">
-			{#each currentArray as i, index}
-				<div id="portrait" class="w-96">
-					<img
-						src="src/assets/images/werkePictures/{currentLetter}/{index + 1}_{i[index]}.jpg"
-						alt=""
-						srcset=""
-						class="transition-all duration-100 grayscale hover:grayscale-0"
-					/>
-					<p class="mt-4 text-xl text-center">{i[index]}</p>
+		<div class="">
+			{#if currentArray.length > 0}
+				<div class="h-[32rem] carousel carousel-vertical gap-2">
+					{#each currentArray as i, index}
+						<div class="h-full carousel-item">
+							<div id="portrait" class="h-full w-96">
+								<img
+									src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}.jpg"
+									alt=""
+									srcset=""
+									class="transition-all duration-100 grayscale hover:grayscale-0 max-h-96"
+								/>
+								<p class="mt-4 text-xl text-center">{i[index]}</p>
+							</div>
+						</div>
+					{/each}
 				</div>
-			{/each}
+			{:else}
+				<p class="z-40 text-xl font-bold tracking-widest text-center text-accent md:text-4xl">
+					KEINE WERKE FÜR "{currentLetter}" VERFÜGBAR
+				</p>
+			{/if}
 		</div>
 	</div>
 
@@ -251,6 +261,11 @@
 	} */
 
 	#portrait {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 4px;
 		border: 10px solid #fff;
 		border-bottom: 15px solid #fff;
 		box-shadow: 4px 4px 0 0 #ff03eeea;

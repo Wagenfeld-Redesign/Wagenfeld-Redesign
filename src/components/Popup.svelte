@@ -1,8 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, mousePosition, popupText } from '../store/stores';
-	import { spring } from 'svelte/motion';
+	import {
+		showPopup,
+		mousePosition,
+		popupText,
+		popupHeadline,
+		popupPositionLeft
+	} from '../store/stores';
+	let transformOrigin;
 
 	onMount(() => {});
 
@@ -17,8 +23,9 @@
 
 	$: if ($showPopup) {
 		try {
-			document.querySelector('#popup').style.setProperty('left', $mousePosition.x + 'px');
-			document.querySelector('#popup').style.setProperty('top', $mousePosition.y + 'px');
+			// transformOrigin = 'top right';
+			// if ($popupPositionLeft) transformOrigin = 'top left';
+
 			gsap.to(document.querySelector('#popup'), {
 				scale: 1,
 				opacity: 1,
@@ -28,6 +35,9 @@
 			});
 		} catch (e) {}
 	} else if (!$showPopup) {
+		// transformOrigin = 'top right';
+		// if ($popupPositionLeft) transformOrigin = 'top left';
+
 		gsap.to(document.querySelector('#popup'), {
 			scale: 0,
 			opacity: 0,
@@ -39,13 +49,15 @@
 </script>
 
 {#if $mousePosition}
+	<!-- {$popupPositionLeft ? '-translate-x-full' : ''} -->
+
 	<div
 		style="top: {$mousePosition.y}px; left: {$mousePosition.x}px"
 		id="popup"
 		class="fixed z-50 flex flex-col w-auto h-auto px-6 pb-8 -translate-x-full bg-white md:px-12 translate-y-7"
 	>
 		<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold pt-12 pb-5">
-			SUBHEADLINE IT IS YOLO SWAG
+			{$popupHeadline}
 		</h1>
 		<p
 			class="text-sm font-semibold text-justify w-[40ch] md:text-base md:w-[50ch] lg:w-[50ch] xl:w-[60ch]"
@@ -53,15 +65,15 @@
 			{$popupText}
 		</p>
 		<!-- <div class="flex justify-end pt-6 mr-6">
-	<button class="rounded-none btn btn-accent" on:click={closePopup}
-		><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
-			><path
-				fill="white"
-				d="M18.75 36 16.6 33.85 26.5 23.95 16.6 14.05 18.75 11.9 30.8 23.95Z"
-			/></svg
-		></button
-	>
-</div> -->
+			<button class="rounded-none btn btn-accent" on:click={closePopup}
+				><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
+					><path
+						fill="white"
+						d="M18.75 36 16.6 33.85 26.5 23.95 16.6 14.05 18.75 11.9 30.8 23.95Z"
+					/></svg
+				></button
+			>
+		</div> -->
 	</div>
 {/if}
 

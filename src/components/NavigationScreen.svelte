@@ -10,7 +10,7 @@
 <div id="contentNavigation" class="absolute top-0 left-0 z-40 w-screen h-screen cursor-pointer">
 	<div class="flex justify-center w-screen">
 		<p
-			class="absolute z-40 pt-16 font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-[5.75rem]"
+			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-8xl"
 		>
 			MENU
 		</p>

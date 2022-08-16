@@ -16,6 +16,8 @@ export const navOpen = writable(false);
 export const navPosition = writable(0);
 export const showPopup = writable(false);
 export const popupText = writable('');
+export const popupHeadline = writable('');
+export const popupPositionLeft = writable(true);
 
 export const mousePosition = readable(null, function start(set) {
 	document.body.addEventListener('mousemove', move);

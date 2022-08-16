@@ -45,7 +45,7 @@
 	.menu-toggle {
 		position: absolute;
 		height: 24px;
-		width: 60px;
+		width: 77px;
 		z-index: 999 !important;
 		margin-bottom: 10px;
 	}
@@ -60,14 +60,14 @@
 		/* margin-top: px; */
 		right: 0;
 		width: 100%;
-		height: 8px;
+		height: 11px;
 		transition: all 0.3s ease;
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--top) {
-		transform: translate(0, -12px);
+		transform: translate(0, -15px);
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--bottom) {
-		transform: translate(0, 12px);
+		transform: translate(0, 11px);
 	}
 	:global(.nav-open .menu-toggle-bar.menu-toggle-bar--top) {
 		transform: translate(0, 0) rotate(45deg);

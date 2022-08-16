@@ -29,7 +29,7 @@
 					><object
 						style="width:unset; pointer-events: none;"
 						data="src/assets/images/Logos/logo_white.svg"
-						height="61.44px"
+						height="66.44px"
 					/>
 				</a>
 			</div>
