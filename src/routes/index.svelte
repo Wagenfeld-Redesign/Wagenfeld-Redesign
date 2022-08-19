@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText, popupHeadline } from '../store/stores';
+	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
+	import { page } from '$app/stores';
 
 	let wagenfeldLamp;
 	onMount(async () => {
@@ -10,6 +11,7 @@
 	});
 
 	onMount(() => {
+		showPopup.set(false);
 		gsap.from(document.querySelectorAll('#divider'), {
 			width: 0,
 			x: 900,
@@ -26,15 +28,17 @@
 		});
 	});
 
-	function popupToggle(subheadline, subheadlineText) {
-		showPopup.set(!$showPopup);
-		if ($showPopup) {
-			popupHeadline.set(subheadline);
-			popupText.set(subheadlineText);
+	function popupShow(subheadline, subheadlineText) {
+		if (!$navOpen) {
+			showPopup.set(true);
+			if ($showPopup) {
+				popupHeadline.set(subheadline);
+				popupText.set(subheadlineText);
+			}
 		}
 	}
 
-	const subHeadline1 = 'This is a headline';
+	const subHeadline1 = 'ÜBERSCHRIFT';
 	const subheadlineText1 = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
 </script>
 
@@ -52,9 +56,11 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupToggle(subHeadline1, subheadlineText1);
+						popupShow(subHeadline1, subheadlineText1);
 					}}
-					on:mouseleave={popupToggle}
+					on:mouseleave={function () {
+						showPopup.set(false);
+					}}
 				>
 					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
 				</h1>
@@ -72,9 +78,11 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupToggle('Test', 'TEST');
+						popupShow('ÜBERSCHRIFT', 'TEST');
 					}}
-					on:mouseleave={popupToggle}
+					on:mouseleave={function () {
+						showPopup.set(false);
+					}}
 				>
 					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
 				</h1>

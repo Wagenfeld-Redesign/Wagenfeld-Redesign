@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import gsap from 'gsap';
+	import { onMount, onDestroy } from 'svelte';
+	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
+	import { fade } from 'svelte/transition';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	let speed = 0;
 	let oldPosition = 0;
@@ -35,20 +38,24 @@
 		{ letter: 'Z', countImages: 0, titles: ['test'] }
 	];
 
-	let pathPictures = import.meta.glob(`../assets/images/werkePictures/*/*.jpg`);
+	let pathPictures = import.meta.glob(`../assets/images/werkePictures/*/*.{png,jpg}`);
 	let currentArray = [{ letter: 'A', countImages: 0, titles: ['test', 'test'] }];
 	let currentLetter = 'A';
+	let currentInfoArray = [];
+	let currentImage = '1';
 
 	let wrap;
 	let elems;
-	let objs;
+	let objs = Array(30).fill({ dist: 0 });
+	var timer = null;
 
-	let initOldPathLetter = 'A';
+	let initOldPathLetter = '.';
 	let currentTitlesArray = [];
-	onMount(() => {
+	onMount(async () => {
+		showPopup.set(false);
 		for (const modulePath in pathPictures) {
-			var currentCount = modulePath.split('/')[5].split('.')[0].split('-')[0];
-			var currentName = modulePath.split('/')[5].split('.')[0].split('-')[1];
+			var currentCount = modulePath.split('/')[5].split('-')[0];
+			var currentName = modulePath.split('/')[5].split('-')[1];
 
 			if (initOldPathLetter == modulePath.split('/')[4]) {
 				currentTitlesArray.push(currentName);
@@ -70,7 +77,32 @@
 		wrap = document.querySelector('#wrap');
 		elems = [...document.querySelectorAll('#letter')];
 
+		// Scrolling event start
+		document.querySelector('#carouselWrapper').addEventListener('scroll', function () {
+			clearTimeout(timer);
+			//Renew timer
+			timer = setTimeout(function () {
+				if (currentArray.length > 0) {
+					document.querySelectorAll('[data-image]').forEach((e) => {
+						if (isInViewport(e)) {
+							currentImage = e.getAttribute('data-image');
+						}
+					});
+				}
+			}, 100);
+		});
+
 		document.addEventListener('wheel', (e) => {
+			var target = event.target;
+			try {
+				if (
+					target === document.getElementById('carousel') ||
+					//@ts-ignore
+					document.getElementById('carousel').contains(target)
+				) {
+					return;
+				}
+			} catch (e) {}
 			if (e.deltaY < 0) {
 				if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
 			} else if (e.deltaY > 0) {
@@ -78,10 +110,37 @@
 			}
 		});
 
-		objs = Array(30).fill({ dist: 0 });
-
 		raf();
 	});
+
+	function popupShow(subheadline, subheadlineTextIndex) {
+		if (!$navOpen) {
+			showPopup.set(true);
+			if ($showPopup) {
+				popupHeadline.set(subheadline.split('.')[0]);
+
+				try {
+					//@ts-ignore
+					if (currentInfoArray.werke[subheadlineTextIndex]['details']) {
+						//@ts-ignore
+						popupText.set(currentInfoArray.werke[subheadlineTextIndex]['details']);
+					}
+				} catch (e) {
+					popupText.set('Keine Informationen verfügbar.');
+				}
+			}
+		}
+	}
+
+	function isInViewport(elem) {
+		var bounding = elem.getBoundingClientRect();
+		return (
+			bounding.top >= 0 &&
+			bounding.left >= 0 &&
+			bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+			bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	}
 
 	function raf() {
 		try {
@@ -91,37 +150,44 @@
 			objs.forEach((o, i) => {
 				o.dist = Math.min(Math.abs(position.value + 4 - i), 1);
 				o.dist = 1 - o.dist ** 2;
-
-				// elems[i].style.transform = `scale(${1 + 0.8 * o.dist})`;
-
-				// if (Math.round(o.dist)) {
-				// 	elems[i].style.color = `#FF03ED`;
-				// } else {
-				// 	elems[i].style.color = `white`;
-				// }
 			});
 
 			rounded = Math.round(position.value);
 			let diff = rounded - position.value;
 
 			position.value += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.035;
-
 			wrap.style.transform = `translate(${-position.value * 72.8 + 25}px,0)`;
 
 			checkPositionChange();
-			window.requestAnimationFrame(raf);
+
+			//@ts-ignore only play when page is active
+			if ($page.url.pathname === new URL(window.location).pathname) requestAnimationFrame(raf);
 		} catch (e) {}
 	}
 
 	function checkPositionChange() {
 		let roundedPosition = Math.round(position.value) + 1;
 		if (oldPosition != roundedPosition) {
+			currentImage = '1';
+
 			oldPosition = roundedPosition;
 			currentLetter = (roundedPosition + 9).toString(36).toUpperCase();
 
 			currentArray = Array(countImagesForLetter[roundedPosition - 1].countImages).fill(
 				countImagesForLetter[roundedPosition - 1].titles
 			);
+
+			try {
+				fetch('src/assets/images/werkePictures/' + currentLetter + '/infos.json')
+					.then((response) => response.json())
+					.then((json) => (currentInfoArray = json));
+			} catch (e) {
+				currentInfoArray = null;
+			}
+
+			try {
+				document.querySelector('#carouselWrapper').scrollTo({ top: 0 });
+			} catch (e) {}
 		}
 	}
 </script>
@@ -135,30 +201,55 @@
 		</p>
 	</div>
 
-	<div class="flex items-center justify-center w-screen h-screen">
-		<div class="">
+	<div class="flex flex-col items-center place-items-center justify-center w-screen h-screen">
+		{#if currentArray.length == 0}
+			<p
+				class="z-40 text-xl font-bold tracking-widest text-center text-accent md:text-4xl translate-y-60"
+			>
+				KEINE WERKE FÜR "{currentLetter}" VERFÜGBAR
+			</p>
+		{/if}
+		<div
+			style="box-shadow: inset 0px 0px 86px 3px #0A0A0A;"
+			id="carouselWrapper"
+			class="h-[32rem] overflow-y-scroll snap-y snap-mandatory items-center flex justify-center overflow-x-hidden bg-white bg-opacity-60"
+		>
 			{#if currentArray.length > 0}
-				<div class="h-[32rem] carousel carousel-vertical gap-2">
+				<div id="carousel" class="h-full">
 					{#each currentArray as i, index}
-						<div class="h-full carousel-item">
-							<div id="portrait" class="h-full w-96">
-								<img
-									src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}.jpg"
-									alt=""
-									srcset=""
-									class="transition-all duration-100 grayscale hover:grayscale-0 max-h-96"
-								/>
-								<p class="mt-4 text-xl text-center">{i[index]}</p>
-							</div>
+						<div
+							class="h-full carousel-item w-96 portrait"
+							in:fade={{ duration: 100 }}
+							on:mouseenter={() => {
+								popupShow(i[index], index);
+							}}
+							on:mouseleave={function () {
+								showPopup.set(false);
+							}}
+						>
+							<img
+								src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}"
+								alt=""
+								srcset=""
+								class="transition-all duration-100  max-h-96"
+								data-image={index + 1}
+							/>
+							<!-- grayscale hover:grayscale-0 -->
+							<p class="mt-4 text-2xl font-bold text-center">
+								{#if i[index]}
+									{i[index].split('.')[0]}
+								{/if}
+							</p>
 						</div>
 					{/each}
 				</div>
-			{:else}
-				<p class="z-40 text-xl font-bold tracking-widest text-center text-accent md:text-4xl">
-					KEINE WERKE FÜR "{currentLetter}" VERFÜGBAR
-				</p>
 			{/if}
 		</div>
+		{#if currentArray.length > 0}
+			<p class="mt-4 text-xl text-center text-white">
+				{currentImage} / {currentArray.length}
+			</p>
+		{/if}
 	</div>
 
 	<div class="absolute bottom-0 flex flex-col items-center justify-end w-screen gap-5 ">
@@ -214,121 +305,39 @@
 		background-size: cover;
 	}
 
-	/* #content:after {
-		animation: grain 8s steps(20) infinite;
-		background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png);
-		content: '';
-		height: 300%;
-		left: -50%;
-		opacity: 0.15;
-		position: fixed;
-		top: -110%;
-		width: 300%;
+	/* ===== Scrollbar CSS ===== */
+	/* Firefox */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: #ff03ee #0a0a0a;
 	}
 
-	@keyframes grain {
-		0%,
-		100% {
-			transform: translate(0, 0);
-		}
-		10% {
-			transform: translate(-5%, -10%);
-		}
-		20% {
-			transform: translate(-15%, 5%);
-		}
-		30% {
-			transform: translate(7%, -25%);
-		}
-		40% {
-			transform: translate(-5%, 25%);
-		}
-		50% {
-			transform: translate(-15%, 10%);
-		}
-		60% {
-			transform: translate(15%, 0%);
-		}
-		70% {
-			transform: translate(0%, 15%);
-		}
-		80% {
-			transform: translate(3%, 35%);
-		}
-		90% {
-			transform: translate(-10%, 10%);
-		}
-	} */
+	/* Chrome, Edge, and Safari */
+	*::-webkit-scrollbar {
+		width: 10px;
+	}
 
-	#portrait {
+	*::-webkit-scrollbar-track {
+		background: #0a0a0a;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: #ff03ee;
+		border-radius: 0px;
+		border: 0px none #ffffff;
+	}
+
+	.portrait {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 4px;
-		border: 10px solid #fff;
-		border-bottom: 15px solid #fff;
+		padding: 0px 12px;
 		box-shadow: 4px 4px 0 0 #ff03eeea;
-		background-color: white;
+		/* background-color: white; */
 		-webkit-box-shadow: -10px 0px 13px -7px #0a0a0a, 10px 0px 13px -7px #0a0a0a,
 			-5px -21px 34px -12px rgba(10, 10, 10, 0);
 		box-shadow: -10px 0px 13px -7px #0a0a0a, 10px 0px 13px -7px #0a0a0a,
 			-5px -21px 34px -12px rgba(10, 10, 10, 0);
 	}
-
-	/* #content::after {
-		content: '';
-		position: absolute;
-		background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(20, 20, 20) 99%);
-		z-index: 2;
-		height: 100%;
-		width: 100%;
-		top: 0;
-		left: 0;
-	} */
-
-	p {
-		/* outline: red 1px solid; */
-		/* text-transform: uppercase;
-		font-family: verdana;
-		font-weight: 700;
-		color: #f5f5f5;
-		text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,
-			1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191,
-			1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
-			1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
-			1px 30px 60px rgba(16, 16, 16, 0.4); */
-	}
-
-	/* #block {
-		height: 100px;
-		width: 100px;
-		position: absolute;
-		background: red;
-		z-index: 999;
-	}
-
-	.n {
-		position: absolute;
-		top: 100px;
-		width: 200px;
-		background: blue;
-		z-index: 999;
-		height: 10px;
-	}
-	.n1 {
-		top: 200px;
-	}
-
-	.n2 {
-		top: 300px;
-	}
-
-	.n3 {
-		top: 400px;
-	}
-
-	.n4 {
-		top: 500px;
-	} */
 </style>

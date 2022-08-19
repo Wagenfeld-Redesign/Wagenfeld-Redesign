@@ -9,7 +9,7 @@
 
 	let menuTitles = [
 		'Wilhelm Wagenfelds Werke',
-		'Wer ist Wagenfeld?',
+		'Biographie',
 		'Das Wilhelm Wagenfeld Haus',
 		'Aktuelle Austellung'
 	];

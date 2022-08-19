@@ -1,21 +1,28 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText, popupHeadline, popupPositionLeft } from '../store/stores';
+	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
 
-	function popupToggle(subheadline, subheadlineText, position?) {
-		showPopup.set(!$showPopup);
-		if ($showPopup) {
-			popupHeadline.set(subheadline);
-			popupText.set(subheadlineText);
-			// if (position) {
-			// 	popupPositionLeft.set(true);
-			// } else {
-			// 	popupPositionLeft.set(false);
-			// }
+	onMount(() => {
+		showPopup.set(false);
+	});
+
+	function popupShow(subheadline, subheadlineText) {
+		if (!$navOpen) {
+			showPopup.set(true);
+			if ($showPopup) {
+				popupHeadline.set(subheadline);
+				popupText.set(subheadlineText);
+				// if (position) {
+				// 	popupPositionLeft.set(true);
+				// } else {
+				// 	popupPositionLeft.set(false);
+				// }
+			}
 		}
 	}
 
+	const intro = `Wilhelm Wagenfeld war ein deutscher Produktdesigner, welcher am 15. April 1900 in Bremen geboren wurde. Zu seiner Zeit galt Wagenfeld als einer der bekanntesten und besten im Gebiet Industriedesign. Bis zum Ende seiner Lebzeit gab es bis zu über 600 Entwürfe zu Gegenständen, welche zum größten Teil aus Glas oder Metall gefertigt waren. Viele seiner Entwürfe gelten heute noch als Klassiker, das prominenteste Beispiel die mit Carl Jakob Lucker entworfene Bauhaus-Leuchte, welche auch als Wagenfeldlampe bekannt ist. Im Laufe seiner Karriere hat Wagenfeld zudem seine Entwürfe mit verschiedenen Firmen wie zum Beispiel WMF verwirklicht.`;
 	const left1 = `Seine Karriere als Produktdesigner begann 1914 in einem Zeichenbüro Bremer Silberwarenfabrik Koch & Bergfeld, dort absolvierte er vier Jahre eine Lehre als Industriezeichner, parallel besuchte er bis 1919 die Bremer Kunstgewerbeschule.`;
 	const left2 = `1919 bis 1922 begann für Wagenfeld der nächste lehrreiche Schritt für seine zukünftige Karriere als Produktdesigner. 1919 gelang es ihm durch ein Stipendium an der Zeichenakadamie Hanau, mit einer Fachschule im Schwerpunkt Edelmetalle eine Ausbildung zum Silberschmied zu machen. In dieser Zeit nahm er auch Wettwerben teil, in diesen Wettbewerben ging es primär um Kirchengeräte und Schmuck.`;
 	const left3 = `Danach widmete er sich 1923 – 1925 der Metallwerkstatt des Staatliches Bauhauses Weimar, geleitet wurde dies damals von László Moholy-Nagy und Christian Dell. Ein Jahr nach dem Beginn seiner Tätigkeiten schloss Wilhelm Wagenfeld seine Gesellenprüfung als Silberschmied und Ziseleur ab. Zusätzlich entstanden zur selben Zeit die ersten Entwürfe diverser Metallgeräte und der Bauhausleuchte.`;
@@ -40,16 +47,30 @@
 		</p>
 	</div>
 
-	<div class="flex items-center justify-center w-screen h-screen">
+	<div class="flex flex-col items-center justify-center w-screen h-screen gap-7">
+		<p
+			class="transition duration-300 group text-4xl font-bold text-white"
+			on:mouseenter={() => {
+				popupShow('INTRO', intro);
+			}}
+			on:mouseleave={function () {
+				showPopup.set(false);
+			}}
+		>
+			INTRO
+			<span
+				class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
+			/>
+		</p>
 		<div class="flex gap-72">
-			<div id="left" class="flex flex-col text-4xl font-bold text-white gap-11">
+			<div id="left" class="flex flex-col text-4xl font-bold text-white gap-9">
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1914 - 1919', left1, true);
+						popupShow('1914 - 1919', left1);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1914 - 1919
@@ -60,10 +81,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1919 - 1922', left2, true);
+						popupShow('1919 - 1922', left2);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1919 - 1922
@@ -74,10 +95,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1923 - 1925', left3, true);
+						popupShow('1923 - 1925', left3);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1923 - 1925
@@ -88,10 +109,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1926 - 1930', left4, true);
+						popupShow('1926 - 1930', left4);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1926 - 1930
@@ -101,14 +122,14 @@
 				</p>
 			</div>
 
-			<div id="right" class="flex flex-col text-4xl font-bold text-white gap-11">
+			<div id="right" class="flex flex-col text-4xl font-bold text-white gap-7">
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1931 - 1935', right1);
+						popupShow('1931 - 1935', right1);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1931 - 1935
@@ -120,10 +141,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1947 - 1952', right2);
+						popupShow('1947 - 1952', right2);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1947 - 1952
@@ -134,10 +155,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1955 - 1968', right3);
+						popupShow('1955 - 1968', right3);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1955 - 1968
@@ -148,10 +169,10 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupToggle('1990 - 1998', right4);
+						popupShow('1990 - 1998', right4);
 					}}
 					on:mouseleave={function () {
-						showPopup.set(!$showPopup);
+						showPopup.set(false);
 					}}
 				>
 					1990 - 1998

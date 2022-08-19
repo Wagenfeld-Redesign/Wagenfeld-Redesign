@@ -34,9 +34,7 @@
 		<div
 			id="currentMenuTitle"
 			class="absolute bottom-0 w-screen mb-24 text-3xl font-bold text-center text-white md:text-4xl xl:text-5xl"
-		>
-			Wer ist Wagenfeld?
-		</div>
+		/>
 	</div>
 
 	{#if menuBar}
@@ -56,6 +54,7 @@
 			src="src/assets/images/menuPictures/werIstWilhelmWagenfeld.jpg"
 			alt=""
 			srcset=""
+			data-url="biographie"
 		/>
 		<img
 			class="menuImage"

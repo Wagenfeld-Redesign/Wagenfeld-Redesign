@@ -47,7 +47,7 @@ export default class Sketch {
 		this.materials = [];
 		this.meshes = [];
 		this.groups = [];
-		this.links = ['/werke', '/werke', '/werke', '/werke'];
+		this.links = ['/werke', '/biographie', '/werke', '/werke'];
 		this.handleImages();
 
 		var raycaster = new THREE.Raycaster();
@@ -83,10 +83,10 @@ export default class Sketch {
 
 			if (intersects.length > 0) {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
-					navOpen.set(false);
 					setTimeout(() => {
+						navOpen.set(false);
 						showPopup.set(false);
-					}, 10);
+					}, 50);
 					goto(intersects[0].object.name);
 				}
 			}
