@@ -3,6 +3,7 @@
 	import gsap from 'gsap';
 	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
 	import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 
 	let wagenfeldLamp;
 	onMount(async () => {
@@ -42,7 +43,7 @@
 	const subheadlineText1 = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
 </script>
 
-<div id="content" class="relative w-screen min-h-screen px-4">
+<div id="content" class="relative w-screen min-h-screen px-4" in:fade={{ duration: 1000 }}>
 	<div class="top-0 left-0 !outline-none !border-none z-0">
 		<svelte:component this={wagenfeldLamp} />
 	</div>

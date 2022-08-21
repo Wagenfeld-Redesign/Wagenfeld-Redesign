@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	let menuBar;
 	onMount(async () => {
@@ -7,7 +8,12 @@
 	});
 </script>
 
-<div id="contentNavigation" class="absolute top-0 left-0 z-40 w-screen h-screen cursor-pointer">
+<div
+	id="contentNavigation"
+	class="absolute top-0 left-0 z-40 w-screen h-screen cursor-pointer"
+	in:fade={{ duration: 150 }}
+	out:fade={{ duration: 200 }}
+>
 	<div class="flex justify-center w-screen">
 		<p
 			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-8xl"

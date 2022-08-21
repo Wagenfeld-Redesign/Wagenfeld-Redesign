@@ -86,7 +86,7 @@ export default class Sketch {
 					setTimeout(() => {
 						navOpen.set(false);
 						showPopup.set(false);
-					}, 50);
+					}, 150);
 					goto(intersects[0].object.name);
 				}
 			}
