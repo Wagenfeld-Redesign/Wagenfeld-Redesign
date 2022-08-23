@@ -3,7 +3,6 @@
 	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 
 	let speed = 0;
 	let oldPosition = 0;
@@ -201,7 +200,7 @@
 		</p>
 	</div>
 
-	<div class="flex flex-col items-center place-items-center justify-center w-screen h-screen">
+	<div class="flex flex-col items-center justify-center w-screen h-screen place-items-center">
 		{#if currentArray.length == 0}
 			<p
 				class="z-40 text-xl font-bold tracking-widest text-center text-accent md:text-4xl translate-y-60"
@@ -231,7 +230,7 @@
 								src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}"
 								alt=""
 								srcset=""
-								class="transition-all duration-100  max-h-96"
+								class="transition-all duration-100 max-h-96"
 								data-image={index + 1}
 							/>
 							<!-- grayscale hover:grayscale-0 -->

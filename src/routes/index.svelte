@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
-	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 
 	let wagenfeldLamp;

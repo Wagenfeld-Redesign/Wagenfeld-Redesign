@@ -9,11 +9,13 @@
 	function navOpenToggle(open) {
 		document.body.classList.toggle('nav-open');
 
+		// setTimeout(() => {
 		if ($navOpen) {
 			document.body.style.overflowY = 'hidden';
 		} else {
 			document.body.style.overflowY = 'visible';
 		}
+		// }, 250);
 	}
 
 	onMount(() => {

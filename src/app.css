@@ -116,3 +116,24 @@ body {
 	padding-bottom: -6rem;
 	min-height: 100%;
 }
+
+/* Scrollbar */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #ff03ee #0a0a0a;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+	background: #0a0a0a;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #ff03ee;
+	border-radius: 0px;
+	border: 0px none #ffffff;
+}

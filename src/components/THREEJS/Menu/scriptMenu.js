@@ -47,7 +47,7 @@ export default class Sketch {
 		this.materials = [];
 		this.meshes = [];
 		this.groups = [];
-		this.links = ['/werke', '/biographie', '/werke', '/werke'];
+		this.links = ['/werke', '/biographie', '/werke', '/ausstellungen'];
 		this.handleImages();
 
 		var raycaster = new THREE.Raycaster();

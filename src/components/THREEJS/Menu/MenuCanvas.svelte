@@ -2,6 +2,7 @@
 	import Sketch from './scriptMenu';
 	import { TweenMax } from 'gsap/all';
 	import { navPosition } from '../../../store/stores.js';
+	import { page } from '$app/stores';
 
 	let sketch = new Sketch({
 		dom: document.getElementById('container')
@@ -11,7 +12,7 @@
 		'Wilhelm Wagenfelds Werke',
 		'Biographie',
 		'Das Wilhelm Wagenfeld Haus',
-		'Aktuelle Austellung'
+		'Ausstellungen'
 	];
 
 	let leftArrow = document.getElementById('arrow-left');
@@ -20,8 +21,13 @@
 
 	let speed = 0;
 	let oldPosition = 0;
-	let position = { value: 0 };
 	let rounded = 0;
+	let position = { value: 0 };
+
+	//Check which site is active => setting the position of the menu
+	if ($page.url.pathname === '/werke') position.value = 0;
+	else if ($page.url.pathname === '/biographie') position.value = 1;
+	else if ($page.url.pathname === '/ausstellungen') position.value = 3;
 
 	rightArrow.addEventListener('click', function () {
 		TweenMax.to(position, 0.4, {
@@ -97,21 +103,6 @@
 			leftArrow.style.visibility = 'visible';
 			rightArrow.style.visibility = 'hidden';
 		}
-
-		// objs.forEach((o, i) => {
-		// 	o.dist = Math.min(Math.abs(position - i), 1);
-		// 	o.dist = 1 - o.dist ** 2;
-
-		// 	if (i == roundedPosition) {
-		// 		sketch.meshes[i].rotation.y = 21 + 0.1 * -o.dist;
-		// 	} else if (i < roundedPosition) {
-		// 		// sketch.meshes[i].rotation.y = -1;
-		// 	} else if (i > roundedPosition) {
-		// 		// sketch.meshes[i].rotation.y = 1;
-		// 	} else {
-		// 		sketch.meshes[i].rotation.y = 0;
-		// 	}
-		// });
 	}
 
 	raf();

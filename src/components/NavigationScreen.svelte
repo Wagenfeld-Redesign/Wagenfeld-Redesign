@@ -11,7 +11,7 @@
 <div
 	id="contentNavigation"
 	class="absolute top-0 left-0 z-40 w-screen h-screen cursor-pointer"
-	in:fade={{ duration: 150 }}
+	in:fade={{ duration: 200 }}
 	out:fade={{ duration: 200 }}
 >
 	<div class="flex justify-center w-screen">
@@ -25,16 +25,16 @@
 	<div class="z-50 flex items-center w-screen h-screen">
 		<div
 			id="arrow-left"
-			class="flex items-center justify-start invisible w-1/3 h-screen ml-8 cursor-pointer lg:justify-end lg:-mr-12 text-accent text-7xl"
+			class="flex items-center justify-start invisible w-1/3 h-screen cursor-pointer lg:justify-end text-accent text-7xl"
 		>
-			❮
+			<p class="-mr-12">❮</p>
 		</div>
 		<div class="w-1/3" />
 		<div
 			id="arrow-right"
-			class="flex items-center justify-end invisible w-1/3 h-screen mr-8 cursor-pointer lg:justify-start lg:-ml-12 text-accent text-7xl"
+			class="flex items-center justify-end invisible w-1/3 h-screen cursor-pointer lg:justify-start text-accent text-7xl"
 		>
-			❯
+			<p class="-ml-12">❯</p>
 		</div>
 
 		<div
@@ -73,6 +73,7 @@
 			src="src/assets/images/menuPictures/wilhelmWagenfeldAusstellung.jpg"
 			alt=""
 			srcset=""
+			data-url="ausstellungen"
 		/>
 	</div>
 
