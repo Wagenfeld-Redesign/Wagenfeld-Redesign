@@ -6,6 +6,5 @@ node_modules
 .env
 .env.*
 
-src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.obj
-src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.gltf
+static/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb
 

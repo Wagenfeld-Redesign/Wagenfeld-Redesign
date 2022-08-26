@@ -2,7 +2,6 @@ import * as THREE from 'three';
 
 import shader from './shader.glsl';
 import fragment from './fragment.glsl.js';
-import * as $j from 'jquery';
 import { goto } from '$app/navigation';
 import { navOpen, navPosition, showPopup } from '../../../store/stores.js';
 import { get } from 'svelte/store';
@@ -56,7 +55,7 @@ export default class Sketch {
 		var raycaster = new THREE.Raycaster();
 		var mouse = new THREE.Vector2();
 
-		$j(document).on('click', (event) => {
+		document.addEventListener('click', (event) => {
 			event.preventDefault();
 
 			mouse.x = (event.clientX / this.renderer.domElement.clientWidth) * 2 - 1;

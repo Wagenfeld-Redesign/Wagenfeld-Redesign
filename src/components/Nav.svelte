@@ -28,7 +28,7 @@
 				<a style="display: block;" on:click={gotoHome} class="cursor-pointer"
 					><object
 						style="width:unset; pointer-events: none;"
-						data="src/assets/images/Logos/logo_white.svg"
+						data="images/Logos/logo_white.svg"
 						height="66.44px"
 					/>
 				</a>

@@ -38,7 +38,7 @@
 		{ letter: 'Z', countImages: 0, titles: ['test'] }
 	];
 
-	let pathPictures = import.meta.glob(`../assets/images/werkePictures/*/*.{png,jpg}`);
+	let pathPictures = import.meta.glob(`./../../static/images/werkePictures/*/*.{png,jpg}`);
 	let currentArray = [{ letter: 'A', countImages: 0, titles: ['test', 'test'] }];
 	let currentLetter = 'A';
 	let currentInfoArray = [];
@@ -64,16 +64,16 @@
 
 		showPopup.set(false);
 		for (const modulePath in pathPictures) {
-			var currentCount = modulePath.split('/')[5].split('-')[0];
-			var currentName = modulePath.split('/')[5].split('-')[1];
+			var currentCount = modulePath.split('/')[7].split('-')[0];
+			var currentName = modulePath.split('/')[7].split('-')[1];
 
-			if (initOldPathLetter == modulePath.split('/')[4]) {
+			if (initOldPathLetter == modulePath.split('/')[6]) {
 				currentTitlesArray.push(currentName);
 			} else {
 				currentTitlesArray = [currentName];
 			}
 
-			var currentPathLetter = modulePath.split('/')[4];
+			var currentPathLetter = modulePath.split('/')[6];
 			initOldPathLetter = currentPathLetter;
 
 			countImagesForLetter.forEach((element, i) => {
@@ -179,7 +179,7 @@
 			);
 
 			try {
-				fetch('src/assets/images/werkePictures/' + currentLetter + '/infos.json')
+				fetch('images/werkePictures/' + currentLetter + '/infos.json')
 					.then((response) => response.json())
 					.then((json) => (currentInfoArray = json));
 			} catch (e) {
@@ -244,7 +244,7 @@
 							}}
 						>
 							<img
-								src="src/assets/images/werkePictures/{currentLetter}/{index + 1}-{i[index]}"
+								src="images/werkePictures/{currentLetter}/{index + 1}-{i[index]}"
 								alt=""
 								srcset=""
 								class="transition-all duration-100 max-h-96"

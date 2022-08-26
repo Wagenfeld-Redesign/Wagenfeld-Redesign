@@ -1,19 +1,113 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	// import VanillaTilt from 'vanilla-tilt';
+	import Sketch from './THREEJS/Menu/scriptMenu';
+	import { TweenMax } from 'gsap';
+	import { navPosition } from '../store/stores.js';
+	import { page } from '$app/stores';
 
-	let menuBar;
-	onMount(async () => {
-		menuBar = (await import('../components/THREEJS/Menu/MenuCanvas.svelte')).default;
+	let menuTitles = ['Wilhelm Wagenfelds Werke', 'Biographie', 'Info - Karte', 'Ausstellungen'];
 
-		// //@ts-ignore
-		// VanillaTilt.init(document.querySelectorAll('.border'), {
-		// 	reverse: true,
-		// 	transition: true,
-		// 	easing: 'cubic-bezier(.03,.98,.52,.99)',
-		// 	'full-page-listening': true
-		// });
+	let leftArrow;
+	let rightArrow;
+	let menuTitleElement;
+	let speed = 0;
+	let oldPosition = 0;
+	let rounded = 0;
+	let position = { value: 0 };
+	let sketch;
+
+	//Check which site is active => setting the position of the menu
+	if ($page.url.pathname === '/werke') position.value = 0;
+	else if ($page.url.pathname === '/biographie') position.value = 1;
+	else if ($page.url.pathname === '/ausstellungen') position.value = 3;
+
+	let objs = Array(menuTitles.length).fill({ dist: 0 });
+
+	// Functions
+	function raf() {
+		try {
+			position.value += speed;
+			speed *= 0.89;
+
+			objs.forEach((o, i) => {
+				o.dist = Math.min(Math.abs(position.value - i), 1);
+				o.dist = 1 - o.dist ** 2;
+
+				let scale = 1 + 0.1 * o.dist;
+
+				//@ts-ignore
+				sketch.meshes[i].position.x = i * 1.6 - position.value * 1.6;
+				//@ts-ignore
+				sketch.meshes[i].scale.set(scale, scale, scale);
+				//@ts-ignore
+				sketch.meshes[i].material.uniforms.distanceFromCenter.value = o.dist;
+			});
+
+			rounded = Math.round(position.value);
+			let diff = rounded - position.value;
+
+			position.value += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.035;
+			checkPositionChange();
+
+			//@ts-ignore only play when page is active
+			if ($page.url.pathname === new URL(window.location).pathname) requestAnimationFrame(raf);
+		} catch (e) {}
+	}
+
+	function checkPositionChange() {
+		let roundedPosition = Math.round(position.value);
+		if (oldPosition != roundedPosition) {
+			oldPosition = roundedPosition;
+
+			navPosition.set(roundedPosition);
+		}
+
+		menuTitleElement.innerHTML = menuTitles[roundedPosition];
+
+		if (roundedPosition == 0) {
+			leftArrow.style.visibility = 'hidden';
+			rightArrow.style.visibility = 'visible';
+		} else if (roundedPosition >= 1 && roundedPosition <= 2) {
+			leftArrow.style.visibility = 'visible';
+			rightArrow.style.visibility = 'visible';
+		} else if (roundedPosition == 3) {
+			leftArrow.style.visibility = 'visible';
+			rightArrow.style.visibility = 'hidden';
+		}
+	}
+
+	onMount(() => {
+		leftArrow = document.getElementById('arrow-left');
+		rightArrow = document.getElementById('arrow-right');
+		menuTitleElement = document.getElementById('currentMenuTitle');
+		sketch = new Sketch({
+			dom: document.getElementById('container')
+		});
+
+		rightArrow.addEventListener('click', function () {
+			TweenMax.to(position, 0.4, {
+				value: position.value + 1,
+				ease: 'Circ.easeOut'
+			});
+		});
+
+		leftArrow.addEventListener('click', function () {
+			TweenMax.to(position, 0.4, {
+				value: position.value - 1,
+				ease: 'Circ.easeOut'
+			});
+		});
+
+		window.addEventListener('wheel', (e) => {
+			if (e.deltaY < 0) {
+				if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
+			} else if (e.deltaY > 0) {
+				if (Math.round(position.value) <= 2) speed += e.deltaY * 0.0003;
+			}
+		});
+
+		raf();
 	});
 </script>
 
@@ -30,8 +124,9 @@
 			MENU
 		</p>
 	</div>
+
 	<!-- 
-	<div class="w-screen h-screen flex justify-center items-center absolute z-50">
+	<div class="absolute z-50 flex items-center justify-center w-screen h-screen">
 		<div
 			id="infoCard"
 			class="border border-red-700 w-[25%] h-[59%] flex justify-center bg-white invisible"
@@ -40,7 +135,7 @@
 		</div>
 	</div> -->
 
-	<div class="z-50 flex items-center w-screen h-screen absolute">
+	<div class="absolute z-50 flex items-center w-screen h-screen">
 		<div
 			id="arrow-left"
 			class="flex items-center justify-start invisible w-1/3 h-screen cursor-pointer lg:justify-end text-accent text-7xl"
@@ -61,36 +156,32 @@
 		/>
 	</div>
 
-	{#if menuBar}
-		<svelte:component this={menuBar} />
-	{/if}
-
 	<div id="wrap" hidden>
 		<img
 			class="menuImage"
-			src="src/assets/images/menuPictures/wilhelmWagenfeldWerke.png"
+			src="images/menuPictures/wilhelmWagenfeldWerke.png"
 			alt=""
 			srcset=""
 			data-url="werke"
 		/>
-		<img class="infoCard" src="src/assets/images/menuPictures/infocard.png" alt="" srcset="" />
+		<img class="infoCard" src="images/menuPictures/infocard.png" alt="" srcset="" />
 		<img
 			class="menuImage"
-			src="src/assets/images/menuPictures/werIstWilhelmWagenfeld.jpg"
+			src="images/menuPictures/werIstWilhelmWagenfeld.jpg"
 			alt=""
 			srcset=""
 			data-url="biographie"
 		/>
 		<img
 			class="menuImage"
-			src="src/assets/images/menuPictures/wilhelmWagenfeldHaus.jpg"
+			src="images/menuPictures/wilhelmWagenfeldHaus.jpg"
 			alt=""
 			srcset=""
 			data-url="info"
 		/>
 		<img
 			class="menuImage"
-			src="src/assets/images/menuPictures/wilhelmWagenfeldAusstellung.jpg"
+			src="images/menuPictures/wilhelmWagenfeldAusstellung.jpg"
 			alt=""
 			srcset=""
 			data-url="ausstellungen"

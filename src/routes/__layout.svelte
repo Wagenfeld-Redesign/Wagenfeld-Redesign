@@ -8,7 +8,7 @@
 	import LoadingScreen from '../components/Loadings/PatternLoading.svelte';
 	import { gltfLamp } from '../store/stores';
 	import { useGltf } from 'threlte/extras';
-	const { gltf } = useGltf('src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
+	const { gltf } = useGltf('3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
 	import { page } from '$app/stores';
 
 	let timerLoading = true; //default: true

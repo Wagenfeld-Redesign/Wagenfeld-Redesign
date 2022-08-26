@@ -13,13 +13,13 @@
 		<p style="display: block;" on:click={gotoHome} class="cursor-pointer">
 			<object
 				style="width:unset; pointer-events: none;"
-				data="src/assets/images/Logos/logo_white.svg"
+				data="images/Logos/logo_white.svg"
 				height="66.44px"
 			/>
 		</p>
 	</div>
 	<div class="self-center">
-		<p class="text-2xl font-bold text-white uppercase">Wagenfeld - Redesign</p>
+		<p class="text-2xl font-bold text-white uppercase">Bachelorprojekt: Wilhelm Wagenfeld A - Z</p>
 		<p class="">
 			© 2022 Hochschulprojekt der Klasse Medieninformatik 4. Semester für <a
 				href="https://hs-bremen.de"

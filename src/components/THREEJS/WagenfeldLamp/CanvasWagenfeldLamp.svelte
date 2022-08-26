@@ -1,7 +1,4 @@
 <script lang="ts">
-	// import { useGltf } from 'threlte/extras';
-	// const { gltf } = useGltf('src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
-
 	import { PerspectiveCamera } from 'three';
 	import WagenfeldLamp from './WagenfeldLamp.svelte';
 	import { onDestroy, onMount } from 'svelte';
