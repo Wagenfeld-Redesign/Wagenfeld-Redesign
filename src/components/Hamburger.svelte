@@ -26,9 +26,10 @@
 		});
 
 		gsap.from(document.querySelectorAll('.menu-toggle'), {
-			x: 9000,
+			width: 0,
+			x: 900,
 			opacity: 0,
-			duration: 0.7,
+			duration: 1,
 			ease: 'Power3.easeOut'
 		});
 	});

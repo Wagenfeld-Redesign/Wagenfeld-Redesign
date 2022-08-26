@@ -6,8 +6,10 @@ import * as $j from 'jquery';
 import { goto } from '$app/navigation';
 import { navOpen, navPosition, showPopup } from '../../../store/stores.js';
 import { get } from 'svelte/store';
+import gsap from 'gsap';
 
 // import { TimelineMax } from 'gsap';
+let images;
 
 export default class Sketch {
 	constructor(options) {
@@ -47,30 +49,13 @@ export default class Sketch {
 		this.materials = [];
 		this.meshes = [];
 		this.groups = [];
-		this.links = ['/werke', '/biographie', '/werke', '/ausstellungen'];
+		this.links = ['/werke', '/biographie', '/info', '/ausstellungen'];
+		this.thirdImageFlipped = false;
 		this.handleImages();
 
 		var raycaster = new THREE.Raycaster();
 		var mouse = new THREE.Vector2();
 
-		// $j(document).on('mousemove', (event) => {
-		// 	event.preventDefault();
-
-		// 	mouse.x = (event.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
-		// 	mouse.y = -(event.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
-
-		// 	raycaster.setFromCamera(mouse, this.camera);
-
-		// 	var intersects = raycaster.intersectObjects(this.groups);
-
-		// 	if (intersects.length > 0) {
-		// 		if (this.links[get(navPosition)] == intersects[0].object.name) {
-		// 			$j('html,body').css('cursor', 'pointer');
-		// 		} else {
-		// 			$j('html,body').css('cursor', 'default');
-		// 		}
-		// 	}
-		// });
 		$j(document).on('click', (event) => {
 			event.preventDefault();
 
@@ -83,22 +68,68 @@ export default class Sketch {
 
 			if (intersects.length > 0) {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
-					setTimeout(() => {
-						navOpen.set(false);
-						showPopup.set(false);
-					}, 150);
-					goto(intersects[0].object.name);
+					if (this.links[get(navPosition)] != '/info') {
+						setTimeout(() => {
+							navOpen.set(false);
+							showPopup.set(false);
+						}, 100);
+						goto(intersects[0].object.name);
+					} else {
+						if (this.thirdImageFlipped) {
+							this.thirdImageFlipped = false;
+							gsap.to(this.meshes[2].rotation, {
+								y: 0,
+								duration: 1.2,
+								ease: 'Back.easeOut',
+								onUpdate: () => {
+									if (
+										Math.round(this.meshes[2].rotation.y * 100) / 100 < 1.9 &&
+										Math.round(this.meshes[2].rotation.y * 100) / 100 > 1.52
+									)
+										this.changeImageFor3rdImage(true);
+								}
+							});
+						} else {
+							this.thirdImageFlipped = true;
+							gsap.to(this.meshes[2].rotation, {
+								y: 3.14,
+								duration: 1.2,
+								ease: 'Back.easeOut',
+								onUpdate: () => {
+									if (
+										Math.round(this.meshes[2].rotation.y * 100) / 100 < 1.9 &&
+										Math.round(this.meshes[2].rotation.y * 100) / 100 > 1.52
+									)
+										this.changeImageFor3rdImage(false);
+								}
+							});
+						}
+					}
 				}
 			}
 		});
 	}
 
+	changeImageFor3rdImage(original) {
+		if (original) {
+			let mat = this.material.clone();
+			let CLONED_IMAGE = images[2].cloneNode(true); // this helped when i set image width in JS
+			mat.uniforms.texture1.value = new THREE.Texture(CLONED_IMAGE);
+			mat.uniforms.texture1.value.needsUpdate = true;
+			this.meshes[2].material = mat;
+		} else {
+			let mat = this.material.clone();
+			let CLONED_IMAGE = document.querySelector('.infoCard').cloneNode(true); // this helped when i set image width in JS
+			mat.uniforms.texture1.value = new THREE.Texture(CLONED_IMAGE);
+			mat.uniforms.texture1.value.needsUpdate = true;
+			this.meshes[2].material = mat;
+		}
+	}
+
 	handleImages() {
-		let images = [...document.querySelectorAll('.menuImage')];
-		this.materials;
+		images = [...document.querySelectorAll('.menuImage')];
 		images.forEach((im, i) => {
 			let mat = this.material.clone();
-			// mat.wireframe = true;
 
 			let CLONED_IMAGE = im.cloneNode(true); // this helped when i set image width in JS
 			mat.uniforms.texture1.value = new THREE.Texture(CLONED_IMAGE);
@@ -127,8 +158,8 @@ export default class Sketch {
 			this.scene.add(group);
 
 			mesh.position.x = i * 1.6;
+			mesh.rotation.x = -0.05;
 
-			// mesh.rotation.x = -0.1;
 			// mesh.rotation.y = -0.5;
 			// mesh.rotation.z = -0.1;
 		});

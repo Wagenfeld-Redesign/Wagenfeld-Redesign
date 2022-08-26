@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
+	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
 
 	onMount(() => {
 		showPopup.set(false);
 	});
 
-	function popupShow(subheadline, subheadlineText) {
+	function popupShow(subheadline, subheadlineText, position?) {
 		if (!$navOpen) {
 			showPopup.set(true);
 			if ($showPopup) {
 				popupHeadline.set(subheadline);
 				popupText.set(subheadlineText);
-				// if (position) {
-				// 	popupPositionLeft.set(true);
-				// } else {
-				// 	popupPositionLeft.set(false);
-				// }
+				if (position) {
+					popupPositionLeft.set(true);
+				} else {
+					popupPositionLeft.set(false);
+				}
 			}
 		}
 	}
@@ -38,6 +38,10 @@
 	const right4 = `Am 28. Mai 1990 ist Wilhelm Wagenfeld als einer der bedeutsamsten deutschen Produktdesignern verstorben. Drei Jahre später folgte die Gründung der Wilhelm Wagenfeld Stiftung in Bremen, die Stifter waren hierbei seine Frau Erika Wagenfeld, die Stadt Stuttgart und die Stadtgemeinde der Freien Hansestadt Bremen. 1998 folgte die Eröffnung des Wilhelm Wagenfeld Hauses in Bremen, welches noch bis heute viele seiner Werke, Ideen und Entwürfe ausstellt.`;
 </script>
 
+<svelte:head>
+	<title>Wagenfeld - Biographie</title>
+</svelte:head>
+
 <div id="content" class="relative w-screen min-h-screen overflow-hidden">
 	<div class="flex justify-center w-screen">
 		<p
@@ -49,9 +53,9 @@
 
 	<div class="flex flex-col items-center justify-center w-screen h-screen gap-7">
 		<p
-			class="transition duration-300 group text-4xl font-bold text-white"
+			class="text-4xl font-bold text-white transition duration-300 group"
 			on:mouseenter={() => {
-				popupShow('INTRO', intro);
+				popupShow('INTRO', intro, true);
 			}}
 			on:mouseleave={function () {
 				showPopup.set(false);
@@ -63,11 +67,11 @@
 			/>
 		</p>
 		<div class="flex gap-72">
-			<div id="left" class="flex flex-col text-4xl font-bold text-white gap-9">
+			<div id="left" class="flex flex-col text-4xl font-bold text-white gap-7">
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupShow('1914 - 1919', left1);
+						popupShow('1914 - 1919', left1, true);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
@@ -81,7 +85,7 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupShow('1919 - 1922', left2);
+						popupShow('1919 - 1922', left2, true);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
@@ -95,7 +99,7 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupShow('1923 - 1925', left3);
+						popupShow('1923 - 1925', left3, true);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
@@ -109,7 +113,7 @@
 				<p
 					class="transition duration-300 group"
 					on:mouseenter={() => {
-						popupShow('1926 - 1930', left4);
+						popupShow('1926 - 1930', left4, true);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);

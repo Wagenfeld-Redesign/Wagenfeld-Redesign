@@ -8,12 +8,7 @@
 		dom: document.getElementById('container')
 	});
 
-	let menuTitles = [
-		'Wilhelm Wagenfelds Werke',
-		'Biographie',
-		'Das Wilhelm Wagenfeld Haus',
-		'Ausstellungen'
-	];
+	let menuTitles = ['Wilhelm Wagenfelds Werke', 'Biographie', 'Info - Karte', 'Ausstellungen'];
 
 	let leftArrow = document.getElementById('arrow-left');
 	let rightArrow = document.getElementById('arrow-right');
@@ -46,8 +41,6 @@
 	// let elems = [...document.querySelectorAll('.n')];
 
 	window.addEventListener('wheel', (e) => {
-		// speed += e.deltaY * 0.0003;
-
 		if (e.deltaY < 0) {
 			if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
 		} else if (e.deltaY > 0) {

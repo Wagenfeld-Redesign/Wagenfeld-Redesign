@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
+	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
 	import { fade } from 'svelte/transition';
 
 	let wagenfeldLamp;
@@ -12,6 +12,7 @@
 
 	onMount(() => {
 		showPopup.set(false);
+		popupPositionLeft.set(false);
 		gsap.from(document.querySelectorAll('#divider'), {
 			width: 0,
 			x: 900,
@@ -41,6 +42,10 @@
 	const subHeadline1 = 'ÜBERSCHRIFT';
 	const subheadlineText1 = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
 </script>
+
+<svelte:head>
+	<title>Wagenfeld - Startseite</title>
+</svelte:head>
 
 <div id="content" class="relative w-screen min-h-screen px-4" in:fade={{ duration: 1000 }}>
 	<div class="top-0 left-0 !outline-none !border-none z-0">

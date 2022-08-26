@@ -9,6 +9,7 @@
 	import { gltfLamp } from '../store/stores';
 	import { useGltf } from 'threlte/extras';
 	const { gltf } = useGltf('src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
+	import { page } from '$app/stores';
 
 	let timerLoading = true; //default: true
 	let t1;
@@ -20,6 +21,8 @@
 			t1.play();
 		}, 0);
 	}
+
+	onMount(async () => {});
 
 	onMount(() => {
 		// setTimeout(function () {
@@ -57,8 +60,8 @@
 			{/if}
 		</div>
 
-		{#if !timerLoading}
-			<!-- <Footer /> -->
+		{#if !timerLoading && $page.url.pathname == '/'}
+			<Footer />
 		{/if}
 	</div>
 </div>

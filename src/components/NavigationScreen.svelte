@@ -1,10 +1,19 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	// import VanillaTilt from 'vanilla-tilt';
 
 	let menuBar;
 	onMount(async () => {
 		menuBar = (await import('../components/THREEJS/Menu/MenuCanvas.svelte')).default;
+
+		// //@ts-ignore
+		// VanillaTilt.init(document.querySelectorAll('.border'), {
+		// 	reverse: true,
+		// 	transition: true,
+		// 	easing: 'cubic-bezier(.03,.98,.52,.99)',
+		// 	'full-page-listening': true
+		// });
 	});
 </script>
 
@@ -21,8 +30,17 @@
 			MENU
 		</p>
 	</div>
+	<!-- 
+	<div class="w-screen h-screen flex justify-center items-center absolute z-50">
+		<div
+			id="infoCard"
+			class="border border-red-700 w-[25%] h-[59%] flex justify-center bg-white invisible"
+		>
 
-	<div class="z-50 flex items-center w-screen h-screen">
+		</div>
+	</div> -->
+
+	<div class="z-50 flex items-center w-screen h-screen absolute">
 		<div
 			id="arrow-left"
 			class="flex items-center justify-start invisible w-1/3 h-screen cursor-pointer lg:justify-end text-accent text-7xl"
@@ -55,6 +73,7 @@
 			srcset=""
 			data-url="werke"
 		/>
+		<img class="infoCard" src="src/assets/images/menuPictures/infocard.png" alt="" srcset="" />
 		<img
 			class="menuImage"
 			src="src/assets/images/menuPictures/werIstWilhelmWagenfeld.jpg"
@@ -67,6 +86,7 @@
 			src="src/assets/images/menuPictures/wilhelmWagenfeldHaus.jpg"
 			alt=""
 			srcset=""
+			data-url="info"
 		/>
 		<img
 			class="menuImage"

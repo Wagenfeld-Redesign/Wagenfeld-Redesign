@@ -1,48 +1,120 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
-	import VanillaTilt from 'vanilla-tilt';
+	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
 
 	onMount(() => {
 		showPopup.set(false);
-
-		//@ts-ignore
-		VanillaTilt.init(document.querySelectorAll('img'));
 	});
 
-	function popupShow(subheadline, subheadlineText) {
+	function popupShow(subheadline, subheadlineText, position?) {
 		if (!$navOpen) {
 			showPopup.set(true);
 			if ($showPopup) {
 				popupHeadline.set(subheadline);
 				popupText.set(subheadlineText);
-				// if (position) {
-				// 	popupPositionLeft.set(true);
-				// } else {
-				// 	popupPositionLeft.set(false);
-				// }
+				if (position) {
+					popupPositionLeft.set(true);
+				} else {
+					popupPositionLeft.set(false);
+				}
 			}
 		}
 	}
 
-	const intro = `Wilhelm Wagenfeld war ein deutscher Produktdesigner, welcher am 15. April 1900 in Bremen geboren wurde. Zu seiner Zeit galt Wagenfeld als einer der bekanntesten und besten im Gebiet Industriedesign. Bis zum Ende seiner Lebzeit gab es bis zu über 600 Entwürfe zu Gegenständen, welche zum größten Teil aus Glas oder Metall gefertigt waren. Viele seiner Entwürfe gelten heute noch als Klassiker, das prominenteste Beispiel die mit Carl Jakob Lucker entworfene Bauhaus-Leuchte, welche auch als Wagenfeldlampe bekannt ist. Im Laufe seiner Karriere hat Wagenfeld zudem seine Entwürfe mit verschiedenen Firmen wie zum Beispiel WMF verwirklicht.`;
-	const left1 = `Seine Karriere als Produktdesigner begann 1914 in einem Zeichenbüro Bremer Silberwarenfabrik Koch & Bergfeld, dort absolvierte er vier Jahre eine Lehre als Industriezeichner, parallel besuchte er bis 1919 die Bremer Kunstgewerbeschule.`;
-	const left2 = `1919 bis 1922 begann für Wagenfeld der nächste lehrreiche Schritt für seine zukünftige Karriere als Produktdesigner. 1919 gelang es ihm durch ein Stipendium an der Zeichenakadamie Hanau, mit einer Fachschule im Schwerpunkt Edelmetalle eine Ausbildung zum Silberschmied zu machen. In dieser Zeit nahm er auch Wettwerben teil, in diesen Wettbewerben ging es primär um Kirchengeräte und Schmuck.`;
-	const left3 = `Danach widmete er sich 1923 – 1925 der Metallwerkstatt des Staatliches Bauhauses Weimar, geleitet wurde dies damals von László Moholy-Nagy und Christian Dell. Ein Jahr nach dem Beginn seiner Tätigkeiten schloss Wilhelm Wagenfeld seine Gesellenprüfung als Silberschmied und Ziseleur ab. Zusätzlich entstanden zur selben Zeit die ersten Entwürfe diverser Metallgeräte und der Bauhausleuchte.`;
-	const left4 = `Ein Jahr darauf schaffte es Wagenfeld zum Assistenten in der Metallwerkstatt der staatlichen Bauhochschule Weimar, eine Nachfolgeinstitution des Bauhauses. Es kam sogar so weit, dass Wagenfeld 1928 der Leiter der Metallwerkstatt wurde. In dieser Zeit entstanden zudem weitere Entwürfe von Metallgeräten, gefolgt von einer Vielzahl Tisch- und Deckenleuchten. Dies war auch sein Beginn der Zusammenarbeit mit der Industrie und seiner öffentlichen Tätigkeiten.`;
+	let dataLeft = [
+		{
+			headline: 'Wilhelm Wagenfeld A bis Z',
+			text: `Die neue Ausstellung „Wilhelm Wagenfeld A bis Z“ wagt ein Experiment und nutzt die
+						Ordnungsform des Alphabets – von A wie „Aladin-Kanne“ bis Z wie „Zweckleuchten“. So
+						können die Objekte ganz neue Beziehungen eingehen – mal spielerisch, mal ernsthaft, mal
+						unerwartet. Damit bietet die Ausstellung einen neuen Zugang zu Wagenfelds Werk, berührt
+						aber zugleich zentrale Design-Themen des 20. Jahrhunderts.`,
+			date: '27.11.2021 - 18.09.2022',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995'
+		},
+		{
+			headline: 'Graphic Novel mit Battle of Print',
+			text: `In den letzten Jahren hat die Kunst, Geschichten mit Bildern und Texten zu erzählen,
+						neue Themen und Adressatenkreise erobert. Ob die Bezeichnung "Graphic Novel" ein reiner
+						Markerting Coup ist oder doch eine neue Form des Comics bezeichnet - das Interesse an
+						sequentiellen Bilderzählungen ist enorm gewachsen. Die Ausstellung möchte die aktuelle
+						Vielfalt der Graphic Novels daher einem breiteren Publikum vorstellen.`,
+			date: '26.03.2021 - 29.08.2021',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/257/9_Blick_in_GRAPHIC_NOVEL_foto_JensWeyers.jpg?1614849873'
+		},
+		{
+			headline: '100 Beste Plakate 18. Deutschland Österreich Schweiz',
+			text: `Eine Besonderheit der Station im Wilhelm Wagenfeld Haus stellt die Präsentation der
+						Plakate dar. Die ausgezeichneten Arbeiten sind nach Themen gegliedert, so dass formale
+						und inhaltliche Merkmale hervorgehoben werden. Das Kapitel „Das politische Plakat“ zeigt
+						beispielsweise, dass Gestalter*innen das Medium heute wieder vermehrt nutzen, um
+						politische Meinungen und gesellschaftliche Anliegen in den öffentlichen Raum tragen.
+						Die Gruppe „Schrift als Bildmedium“ versammelt Plakate, die Buchstaben nicht nur als
+						Informationsträger einsetzen, sondern mit ihrer Form und den Größenverhältnissen
+						experimentieren...`,
+			date: '05.05.2020 - 27.09.2020',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/246/04-wws-100beste-plakate-2020-WEB-foto%C2%A9JensWeyers.jpg?1588853934'
+		},
+		{
+			headline: 'Wilhelm Wagenfeld: Leuchten',
+			text: `Eine Tischleuchte als Symbol für das Bauhaus Im Rahmen des 100jährigen Bauhausjubiläums
+						widmet sich die Ausstellung den Leuchtenentwürfen Wilhelm Wagenfelds. Am Anfang steht
+						seine berühmte Tischleuchte von 1924, die wie kaum ein anderes Objekt mit dem Bauhaus
+						verbunden wird. Doch wie hat sich die Bauhausidee in den 1950er bis 1970er Jahren im
+						Werk Wagenfelds weiterentwickelt? Führt er das Bauhaus-Projekt fort oder erarbeitet er
+						neue Ansätze?`,
+			date: '24.05.2019 - 23.02.2020',
+			img: 'https://www.lampe.de/magazin/wp-content/uploads/2019/09/wagenfeld.jpg'
+		},
+		{
+			headline: 'einfach gut. Design aus Dänemark',
+			text: `Designmagazine und -blogs berichten wöchentlich über dänisches Design. Sie feiern die Klassiker der 1950er/60er Jahre und verankern den Begriff „Hygge“ im deutschen Vokabular. Offensichtlich spricht dänisches Design die Sehnsucht vieler Menschen nach Geborgenheit, nach langlebiger Qualität und dem sorgsamen Umgang mit natürlichen Materialien an.`,
+			date: '26.10.2018 - 22.04.2019',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995'
+		}
+	];
 
-	const right1 = `Nach der Auflösung der Bauhochschule 1930 durch die Nationalsozialisten und seinen freiberuflichen Tätigkeiten startete Wagenfeld in der Großindustrie durch. Wagenfeld hat es durch seine herausragende Arbeit geschafft, mehrere Firmen für Kooperationen zu gewinnen. Er schloss sich demnach mit dem Jenaer Glaswerk Schott & Gen, der Porzellanmanufakturen Fürstenberg / Weser (1934) und der Rosenthal AG / Selb, (1938) zusammen.
-    1935 löste Wagenfeld den Vertrag mit dem Jenaer Glaswerk auf, dennoch einigte man sich darauf, Ausführungen von Einzelaufträgen bis 1937 anzufertigen. Das größere und wichtigere Ereignis war dennoch die Übernahme der künstlerischen Leitung der Vereinigten Lausitzer Glaswerke in Weißwasser/Oberlausitz. Es war die größte Glashütte Europas. Durch sein starkes soziales Engagement und seine Arbeit im Betrieb gelang es ihm, Änderungen und Bewegung reinzubringen. Wagenfelds Einführung des Qualitätssektors der „Rautengläser“ gelang es ihm, die Hütte wirtschaftlich wieder stabil zu erhalten, ein Erfolg, welcher zu internationalen Preisen und Anerkennungen führte.`;
-	const right2 = `Wagenfeld gelang eine Berufung an das Institut für Bauwesen der Deutschen Akademie der Wissenschaften in Berlin. Dies geschah durch den Architekten Hans Scharoun, welcher ebenfalls aus Bremen stammt. Zu dieser Zeit übernahm Wagenfeld die Leitung der Abteilung Typisierung und Normung.
-    Zwei Jahre später kam es zu einer Kooperation der Sendlinger Optische Glaswerke GmbH aus Berlin. Zusätzlich gelang Wagenfeld die Zusammenarbeit mit der Württembergischen Metallwarenfabrik (WMF) in Geislingen. Dort war er als künstlerischer Leiter eines zukünftiges Qualitätssektors im Bereich Metall und Glas zuständig. Im gleichen Zeitraum war Wagenfeld als Berater für sämtliche Firmen wie zum Beispiel Carl Hugo Pott zuständig.
-    Nachdem Wagenfeld 1931 eine Zusammenarbeit mit der Rosenthal-Porzellan AG in Selb für Porzellan einging, folgte 11 Jahre später die Stelle als Berater bis 1955. Auch für Peill & Putzler Glashütten GmbH in Düren war er bis 1958 tätig. Dort war er für die Entwicklung eines Trinkglas- und Leuchtenprogramms zuständig.`;
-	const right3 = `In den nächsten Jahren entwickelte sich Wagenfeld immer mehr zu einem Berater. 1955 unterzeichnete er einen Vertrag bis 1970 als Berater für Lindner / Bramberg und half bei dir Entwicklung Lindner / Bamberg. Obwohl Wagenfeld die letzten Jahre viel als Berater tätig war, gab es immer wieder Entwürfe für Firmen in Sachen Industriedesign. Außerdem steigerte sich sein Ansehen durch seine Arbeit der letzten Jahrzehnte sowohl international als auch national. Beispielsweise war er als einziger Deutscher Gestalter zur International Design Conference in Aspen, Colorado eingeladen. Im selben Jahr wurde er Mitglied im Verein «Industrieform» in Essen.
-    1964 wurde er Ehrensenator der TU Stuttgart. Noch in selbem Jahr beteiligte er sich maßgeblich an der Documenta III in Kassel. Das darauffolgende Jahr wurde er Mitglied in der Akademie der Künste in Berlin.`;
-	const right4 = `Am 28. Mai 1990 ist Wilhelm Wagenfeld als einer der bedeutsamsten deutschen Produktdesignern verstorben. Drei Jahre später folgte die Gründung der Wilhelm Wagenfeld Stiftung in Bremen, die Stifter waren hierbei seine Frau Erika Wagenfeld, die Stadt Stuttgart und die Stadtgemeinde der Freien Hansestadt Bremen. 1998 folgte die Eröffnung des Wilhelm Wagenfeld Hauses in Bremen, welches noch bis heute viele seiner Werke, Ideen und Entwürfe ausstellt.`;
+	let dataRight = [
+		{
+			headline: 'Neue Standards. Zehn Thesen zum Wohnen',
+			text: `Zehn Architektinnen und Architekten formulierten aus ihrem persönlichen Erfahrungshintergrund einen relevanten „Neuen Standard“ für den Wohnungsbau – sie stehen für ein Wohnen, das sich auf Essenzielles besinnt und reich an Atmosphäre ist, für ein flächenkompaktes Wohnen und für ein Wohnen mit anpassungsfähigen Raumstrukturen. Wie Wohnen weiterhin leistbar bleibt, wie Menschen am Werden ihrer Stadt teilhaben können, sind ebenso Themen wie Dichte als Möglichkeit für städtisches Leben.`,
+			date: '15.05.2018 - 24.06.2018',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/281/02b-wws-A%E2%80%93Z-fotos%C2%A9JensWeyers.jpg?1637514254'
+		},
+		{
+			headline: 'Bremer Wohnbaupreis 2018',
+			text: `Mit dem Bremer Wohnbaupreis 2018 wird unter dem Leitspruch "Qualität sichern, Vielfalt fördern, Gemeinschaft ermöglichen" zum vierten Mal seit der Einführung 2005 das Engagement der bremischen Baufrauen und Bauherren sowie der betreuenden Architekturbüros in verschiedenen Kategorien ausgezeichnet und gewürdigt. Dies betrifft städtebauliche Qualitäten von Quartieren und Standorten, Gebäudetypen und Grundrisse sowie Fassadengestaltungen und die Ausführung von Ausstattungen.`,
+			date: '15.05.2018 - 24.06.2018',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/257/9_Blick_in_GRAPHIC_NOVEL_foto_JensWeyers.jpg?1614849873'
+		},
+		{
+			headline: 'Welt aus Glas. Transparentes Design',
+			text: `„Transparenz“ gehört zu den Schlüsselbegriffen unserer Gegenwart. Was wir mit dem Begriff verbinden, sagt viel über unsere Gesellschaft aus. Fordern wir transparentere Prozesse in Wirtschaft und Politik oder befürchten wir den Verlust von Privatsphäre in­mitten einer gläser­nen Kontrollgesellschaft? Die Ausstellung thematisiert, welche Hoffnun­gen, Wünsche und Gefahren wir mit dem Konzept der Transparenz verbinden. Warum faszi­nieren uns auch im Alltag Objekte aus Glas und klarem Kunststoff? Die Ausstellung blickt zunächst zurück auf das 20. Jahr­hundert und verfolgt die Entwicklungslinien bis zu aktuellen Diskussionen über eine gläserne Welt.`,
+			date: '24.11.2017 - 22.04.2018',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/246/04-wws-100beste-plakate-2020-WEB-foto%C2%A9JensWeyers.jpg?1588853934'
+		},
+		{
+			headline: 'Logo. Die Kunst mit dem Zeichen.',
+			text: `„Ein Logo ist dann gut, wenn man es mit dem großen Zeh in den Sand kratzen kann“, stellt der Gestalter Kurt Weidemann fest. Tatsächlich entscheidet über den Erfolg eines Logos wie verständlich, unverwechselbar, einprägsam und reproduzierbar es ist. Daher nutzen Designer häufig dieselben Mittel, die in der Konkreten Kunst Anwendung finden: Sie arbeiten mit Grundformen, setzen auf Signalfarben und erreichen eine immer stärkere Vereinfachung.`,
+			date: '19.05.2017 - 08.10.2017',
+			img: 'https://www.lampe.de/magazin/wp-content/uploads/2019/09/wagenfeld.jpg'
+		},
+		{
+			headline: 'Stapeln. Ein Prinzip der Moderne',
+			text: `Wir alle stapeln Dinge: ungelesene Zeitungen, Brennholz, ordentlich gefaltete Pullover oder Suppendosen im Vorratsschrank. Das Stapeln ist eine grundlegende Kultur­­­technik.
+			Umso erstaunlicher ist es, dass dieses Phänomen bisher nur wenig erforscht und ausgestellt wurde. Dabei wird seit Anfang des 20. Jahrhunderts so systematisch gestapelt, dass viele Bereiche unseres Lebens davon beeinflusst werden. Das Kubus-Geschirr aus Pressglas von Wilhelm Wagenfeld ist eines der frühesten Beispiele für stapelbares Indus­trie­design und verdeutlicht zugleich, dass das Stapelprinzip mehr bedeutet, als nur Dinge übereinanderzustellen.`,
+			date: '18.11.2016 - 17.04.2017',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/281/02b-wws-A%E2%80%93Z-fotos%C2%A9JensWeyers.jpg?1637514254'
+		}
+	];
 </script>
 
-<div id="content" class="relative w-screen h-screen overflow-hidden">
+<svelte:head>
+	<title>Wagenfeld - Ausstellungen</title>
+</svelte:head>
+
+<div id="content" class="relative w-screen min-h-screen overflow-hidden">
 	<div class="flex justify-center w-screen">
 		<p
 			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-8xl"
@@ -51,68 +123,94 @@
 		</p>
 	</div>
 
-	<div class="flex items-center justify-between w-screen h-screen px-24 mt-12">
-		<div class="flex flex-col items-center justify-center gap-10">
-			<div class="flex justify-between w-full gap-10">
-				<div id="popup" class="flex flex-col w-full h-auto px-6 pb-8 bg-white md:px-12 indicator">
-					<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold  pt-12 pb-5">
-						Wilhelm Wagenfeld A bis Z
-					</h1>
-
-					<p class="text-lg font-semibold text-justify">
-						Die neue Ausstellung „Wilhelm Wagenfeld A bis Z“ wagt ein Experiment und nutzt die
-						Ordnungsform des Alphabets – von A wie „Aladin-Kanne“ bis Z wie „Zweckleuchten“. So
-						können die Objekte ganz neue Beziehungen eingehen – mal spielerisch, mal ernsthaft, mal
-						unerwartet. Damit bietet die Ausstellung einen neuen Zugang zu Wagenfelds Werk, berührt
-						aber zugleich zentrale Design-Themen des 20. Jahrhunderts.
-					</p>
-
-					<div class="flex justify-end pt-6">
-						<span class="text-lg font-bold bg-white text-accent">27.11.2021 - 18.09.2022</span>
-					</div>
+	<div class="flex items-center justify-center w-screen min-h-screen px-24">
+		<div class="flex flex-col items-center justify-center w-screen h-screen">
+			<div class="flex gap-48">
+				<div id="left" class="flex flex-col text-4xl font-bold text-white gap-7">
+					{#each dataLeft as item}
+						<p
+							class="transition duration-300 group"
+							on:mouseenter={() => {
+								popupShow(item.headline, item.text, true);
+							}}
+							on:mouseleave={function () {
+								showPopup.set(false);
+							}}
+						>
+							{item.date}
+							<span
+								class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
+							/>
+						</p>
+					{/each}
 				</div>
 
-				<img
-					id="popup"
-					src="https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995"
-					alt=""
-					srcset=""
-				/>
-			</div>
-
-			<div class="flex justify-between w-full gap-10">
-				<div id="popup" class="flex flex-col w-full h-auto px-6 pb-8 bg-white md:px-12">
-					<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold pt-12 pb-5">
-						Mein Wagenfeld
-					</h1>
-					<p class="text-lg font-semibold text-justify">
-						"Wilhelm Wagenfeld A bis Z" breitet den vielfältigen Kontext von Alltagsdingen aus. Die
-						Ausstellung untersucht die Gestaltung, Produktion, Materialität, den Verkauf und die
-						Nutzung von Objekten, aber sie möchte auch die individuelle Dimension in den Blick
-						nehmen: Die Erzählebene „Mein Wagenfeld“ stellt Menschen und ihre Lieblingsstücke in den
-						Mittelpunkt und bietet so einen emotionalen Zugang zum Leben mit Wagenfeld-Objekten.
-					</p>
-
-					<div class="flex justify-end pt-6">
-						<span class="text-lg font-bold bg-white text-accent">bis 18.09.2022</span>
-					</div>
+				<div id="right" class="flex flex-col text-4xl font-bold text-white gap-7">
+					{#each dataRight as item}
+						<p
+							class="transition duration-300 group"
+							on:mouseenter={() => {
+								popupShow(item.headline, item.text);
+							}}
+							on:mouseleave={function () {
+								showPopup.set(false);
+							}}
+						>
+							{item.date}
+							<span
+								class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
+							/>
+						</p>
+					{/each}
 				</div>
-
-				<img
-					id="popup"
-					src="https://wilhelm-wagenfeld-stiftung.de/images/281/02b-wws-A%E2%80%93Z-fotos%C2%A9JensWeyers.jpg?1637514254"
-					alt=""
-					srcset=""
-				/>
 			</div>
+			<p
+				class="text-4xl font-bold text-white transition duration-300 group -mb-32 mt-32 cursor-pointer"
+				on:click={() =>
+					window
+						.open('https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/', '_blank')
+						.focus()}
+			>
+				für mehr, klick auf mich
+				<span
+					class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
+				/>
+			</p>
 		</div>
+
+		<!-- <div class="flex flex-col items-center justify-center gap-10">
+			{#each data as item}
+				<div class="flex justify-between w-full gap-10">
+					<div id="popup" class="flex flex-col w-3/4 h-full px-6 pb-0 bg-white md:px-12 indicator">
+						<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold  pt-12 pb-5">
+							{item.headline}
+						</h1>
+
+						<p class="text-lg font-semibold text-justify">
+							{item.text}
+						</p>
+
+						<div class="self-end flex-1 pt-6 place-self-end">
+							<span class="text-lg font-bold bg-white text-accent">{item.date}</span>
+						</div>
+					</div>
+
+					<img class="w-1/4" id="popup" src={item.img} alt="" srcset="" />
+				</div>
+			{/each}
+		</div> -->
 	</div>
 </div>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-	#letter {
-		font-family: 'Space Mono', monospace;
+
+	#gridLayout {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(5, 1fr);
+		grid-column-gap: 36px;
+		grid-row-gap: 36px;
 	}
 
 	#content {

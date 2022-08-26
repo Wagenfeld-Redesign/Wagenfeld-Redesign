@@ -70,35 +70,35 @@
 			}
 		});
 
-		gsap.from(gltf.scene.position, {
-			scrollTrigger: {
-				trigger: '#content',
-				start: 'top top',
-				scrub: true,
-				toggleActions: 'restart pause resume pause'
-			},
-			y: -1.5
-		});
+		// gsap.from(gltf.scene.position, {
+		// 	scrollTrigger: {
+		// 		trigger: '#content',
+		// 		start: 'top top',
+		// 		scrub: true,
+		// 		toggleActions: 'restart pause resume pause'
+		// 	},
+		// 	y: -1.5
+		// });
 
-		gsap.from(gltf.scene.rotation, {
-			scrollTrigger: {
-				trigger: '#content',
-				start: 'top top',
-				scrub: true,
-				toggleActions: 'restart pause resume pause'
-			},
-			x: -0.08
-		});
+		// gsap.to(gltf.scene.rotation, {
+		// 	scrollTrigger: {
+		// 		trigger: '#content',
+		// 		start: 'top top',
+		// 		scrub: true,
+		// 		toggleActions: 'restart pause resume pause'
+		// 	},
+		// 	x: -0.08
+		// });
 
 		gsap.to(gltf.scene.rotation, {
 			scrollTrigger: {
 				trigger: '#content',
 				start: 'top top',
-				end: 'bottom top',
+				// end: 'bottom top',
 				scrub: true,
 				toggleActions: 'restart pause resume pause'
 			},
-			y: Math.PI
+			y: '+=3.5'
 		});
 	}
 </script>

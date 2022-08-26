@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { showPopup, popupText, popupHeadline, navOpen } from '../store/stores';
+	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
+	import VanillaTilt from 'vanilla-tilt';
 
 	let speed = 0;
 	let oldPosition = 0;
@@ -44,13 +45,23 @@
 	let currentImage = '1';
 
 	let wrap;
-	let elems;
+	let elems = [];
 	let objs = Array(30).fill({ dist: 0 });
 	var timer = null;
 
 	let initOldPathLetter = '.';
 	let currentTitlesArray = [];
-	onMount(async () => {
+	onMount(() => {
+		popupPositionLeft.set(false);
+		//@ts-ignore
+		VanillaTilt.init(document.querySelectorAll('#carouselWrapper'), {
+			reverse: fade,
+			transition: true,
+			easing: 'cubic-bezier(.03,.98,.52,.99)',
+			scale: 1.05,
+			'full-page-listening': true
+		});
+
 		showPopup.set(false);
 		for (const modulePath in pathPictures) {
 			var currentCount = modulePath.split('/')[5].split('-')[0];
@@ -73,9 +84,6 @@
 			});
 		}
 
-		wrap = document.querySelector('#wrap');
-		elems = [...document.querySelectorAll('#letter')];
-
 		// Scrolling event start
 		document.querySelector('#carouselWrapper').addEventListener('scroll', function () {
 			clearTimeout(timer);
@@ -91,26 +99,28 @@
 			}, 100);
 		});
 
-		document.addEventListener('wheel', (e) => {
-			var target = event.target;
-			try {
-				if (
-					target === document.getElementById('carousel') ||
-					//@ts-ignore
-					document.getElementById('carousel').contains(target)
-				) {
-					return;
-				}
-			} catch (e) {}
-			if (e.deltaY < 0) {
-				if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
-			} else if (e.deltaY > 0) {
-				if (Math.round(position.value) <= 24) speed += e.deltaY * 0.0003;
-			}
-		});
+		elems = [...document.querySelectorAll('#letter')];
 
 		raf();
 	});
+
+	const handleWheel = (e) => {
+		var target = event.target;
+		try {
+			if (
+				target === document.getElementById('carousel') ||
+				//@ts-ignore
+				document.getElementById('carousel').contains(target)
+			) {
+				return;
+			}
+		} catch (e) {}
+		if (e.deltaY < 0) {
+			if (Math.round(position.value) >= 1) speed += e.deltaY * 0.0003;
+		} else if (e.deltaY > 0) {
+			if (Math.round(position.value) <= 24) speed += e.deltaY * 0.0003;
+		}
+	};
 
 	function popupShow(subheadline, subheadlineTextIndex) {
 		if (!$navOpen) {
@@ -131,18 +141,10 @@
 		}
 	}
 
-	function isInViewport(elem) {
-		var bounding = elem.getBoundingClientRect();
-		return (
-			bounding.top >= 0 &&
-			bounding.left >= 0 &&
-			bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-			bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-		);
-	}
-
 	function raf() {
 		try {
+			wrap = document.querySelector('#wrap');
+
 			position.value += speed;
 			speed *= 0.89;
 
@@ -189,7 +191,22 @@
 			} catch (e) {}
 		}
 	}
+
+	function isInViewport(elem) {
+		var bounding = elem.getBoundingClientRect();
+		return (
+			bounding.top >= 0 &&
+			bounding.left >= 0 &&
+			bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+			bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	}
 </script>
+
+<svelte:window on:wheel={handleWheel} />
+<svelte:head>
+	<title>Wagenfeld - Werke</title>
+</svelte:head>
 
 <div id="content" class="relative w-screen min-h-screen overflow-hidden">
 	<div class="flex justify-center w-screen">
@@ -245,7 +262,7 @@
 			{/if}
 		</div>
 		{#if currentArray.length > 0}
-			<p class="mt-4 text-xl text-center text-white">
+			<p class="mt-6 text-xl text-center text-white">
 				{currentImage} / {currentArray.length}
 			</p>
 		{/if}
