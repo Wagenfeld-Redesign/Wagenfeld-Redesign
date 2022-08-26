@@ -46,6 +46,7 @@
 </script>
 
 <div id="content" style="margin: 0 auto;">
+	<a href="3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb" download> file_name </a>
 	<div class="flex flex-col min-h-screen">
 		{#if !timerLoading}
 			<Nav />
