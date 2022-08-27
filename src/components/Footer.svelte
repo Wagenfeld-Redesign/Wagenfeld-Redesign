@@ -23,6 +23,8 @@
 		<p class="">
 			© 2022 Hochschulprojekt der Klasse Medieninformatik 4. Semester für <a
 				href="https://hs-bremen.de"
+				rel="external"
+				target="_blank"
 				class="link link-hover">Hochschule Bremen</a
 			>
 			<br /> Studierende: Enis Budancamanak, Phil Hartmann, Denis Ritter
@@ -32,13 +34,16 @@
 		<span class="text-2xl font-bold text-white uppercase">KONTAKT</span>
 		<p class="link link-hover">Impressum</p>
 		<p class="link link-hover">Datenschutz</p>
-		<a class="link link-hover" href="https://wilhelm-wagenfeld-stiftung.de/"
-			>Webseite der Stiftung</a
+		<a
+			class="link link-hover"
+			href="https://wilhelm-wagenfeld-stiftung.de/"
+			target="_blank"
+			rel="external">Webseite der Stiftung</a
 		>
 	</div>
 	<div class="self-center">
 		<div class="flex gap-4">
-			<a href="https://www.instagram.com/wilhelmwagenfeldhaus/" target="_blank">
+			<a href="https://www.instagram.com/wilhelmwagenfeldhaus/" target="_blank" rel="external">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
 					><path
 						fill="#FF03ED"
@@ -47,7 +52,7 @@
 				>
 			</a>
 
-			<a href="https://www.facebook.com/WilhelmWagenfeldHaus/" target="_blank">
+			<a href="https://www.facebook.com/WilhelmWagenfeldHaus/" target="_blank" rel="external">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
 					><path
 						fill="#FF03ED"
