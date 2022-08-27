@@ -33,7 +33,7 @@
 {#if !popupDismiss}
 	<div class="fixed z-50 bottom-8 right-4">
 		<div
-			class="max-w-screen-sm scale-0 shadow-lg opacity-0  alert"
+			class="max-w-screen-sm scale-0 rounded-none shadow-lg opacity-0 alert"
 			use:clickOutside
 			on:outsideclick={closePopup}
 			id="popupNotice"
@@ -59,8 +59,8 @@
 					mit einer Auflösung von 1920x1080.</span
 				>
 			</div>
-			<div class="flex-none ">
-				<button class="btn btn-sm btn-primary" on:click={closePopup}>VERSTANDEN</button>
+			<div class="self-end">
+				<button class="rounded-none btn btn-accent" on:click={closePopup}>Verstanden</button>
 			</div>
 		</div>
 	</div>
@@ -68,6 +68,6 @@
 
 <style>
 	#popupNotice {
-		box-shadow: 0px 1px 4px 4px #ff03ed;
+		box-shadow: 13px 13px 0 0 #ff03ed;
 	}
 </style>
