@@ -164,18 +164,17 @@
 					{/each}
 				</div>
 			</div>
-			<p
+			<a
+				rel="external"
+				href="https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/"
+				target="_blank"
 				class="mt-32 -mb-32 text-4xl font-bold text-white transition duration-300 cursor-pointer group"
-				on:click={() =>
-					window
-						.open('https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/', '_blank')
-						.focus()}
 			>
 				für mehr, klick auf mich
 				<span
 					class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
 				/>
-			</p>
+			</a>
 		</div>
 
 		<!-- <div class="flex flex-col items-center justify-center gap-10">
