@@ -43,23 +43,22 @@
 </script>
 
 {#if $mousePosition}
-	<div id="test">
-		<div
-			style="top: {$mousePosition.y}px; left: {$popupPositionLeft
-				? $mousePosition.x
-				: $mousePosition.x - 768}px"
-			id="popup"
-			class="fixed z-50 flex flex-col w-auto h-auto max-w-screen-md px-6 pb-8 bg-white opacity-0 md:px-12 translate-y-7"
+	<div
+		style="top: {$mousePosition.y}px; left: {$popupPositionLeft
+			? $mousePosition.x
+			: $mousePosition.x - 768}px"
+		id="popup"
+		class="fixed z-50 flex flex-col w-auto h-auto max-w-screen-md px-6 pb-8 scale-0 bg-white opacity-0 md:px-12 translate-y-7"
+	>
+		<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold pt-12 pb-5">
+			{$popupHeadline}
+		</h1>
+		<p
+			class="text-sm font-semibold text-justify w-[40ch] md:text-base md:w-[50ch] lg:w-[50ch] xl:w-[66ch]"
 		>
-			<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold pt-12 pb-5">
-				{$popupHeadline}
-			</h1>
-			<p
-				class="text-sm font-semibold text-justify w-[40ch] md:text-base md:w-[50ch] lg:w-[50ch] xl:w-[66ch]"
-			>
-				{@html $popupText}
-			</p>
-			<!-- <div class="flex justify-end pt-6 mr-6">
+			{@html $popupText}
+		</p>
+		<!-- <div class="flex justify-end pt-6 mr-6">
 			<button class="rounded-none btn btn-accent" on:click={closePopup}
 				><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
 					><path
@@ -69,7 +68,6 @@
 				></button
 			>
 		</div> -->
-		</div>
 	</div>
 {/if}
 

@@ -1,16 +1,19 @@
 <script>
+	import '@fontsource/space-grotesk';
 	import '../app.css';
+
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
 	import Popup from '../components/Popup.svelte';
+	import PopupNotice from '../components/PopupNotice.svelte';
+
 	import LoadingScreen from '../components/Loadings/PatternLoading.svelte';
 	import { gltfLamp } from '../store/stores';
 	import { useGltf } from 'threlte/extras';
 	const { gltf } = useGltf('3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
 	import { page } from '$app/stores';
-	import '@fontsource/space-grotesk';
 
 	let timerLoading = true; //default: true
 	let t1;
@@ -52,6 +55,7 @@
 			{#if !timerLoading}
 				<slot />
 				<Popup />
+				<PopupNotice />
 			{/if}
 
 			{#if timerLoading}

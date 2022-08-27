@@ -40,6 +40,7 @@
 		"jquery": "^3.6.0",
 		"svelte-cubed": "^0.2.1",
 		"svelte-inview": "^3.0.1",
+		"svelte-use-click-outside": "^1.0.0",
 		"three": "^0.140.0",
 		"threlte": "^3.1.2",
 		"vanilla-tilt": "^1.7.2"
