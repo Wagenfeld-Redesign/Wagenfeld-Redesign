@@ -7,7 +7,7 @@
 		const t1 = gsap.timeline({ paused: true, defaults: { duration: 2 } });
 
 		t1.to(document.getElementById('patternScreen'), {
-			// scale: 1.15,
+			scale: 1.05,
 			opacity: 1
 		});
 
@@ -18,7 +18,7 @@
 
 		gsap.from(
 			'#flicker',
-			{ autoAlpha: 0, duration: 1, stagger: { each: 0.1, from: 'random' }, ease: flickerEase },
+			{ autoAlpha: 0, duration: 1, stagger: { each: 0.05, from: 'random' }, ease: flickerEase },
 			0.3
 		);
 	});

@@ -33,7 +33,7 @@
 		<p class="link link-hover">Impressum</p>
 		<p class="link link-hover">Datenschutz</p>
 		<a class="link link-hover" href="https://wilhelm-wagenfeld-stiftung.de/"
-			>Zur originalen Webseite</a
+			>Webseite der Stiftung</a
 		>
 	</div>
 	<div class="self-center">

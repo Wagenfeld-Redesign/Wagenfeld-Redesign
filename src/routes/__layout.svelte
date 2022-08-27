@@ -10,6 +10,7 @@
 	import { useGltf } from 'threlte/extras';
 	const { gltf } = useGltf('3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
 	import { page } from '$app/stores';
+	import '@fontsource/space-grotesk';
 
 	let timerLoading = true; //default: true
 	let t1;
