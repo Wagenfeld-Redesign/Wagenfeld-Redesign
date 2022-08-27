@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import Sketch from './THREEJS/Menu/scriptMenu';
 	import { TweenMax } from 'gsap';
-	import { navPosition } from '../store/stores.js';
+	import { navPosition, navOpen } from '../store/stores.js';
 	import { page } from '$app/stores';
 
 	let menuTitles = ['Wilhelm Wagenfelds Werke', 'Biographie', 'Info - Karte', 'Ausstellungen'];
@@ -51,7 +51,7 @@
 			checkPositionChange();
 
 			//@ts-ignore only play when page is active
-			if ($page.url.pathname === new URL(window.location).pathname) requestAnimationFrame(raf);
+			if ($navOpen) requestAnimationFrame(raf);
 		} catch (e) {}
 	}
 
