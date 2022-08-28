@@ -157,8 +157,8 @@ export default class Sketch {
 			this.scene.add(group);
 
 			mesh.position.x = i * 1.6;
-			mesh.rotation.x = -0.05;
 
+			// mesh.rotation.x = -0.05;
 			// mesh.rotation.y = -0.5;
 			// mesh.rotation.z = -0.1;
 		});

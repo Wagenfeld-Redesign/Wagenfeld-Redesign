@@ -52,11 +52,9 @@
 						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 					/></svg
 				>
-
-				<span class="pl-3 pr-6"
-					>Wir empfehlen für die bestmögliche Erfahrung den Chrome-Browser mit
-					Hardwarebeschleunigung an. <br /> Außerdem liegt der Fokus der Webseite auf der Desktop-Variante
-					mit einer Auflösung von 1920x1080.</span
+				<span class="pl-4 pr-6"
+					>Wir empfehlen für die bestmögliche Erfahrung den Chrome-Browser. Außerdem liegt der Fokus
+					der Webseite auf der Desktop-Variante mit einer Auflösung von 1920x1080.</span
 				>
 			</div>
 			<div class="self-end">

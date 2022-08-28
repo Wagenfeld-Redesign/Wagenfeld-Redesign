@@ -25,13 +25,14 @@
 	<div class="flex items-center py-11 navbar text-neutral-content">
 		<div class="px-24 py-8 navbar-start">
 			<div class="absolute !z-50 logo">
-				<a style="display: block;" on:click={gotoHome} class="cursor-pointer"
-					><object
+				<p style="display: block;" on:click={gotoHome} class="cursor-pointer">
+					<object
+						title="logo"
 						style="width:unset; pointer-events: none;"
 						data="images/Logos/logo_white.svg"
 						height="66.44px"
 					/>
-				</a>
+				</p>
 			</div>
 		</div>
 		<div class="hidden navbar-center" />

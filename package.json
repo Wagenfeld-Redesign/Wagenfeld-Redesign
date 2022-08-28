@@ -35,6 +35,7 @@
 		"@glidejs/glide": "^3.5.2",
 		"@slidy/svelte": "^3.1.2",
 		"animejs": "^3.2.1",
+		"detect-gpu": "^4.0.37",
 		"gsap": "^3.8.0",
 		"in-view": "^0.6.1",
 		"jquery": "^3.6.0",

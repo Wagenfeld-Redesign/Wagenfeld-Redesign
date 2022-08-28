@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
+	import { fade } from 'svelte/transition';
 
 	onMount(() => {
 		showPopup.set(false);
@@ -114,7 +115,7 @@
 	<title>Wagenfeld - Ausstellungen</title>
 </svelte:head>
 
-<div id="content" class="relative w-screen min-h-screen overflow-hidden">
+<div id="content" class="relative w-screen min-h-screen overflow-hidden" in:fade>
 	<div class="flex justify-center w-screen">
 		<p
 			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl xl:text-8xl"
@@ -164,46 +165,24 @@
 					{/each}
 				</div>
 			</div>
-			<a
-				rel="external"
-				href="https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/"
-				target="_blank"
-				class="mt-32 -mb-32 text-4xl font-bold text-white transition duration-300 cursor-pointer group"
+			<p
+				on:click={() => {
+					window
+						.open('https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/', '_blank')
+						.focus();
+				}}
+				class="mt-32 -mb-32 text-4xl font-bold text-white transition duration-300 cursor-pointer group cursor-pointer"
 			>
 				für mehr, klick auf mich
 				<span
 					class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
 				/>
-			</a>
+			</p>
 		</div>
-
-		<!-- <div class="flex flex-col items-center justify-center gap-10">
-			{#each data as item}
-				<div class="flex justify-between w-full gap-10">
-					<div id="popup" class="flex flex-col w-3/4 h-full px-6 pb-0 bg-white md:px-12 indicator">
-						<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold  pt-12 pb-5">
-							{item.headline}
-						</h1>
-
-						<p class="text-lg font-semibold text-justify">
-							{item.text}
-						</p>
-
-						<div class="self-end flex-1 pt-6 place-self-end">
-							<span class="text-lg font-bold bg-white text-accent">{item.date}</span>
-						</div>
-					</div>
-
-					<img class="w-1/4" id="popup" src={item.img} alt="" srcset="" />
-				</div>
-			{/each}
-		</div> -->
 	</div>
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-
 	#content {
 		background-color: #0a0a0a;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23EA4CD5' stroke-width='0.7' stroke-opacity='0.13' %3E%3Ccircle fill='%230A0A0A' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%230a0a0a' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%230A0A0A' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");

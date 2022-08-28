@@ -2,13 +2,15 @@
 	import '@fontsource/space-grotesk';
 	import '../app.css';
 
-	import gsap from 'gsap';
+	import { getGPUTier } from 'detect-gpu';
 	import { onMount } from 'svelte';
+
+	import gsap from 'gsap';
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
 	import Popup from '../components/Popup.svelte';
 	import PopupNotice from '../components/PopupNotice.svelte';
-
+	import NoGpuNotification from '../components/NoGPUNotification.svelte';
 	import LoadingScreen from '../components/Loadings/PatternLoading.svelte';
 	import { gltfLamp } from '../store/stores';
 	import { useGltf } from 'threlte/extras';
@@ -16,6 +18,7 @@
 	import { page } from '$app/stores';
 
 	let timerLoading = true; //default: true
+	let gpuAvailable = false;
 	let t1;
 
 	$: if ($gltf) {
@@ -26,7 +29,10 @@
 		}, 0);
 	}
 
-	onMount(async () => {});
+	onMount(async () => {
+		const gpuTier = await getGPUTier();
+		if (gpuTier.tier >= 2) gpuAvailable = true;
+	});
 
 	onMount(() => {
 		// setTimeout(function () {
@@ -47,15 +53,19 @@
 
 <div id="content" style="margin: 0 auto;">
 	<div class="flex flex-col min-h-screen">
-		{#if !timerLoading}
+		{#if !timerLoading && gpuAvailable}
 			<Nav />
 		{/if}
 
 		<div class="flex flex-col flex-1 sm:flex-row bg-primary">
-			{#if !timerLoading}
+			{#if !timerLoading && gpuAvailable}
 				<slot />
 				<Popup />
 				<PopupNotice />
+			{/if}
+
+			{#if !timerLoading && !gpuAvailable}
+				<NoGpuNotification />
 			{/if}
 
 			{#if timerLoading}
@@ -65,7 +75,7 @@
 			{/if}
 		</div>
 
-		{#if !timerLoading && $page.url.pathname == '/'}
+		{#if !timerLoading && $page.url.pathname == '/' && gpuAvailable}
 			<Footer />
 		{/if}
 	</div>

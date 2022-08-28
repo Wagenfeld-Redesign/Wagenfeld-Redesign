@@ -39,8 +39,7 @@
 		}
 	}
 
-	const subHeadline1 = 'ÜBERSCHRIFT';
-	const subheadlineText1 = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
+	const subheadlineText = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam`;
 </script>
 
 <svelte:head>
@@ -61,7 +60,7 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupShow(subHeadline1, subheadlineText1);
+						popupShow('ÜBERSCHRIFT1', subheadlineText);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
@@ -83,7 +82,7 @@
 					style="line-height: 1.05;"
 					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
 					on:mouseenter={() => {
-						popupShow('ÜBERSCHRIFT', 'TEST');
+						popupShow('ÜBERSCHRIFT2', subheadlineText);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
