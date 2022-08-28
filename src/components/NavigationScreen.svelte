@@ -6,7 +6,7 @@
 	import { navPosition, navOpen } from '../store/stores.js';
 	import { page } from '$app/stores';
 
-	let menuTitles = ['Wilhelm Wagenfelds Werke', 'Biographie', 'Info - Karte', 'Ausstellungen'];
+	let menuTitles = ['WILHELM WAGENFELDS WERKE', 'BIOGRAPHIE', 'INFO - KARTE', 'AUSSTELLUNGEN'];
 
 	let leftArrow;
 	let rightArrow;
@@ -159,7 +159,7 @@
 	<div id="wrap" hidden>
 		<img
 			class="menuImage"
-			src="images/menuPictures/wilhelmWagenfeldWerke.png"
+			src="images/menuPictures/wilhelmWagenfeldsWerke2.jpg"
 			alt=""
 			srcset=""
 			data-url="werke"
@@ -167,7 +167,7 @@
 		<img class="infoCard" src="images/menuPictures/infocard.png" alt="" srcset="" />
 		<img
 			class="menuImage"
-			src="images/menuPictures/werIstWilhelmWagenfeld.jpg"
+			src="images/menuPictures/werIstWilhelmWagenfeldSepia.jpg"
 			alt=""
 			srcset=""
 			data-url="biographie"

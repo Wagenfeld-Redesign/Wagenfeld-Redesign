@@ -16,8 +16,8 @@
 	});
 
 	function gotoHome() {
-		navOpen.set(false);
 		goto('/');
+		navOpen.set(false);
 	}
 </script>
 

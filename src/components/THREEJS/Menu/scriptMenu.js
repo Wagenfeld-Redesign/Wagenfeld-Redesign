@@ -68,11 +68,12 @@ export default class Sketch {
 			if (intersects.length > 0) {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
 					if (this.links[get(navPosition)] != '/info') {
+						goto(intersects[0].object.name);
+
 						setTimeout(() => {
 							navOpen.set(false);
 							showPopup.set(false);
 						}, 100);
-						goto(intersects[0].object.name);
 					} else {
 						if (this.thirdImageFlipped) {
 							this.thirdImageFlipped = false;

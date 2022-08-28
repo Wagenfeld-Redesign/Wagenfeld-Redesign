@@ -10,7 +10,7 @@ const vertexShader = `
     uniform float distanceFromCenter;
 
     void main() {
-        vUv = (uv - vec2(0.5)) * (1.-0.1 *distanceFromCenter*(2. - distanceFromCenter)) + vec2(0.5);
+        vUv = (uv - vec2(0.5)) * (1.-0.065 *distanceFromCenter*(2. - distanceFromCenter)) + vec2(0.5);
 
         vec3 pos = position;
         // pos.y += sin(PI * uv.x) *0.03;

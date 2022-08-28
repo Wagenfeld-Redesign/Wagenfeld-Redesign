@@ -263,7 +263,7 @@
 			{/if}
 		</div>
 		{#if currentArray.length > 0}
-			<p class="mt-6 text-xl text-center text-white">
+			<p class="mt-6 text-xl text-center text-white font-bold">
 				{currentImage} / {currentArray.length}
 			</p>
 		{/if}

@@ -63,11 +63,11 @@
 		/* margin-top: px; */
 		right: 0;
 		width: 100%;
-		height: 11px;
+		height: 17px;
 		transition: all 0.3s ease;
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--top) {
-		transform: translate(0, -15px);
+		transform: translate(0, -18px);
 	}
 	:global(.menu-toggle-bar.menu-toggle-bar--bottom) {
 		transform: translate(0, 11px);

@@ -90,9 +90,9 @@
 
 <style>
 	footer {
-		box-shadow: -1px -7px 29px -3px rgba(255, 3, 237, 0.15);
-		-webkit-box-shadow: -1px -7px 29px -3px rgba(255, 3, 237, 0.15);
-		-moz-box-shadow: -1px -7px 29px -3px rgba(255, 3, 237, 0.15);
+		box-shadow: 0px -7px 29px -3px rgba(255, 3, 237, 0.15);
+		-webkit-box-shadow: 0px -7px 29px -3px rgba(255, 3, 237, 0.15);
+		-moz-box-shadow: 0px -7px 29px -3px rgba(255, 3, 237, 0.15);
 		/* box-shadow: 0px 29px 130px -79px rgba(255, 3, 237, 1) inset;
 		-webkit-box-shadow: 0px 29px 130px -79px rgba(255, 3, 237, 1) inset;
 		-moz-box-shadow: 0px 29px 130px -79px rgba(255, 3, 237, 1) inset; */
