@@ -35,16 +35,6 @@
 			img: 'https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995'
 		},
 		{
-			headline: 'Graphic Novel mit Battle of Print',
-			text: `In den letzten Jahren hat die Kunst, Geschichten mit Bildern und Texten zu erzählen,
-						neue Themen und Adressatenkreise erobert. Ob die Bezeichnung "Graphic Novel" ein reiner
-						Markerting Coup ist oder doch eine neue Form des Comics bezeichnet - das Interesse an
-						sequentiellen Bilderzählungen ist enorm gewachsen. Die Ausstellung möchte die aktuelle
-						Vielfalt der Graphic Novels daher einem breiteren Publikum vorstellen.`,
-			date: '26.03.2021 - 29.08.2021',
-			img: 'https://wilhelm-wagenfeld-stiftung.de/images/257/9_Blick_in_GRAPHIC_NOVEL_foto_JensWeyers.jpg?1614849873'
-		},
-		{
 			headline: '100 Beste Plakate 18. Deutschland Österreich Schweiz',
 			text: `Eine Besonderheit der Station im Wilhelm Wagenfeld Haus stellt die Präsentation der
 						Plakate dar. Die ausgezeichneten Arbeiten sind nach Themen gegliedert, so dass formale
@@ -57,6 +47,38 @@
 			date: '05.05.2020 - 27.09.2020',
 			img: 'https://wilhelm-wagenfeld-stiftung.de/images/246/04-wws-100beste-plakate-2020-WEB-foto%C2%A9JensWeyers.jpg?1588853934'
 		},
+
+		{
+			headline: 'einfach gut. Design aus Dänemark',
+			text: `Designmagazine und -blogs berichten wöchentlich über dänisches Design. Sie feiern die Klassiker der 1950er/60er Jahre und verankern den Begriff „Hygge“ im deutschen Vokabular. Offensichtlich spricht dänisches Design die Sehnsucht vieler Menschen nach Geborgenheit, nach langlebiger Qualität und dem sorgsamen Umgang mit natürlichen Materialien an.`,
+			date: '26.10.2018 - 22.04.2019',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995'
+		},
+		{
+			headline: 'Neue Standards. Zehn Thesen zum Wohnen',
+			text: `Zehn Architektinnen und Architekten formulierten aus ihrem persönlichen Erfahrungshintergrund einen relevanten „Neuen Standard“ für den Wohnungsbau – sie stehen für ein Wohnen, das sich auf Essenzielles besinnt und reich an Atmosphäre ist, für ein flächenkompaktes Wohnen und für ein Wohnen mit anpassungsfähigen Raumstrukturen. Wie Wohnen weiterhin leistbar bleibt, wie Menschen am Werden ihrer Stadt teilhaben können, sind ebenso Themen wie Dichte als Möglichkeit für städtisches Leben.`,
+			date: '15.05.2018 - 24.06.2018',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/281/02b-wws-A%E2%80%93Z-fotos%C2%A9JensWeyers.jpg?1637514254'
+		},
+		{
+			headline: 'Logo. Die Kunst mit dem Zeichen.',
+			text: `„Ein Logo ist dann gut, wenn man es mit dem großen Zeh in den Sand kratzen kann“, stellt der Gestalter Kurt Weidemann fest. Tatsächlich entscheidet über den Erfolg eines Logos wie verständlich, unverwechselbar, einprägsam und reproduzierbar es ist. Daher nutzen Designer häufig dieselben Mittel, die in der Konkreten Kunst Anwendung finden: Sie arbeiten mit Grundformen, setzen auf Signalfarben und erreichen eine immer stärkere Vereinfachung.`,
+			date: '19.05.2017 - 08.10.2017',
+			img: 'https://www.lampe.de/magazin/wp-content/uploads/2019/09/wagenfeld.jpg'
+		}
+	];
+
+	let dataRight = [
+		{
+			headline: 'Graphic Novel mit Battle of Print',
+			text: `In den letzten Jahren hat die Kunst, Geschichten mit Bildern und Texten zu erzählen,
+						neue Themen und Adressatenkreise erobert. Ob die Bezeichnung "Graphic Novel" ein reiner
+						Markerting Coup ist oder doch eine neue Form des Comics bezeichnet - das Interesse an
+						sequentiellen Bilderzählungen ist enorm gewachsen. Die Ausstellung möchte die aktuelle
+						Vielfalt der Graphic Novels daher einem breiteren Publikum vorstellen.`,
+			date: '26.03.2021 - 29.08.2021',
+			img: 'https://wilhelm-wagenfeld-stiftung.de/images/257/9_Blick_in_GRAPHIC_NOVEL_foto_JensWeyers.jpg?1614849873'
+		},
 		{
 			headline: 'Wilhelm Wagenfeld: Leuchten',
 			text: `Eine Tischleuchte als Symbol für das Bauhaus Im Rahmen des 100jährigen Bauhausjubiläums
@@ -68,21 +90,7 @@
 			date: '24.05.2019 - 23.02.2020',
 			img: 'https://www.lampe.de/magazin/wp-content/uploads/2019/09/wagenfeld.jpg'
 		},
-		{
-			headline: 'einfach gut. Design aus Dänemark',
-			text: `Designmagazine und -blogs berichten wöchentlich über dänisches Design. Sie feiern die Klassiker der 1950er/60er Jahre und verankern den Begriff „Hygge“ im deutschen Vokabular. Offensichtlich spricht dänisches Design die Sehnsucht vieler Menschen nach Geborgenheit, nach langlebiger Qualität und dem sorgsamen Umgang mit natürlichen Materialien an.`,
-			date: '26.10.2018 - 22.04.2019',
-			img: 'https://wilhelm-wagenfeld-stiftung.de/images/285/WW_A-Z_foto%40jens-weyers.jpg?1653470995'
-		}
-	];
 
-	let dataRight = [
-		{
-			headline: 'Neue Standards. Zehn Thesen zum Wohnen',
-			text: `Zehn Architektinnen und Architekten formulierten aus ihrem persönlichen Erfahrungshintergrund einen relevanten „Neuen Standard“ für den Wohnungsbau – sie stehen für ein Wohnen, das sich auf Essenzielles besinnt und reich an Atmosphäre ist, für ein flächenkompaktes Wohnen und für ein Wohnen mit anpassungsfähigen Raumstrukturen. Wie Wohnen weiterhin leistbar bleibt, wie Menschen am Werden ihrer Stadt teilhaben können, sind ebenso Themen wie Dichte als Möglichkeit für städtisches Leben.`,
-			date: '15.05.2018 - 24.06.2018',
-			img: 'https://wilhelm-wagenfeld-stiftung.de/images/281/02b-wws-A%E2%80%93Z-fotos%C2%A9JensWeyers.jpg?1637514254'
-		},
 		{
 			headline: 'Bremer Wohnbaupreis 2018',
 			text: `Mit dem Bremer Wohnbaupreis 2018 wird unter dem Leitspruch "Qualität sichern, Vielfalt fördern, Gemeinschaft ermöglichen" zum vierten Mal seit der Einführung 2005 das Engagement der bremischen Baufrauen und Bauherren sowie der betreuenden Architekturbüros in verschiedenen Kategorien ausgezeichnet und gewürdigt. Dies betrifft städtebauliche Qualitäten von Quartieren und Standorten, Gebäudetypen und Grundrisse sowie Fassadengestaltungen und die Ausführung von Ausstattungen.`,
@@ -95,12 +103,7 @@
 			date: '24.11.2017 - 22.04.2018',
 			img: 'https://wilhelm-wagenfeld-stiftung.de/images/246/04-wws-100beste-plakate-2020-WEB-foto%C2%A9JensWeyers.jpg?1588853934'
 		},
-		{
-			headline: 'Logo. Die Kunst mit dem Zeichen.',
-			text: `„Ein Logo ist dann gut, wenn man es mit dem großen Zeh in den Sand kratzen kann“, stellt der Gestalter Kurt Weidemann fest. Tatsächlich entscheidet über den Erfolg eines Logos wie verständlich, unverwechselbar, einprägsam und reproduzierbar es ist. Daher nutzen Designer häufig dieselben Mittel, die in der Konkreten Kunst Anwendung finden: Sie arbeiten mit Grundformen, setzen auf Signalfarben und erreichen eine immer stärkere Vereinfachung.`,
-			date: '19.05.2017 - 08.10.2017',
-			img: 'https://www.lampe.de/magazin/wp-content/uploads/2019/09/wagenfeld.jpg'
-		},
+
 		{
 			headline: 'Stapeln. Ein Prinzip der Moderne',
 			text: `Wir alle stapeln Dinge: ungelesene Zeitungen, Brennholz, ordentlich gefaltete Pullover oder Suppendosen im Vorratsschrank. Das Stapeln ist eine grundlegende Kultur­­­technik.
@@ -130,7 +133,7 @@
 				<div id="left" class="flex flex-col text-4xl font-bold text-white gap-7">
 					{#each dataLeft as item}
 						<p
-							class="transition duration-300 group"
+							class="text-center transition duration-300 group"
 							on:mouseenter={() => {
 								popupShow(item.headline, item.text, true);
 							}}
@@ -149,7 +152,7 @@
 				<div id="right" class="flex flex-col text-4xl font-bold text-white gap-7">
 					{#each dataRight as item}
 						<p
-							class="transition duration-300 group"
+							class="text-center transition duration-300 group"
 							on:mouseenter={() => {
 								popupShow(item.headline, item.text);
 							}}
@@ -171,9 +174,9 @@
 						.open('https://wilhelm-wagenfeld-stiftung.de/ausstellungen/review/', '_blank')
 						.focus();
 				}}
-				class="mt-32 -mb-32 text-4xl font-bold text-white transition duration-300 cursor-pointer group cursor-pointer"
+				class="mt-32 -mb-32 text-4xl font-bold text-white transition duration-300 cursor-pointer group"
 			>
-				für mehr, klick auf mich
+				MEHR INFORMATIONEN
 				<span
 					class="block h-1 transition-all duration-300 max-w-0 group-hover:max-w-full bg-accent"
 				/>

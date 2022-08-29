@@ -1,40 +1,56 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import Footer from './Footer.svelte';
+
+	export let isMobile;
 </script>
 
 <div style="margin: 0 auto;">
-	<div class="flex flex-col min-h-screen w-screen">
-		<div id="content" class="flex flex-col flex-1 sm:flex-row bg-primary justify-center">
-			<div class="flex flex-col justify-center items-center gap-11" in:fade>
+	<div class="flex flex-col w-screen h-screen overflow-hidden">
+		<div id="content" class="flex flex-col justify-center flex-1 sm:flex-row bg-primary">
+			<div class="flex flex-col items-center justify-center gap-11" in:fade>
 				<object
 					title="logo"
 					style="width:unset; pointer-events: none;"
 					data="images/Logos/logo_white.svg"
-					height="60px"
+					height="50px"
 				/>
 
-				<h1 class="text-4xl font-bold text-white text-center max-w-screen-md">
-					WIR KONNTEN KEINE GRAFIKKARTE FESTSTELLEN, BITTE AKTIVIEREN SIE DIE OPTION
-					"HARDWAREBESCHLEUNIGUNG" IN IHREN BROWSER-EINSTELLUNGEN
-				</h1>
-				<p
-					class="text-3xl font-bold text-white text-center link link-hover"
-					on:click={() => {
-						window
-							.open(
-								'https://www.heise.de/tipps-tricks/Hardwarebeschleunigung-aktivieren-4697745.html',
-								'_blank'
-							)
-							.focus();
-					}}
+				<h1
+					class="max-w-screen-md  font-bold text-center text-white {isMobile
+						? 'px-8 text-2xl'
+						: 'text-4xl'}"
 				>
-					ZUR ANLEITUNG
-				</p>
+					{#if isMobile}
+						DIE WEBSEITE IST FÜR DIE DESKTOP-VARIANTE ENTWICKELT WORDEN, BITTE WECHSELN SIE ZUM
+						DESKTOP <br />
+						<h2 class="text-xl">(EMPFEHLUNG: 1920x1080)</h2>
+					{:else}
+						WIR KONNTEN KEINE GRAFIKKARTE FESTSTELLEN, BITTE AKTIVIEREN SIE DIE OPTION
+						"HARDWAREBESCHLEUNIGUNG" IN IHREN BROWSER-EINSTELLUNGEN
+					{/if}
+				</h1>
+				{#if !isMobile}
+					<p
+						class="text-3xl font-bold text-center text-white link link-hover"
+						on:click={() => {
+							window
+								.open(
+									'https://www.heise.de/tipps-tricks/Hardwarebeschleunigung-aktivieren-4697745.html',
+									'_blank'
+								)
+								.focus();
+						}}
+					>
+						ZUR ANLEITUNG
+					</p>
+				{/if}
 			</div>
 		</div>
 
-		<Footer />
+		{#if !isMobile}
+			<Footer />
+		{/if}
 	</div>
 </div>
 

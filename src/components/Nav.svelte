@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { navOpen } from '../store/stores.js';
 	import { fade } from 'svelte/transition';
+	import InlineSVG from 'svelte-inline-svg';
 
 	onMount(() => {
 		gsap.from(document.querySelector('.logo'), {
@@ -25,14 +26,20 @@
 	<div class="flex items-center py-11 navbar text-neutral-content">
 		<div class="px-24 py-8 navbar-start">
 			<div class="absolute !z-50 logo">
-				<p style="display: block;" on:click={gotoHome} class="cursor-pointer">
-					<object
+				<p class="inline-block cursor-pointer" on:click={gotoHome}>
+					<InlineSVG
+						src={'images/Logos/logo_white.svg'}
+						height="66.44px"
+						style="pointer-events: none;"
+					/>
+				</p>
+
+				<!-- <object
 						title="logo"
 						style="width:unset; pointer-events: none;"
 						data="images/Logos/logo_white.svg"
 						height="66.44px"
-					/>
-				</p>
+					/> -->
 			</div>
 		</div>
 		<div class="hidden navbar-center" />

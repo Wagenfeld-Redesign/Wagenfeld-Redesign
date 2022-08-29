@@ -1,21 +1,18 @@
 <script>
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/all';
-
-	import { onDestroy, onMount } from 'svelte';
-	import { Object3D } from 'three';
+	import { onMount } from 'svelte';
 	import { Object3DInstance } from 'threlte';
-	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 	import { useThrelte } from 'threlte';
-	// import { useGltf } from 'threlte/extras';
-	// const { gltf } = useGltf('src/assets/3DModels/Wagenfeldlampe/wagenfeldlampe_24.glb');
+	import { Pass } from '@threlte/core';
+	import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 	import { gltfLamp } from '../../../store/stores.js';
+	import { Vector2 } from 'three';
 
 	const { renderer, size, camera, scene } = useThrelte();
 
 	const gltf = $gltfLamp;
-	let animationFinished = false;
 
 	onMount(async () => {
 		// Resize Canvas
@@ -64,10 +61,7 @@
 			y: -1.5,
 			z: 0,
 			duration: 1.8,
-			ease: 'Back.easeOut',
-			onComplete: () => {
-				animationFinished = true;
-			}
+			ease: 'Back.easeOut'
 		});
 
 		// gsap.from(gltf.scene.position, {
@@ -98,7 +92,7 @@
 				scrub: true,
 				toggleActions: 'restart pause resume pause'
 			},
-			y: '+=3.5'
+			y: '+=2.5'
 		});
 	}
 </script>
@@ -110,6 +104,9 @@
 		rotation={{ x: -0.08, y: 0, z: 0 }}
 		scale={{ x: 1.4, y: 1.4, z: 1.4 }}
 	/> -->
+	<Pass
+		pass={new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 0.28, 2, 0)}
+	/>
 
 	<Object3DInstance
 		object={gltf.scene}

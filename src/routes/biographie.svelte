@@ -54,7 +54,7 @@
 
 	<div class="flex flex-col items-center justify-center w-screen h-screen gap-7">
 		<p
-			class="text-4xl font-bold text-white transition duration-300 group"
+			class="text-4xl font-bold text-center text-white transition duration-300 group"
 			on:mouseenter={() => {
 				popupShow('INTRO', intro, true);
 			}}
@@ -70,7 +70,7 @@
 		<div class="flex gap-72">
 			<div id="left" class="flex flex-col text-4xl font-bold text-white gap-7">
 				<p
-					class="transition duration-300 group"
+					class="text-center transition duration-300 group"
 					on:mouseenter={() => {
 						popupShow('1914 - 1919', left1, true);
 					}}
@@ -84,7 +84,7 @@
 					/>
 				</p>
 				<p
-					class="transition duration-300 group"
+					class="text-center transition duration-300 group"
 					on:mouseenter={() => {
 						popupShow('1919 - 1922', left2, true);
 					}}

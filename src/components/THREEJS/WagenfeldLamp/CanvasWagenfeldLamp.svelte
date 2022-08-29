@@ -32,9 +32,7 @@
 			useCamera={true}
 			viewportAware={true}
 			position={{ x: 0, y: 2.5, z: 4.86 }}
-		>
-			<!-- <OrbitControls autoRotate={false} enableZoom={false} target={{ z: -5, y: -3.2, x: 0 }} /> -->
-		</CameraInstance>
+		/>
 
 		<AmbientLight color={0xffffff} intensity={0.1} />
 

@@ -10,6 +10,10 @@ html {
 	box-sizing: border-box;
 
 	font-family: 'Space Grotesk';
+
+	/* For Firefox */
+	scrollbar-color: #ff03ee #050505;
+	scrollbar-width: thin;
 }
 
 *,
@@ -30,7 +34,7 @@ body {
 /* Scrollbar */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: #ff03ee #0a0a0a;
+	scrollbar-color: #ff03ee;
 }
 
 /* Chrome, Edge, and Safari */
@@ -39,7 +43,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-	background: #0a0a0a;
+	background: #050505;
 }
 
 *::-webkit-scrollbar-thumb {

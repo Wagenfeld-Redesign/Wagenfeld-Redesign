@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import InlineSVG from 'svelte-inline-svg';
 
 	function gotoHome() {
 		goto('/');
@@ -7,15 +8,14 @@
 </script>
 
 <footer
-	class="p-10 footer bg-neutral text-neutral-content flex justify-around z-10 bg-gradient-to-tr from-primary via-primary to-[#140D13]"
+	class="p-10 footer bg-neutral text-neutral-content flex justify-around z-10 bg-gradient-to-tr from-primary via-primary to-[#110c10]"
 >
 	<div class="self-center">
-		<p style="display: block;" on:click={gotoHome} class="cursor-pointer">
-			<object
-				title="logo"
-				style="width:unset; pointer-events: none;"
-				data="images/Logos/logo_white.svg"
+		<p class="inline-block cursor-pointer" on:click={gotoHome}>
+			<InlineSVG
+				src={'images/Logos/logo_white.svg'}
 				height="66.44px"
+				style="pointer-events: none;"
 			/>
 		</p>
 	</div>

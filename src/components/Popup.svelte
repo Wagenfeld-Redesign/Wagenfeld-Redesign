@@ -48,13 +48,13 @@
 			? $mousePosition.x
 			: $mousePosition.x - 768}px"
 		id="popup"
-		class="fixed z-50 flex flex-col w-auto h-auto max-w-screen-md px-6 pb-8 scale-0 bg-white opacity-0 md:px-12 translate-y-7"
+		class="fixed z-50 flex flex-col w-auto h-auto max-w-screen-md px-12 pb-8 scale-0 bg-white opacity-0 translate-y-7"
 	>
 		<h1 class="text-2xl lg:text-3xl xl:text-[2.4rem] text-accent font-bold pt-12 pb-5">
 			{$popupHeadline}
 		</h1>
 		<p
-			class="text-sm font-semibold text-justify w-[40ch] md:text-base md:w-[50ch] lg:w-[50ch] xl:w-[66ch]"
+			class="text-sm text-justify font-semibold w-[40ch] md:text-base md:w-[50ch] lg:w-[50ch] xl:w-[66ch]"
 		>
 			{@html $popupText}
 		</p>

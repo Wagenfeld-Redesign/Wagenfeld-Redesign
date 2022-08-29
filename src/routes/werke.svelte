@@ -3,7 +3,9 @@
 	import { showPopup, popupText, popupHeadline, navOpen, popupPositionLeft } from '../store/stores';
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
+	import { TweenMax } from 'gsap';
 	import VanillaTilt from 'vanilla-tilt';
+	import { SyncLoader } from 'svelte-loading-spinners';
 
 	let speed = 0;
 	let oldPosition = 0;
@@ -43,6 +45,7 @@
 	let currentLetter = 'A';
 	let currentInfoArray = [];
 	let currentImage = '1';
+	let dontShowPictures = false;
 
 	let wrap;
 	let elems = [];
@@ -57,7 +60,7 @@
 		VanillaTilt.init(document.querySelectorAll('#carouselWrapper'), {
 			reverse: fade,
 			transition: true,
-			max: 3,
+			max: 4,
 			easing: 'cubic-bezier(.03,.98,.52,.99)',
 			scale: 1.05,
 			'full-page-listening': true
@@ -104,6 +107,17 @@
 
 		raf();
 	});
+
+	function clickLetterHandle(positionFromLetter) {
+		if (positionFromLetter - 1 != position.value) dontShowPictures = true;
+		TweenMax.to(position, 0.3, {
+			value: positionFromLetter - 1,
+			ease: 'Circ.easeOut',
+			onComplete: () => {
+				dontShowPictures = false;
+			}
+		});
+	}
 
 	const handleWheel = (e) => {
 		var target = event.target;
@@ -219,19 +233,24 @@
 	</div>
 
 	<div class="flex flex-col items-center justify-center w-screen h-screen place-items-center">
-		{#if currentArray.length == 0}
+		{#if dontShowPictures}
+			<div class="z-40 translate-y-60">
+				<SyncLoader size="60" color="#ffffff" unit="px" duration="0.4s" />
+			</div>
+		{:else if currentArray.length == 0}
 			<p
-				class="z-40 text-xl font-bold tracking-widest text-center text-accent md:text-4xl translate-y-60"
+				class="z-40 text-xl font-bold tracking-widest text-center text-white md:text-4xl translate-y-60"
 			>
 				KEINE WERKE FÜR "{currentLetter}" VERFÜGBAR
 			</p>
 		{/if}
+
 		<div
 			style="box-shadow: inset 0px 0px 86px 3px #0A0A0A;"
 			id="carouselWrapper"
 			class="h-[32rem] overflow-y-scroll snap-y snap-mandatory items-center flex justify-center overflow-x-hidden bg-white bg-opacity-60"
 		>
-			{#if currentArray.length > 0}
+			{#if currentArray.length > 0 && !dontShowPictures}
 				<div id="carousel" class="h-full">
 					{#each currentArray as i, index}
 						<div
@@ -262,8 +281,8 @@
 				</div>
 			{/if}
 		</div>
-		{#if currentArray.length > 0}
-			<p class="mt-6 text-xl text-center text-white font-bold">
+		{#if currentArray.length > 0 && !dontShowPictures}
+			<p class="mt-6 text-xl font-bold text-center text-white">
 				{currentImage} / {currentArray.length}
 			</p>
 		{/if}
@@ -277,32 +296,240 @@
 				<p id="letter" class="invisible text-6xl font-bold text-center text-secondary">A</p>
 				<p id="letter" class="invisible text-6xl font-bold text-center text-secondary">A</p>
 
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">A</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">B</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">C</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">D</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">E</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">F</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">G</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">H</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">I</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">J</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">K</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">L</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">M</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">N</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">O</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">P</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">Q</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">R</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">S</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">T</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">U</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">V</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">W</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">X</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">Y</p>
-				<p id="letter" class="text-6xl font-bold text-center text-secondary">Z</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(1);
+					}}
+				>
+					A
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(2);
+					}}
+				>
+					B
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(3);
+					}}
+				>
+					C
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(4);
+					}}
+				>
+					D
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(5);
+					}}
+				>
+					E
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(6);
+					}}
+				>
+					F
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(7);
+					}}
+				>
+					G
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(8);
+					}}
+				>
+					H
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(9);
+					}}
+				>
+					I
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(10);
+					}}
+				>
+					J
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(11);
+					}}
+				>
+					K
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(12);
+					}}
+				>
+					L
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(13);
+					}}
+				>
+					M
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(14);
+					}}
+				>
+					N
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(15);
+					}}
+				>
+					O
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(16);
+					}}
+				>
+					P
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(17);
+					}}
+				>
+					Q
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(18);
+					}}
+				>
+					R
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(19);
+					}}
+				>
+					S
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(20);
+					}}
+				>
+					T
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(21);
+					}}
+				>
+					U
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(22);
+					}}
+				>
+					V
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(23);
+					}}
+				>
+					W
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(24);
+					}}
+				>
+					X
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(25);
+					}}
+				>
+					Y
+				</p>
+				<p
+					id="letter"
+					class="text-6xl font-bold text-center cursor-pointer text-secondary"
+					on:click={() => {
+						clickLetterHandle(26);
+					}}
+				>
+					Z
+				</p>
 			</div>
 		</div>
 		<hr id="divider" class="self-center float-right w-16 mb-12 mr-2 -mt-4 border-4 border-accent" />

@@ -46,7 +46,7 @@
 	<title>Wagenfeld - Startseite</title>
 </svelte:head>
 
-<div id="content" class="relative w-screen min-h-screen px-4" in:fade={{ duration: 1000 }}>
+<div id="content" class="relative w-screen min-h-screen px-4" in:fade={{ duration: 800 }}>
 	<div class="top-0 left-0 !outline-none !border-none z-0">
 		<svelte:component this={wagenfeldLamp} />
 	</div>
@@ -58,18 +58,18 @@
 				<h1
 					id="headline"
 					style="line-height: 1.05;"
-					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
+					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right uppercase"
 					on:mouseenter={() => {
-						popupShow('ÜBERSCHRIFT1', subheadlineText);
+						popupShow('ÜBERSCHRIFT', subheadlineText);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
 					}}
 				>
-					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
+					WILHELM WAGENFELD PRODUKTDESIGN UND BAUHAUS-KUNST
 				</h1>
 
-				<hr id="divider" class="float-right -mt-4 mr-2 w-[70%] border-[14px] border-accent" />
+				<hr id="divider" class="float-right -mt-4 w-[73%] border-[14px] border-accent" />
 			</div>
 		</div>
 	</div>
@@ -80,17 +80,21 @@
 				<h1
 					id="headline"
 					style="line-height: 1.05;"
-					class="py-3 !z-40 text-3xl font-bold tracking-widest md:text-4xl lg:text-5xl xl:text-8xl text-secondary text-right"
+					class="py-5 !z-40 text-3xl font-bold tracking-wide md:text-4xl lg:text-5xl xl:text-7xl text-secondary text-right uppercase"
 					on:mouseenter={() => {
-						popupShow('ÜBERSCHRIFT2', subheadlineText);
+						popupShow('ÜBERSCHRIFT', subheadlineText);
 					}}
 					on:mouseleave={function () {
 						showPopup.set(false);
 					}}
 				>
-					LOREM IPSUM DOLOR SIT AMET CONSETETUR SADIPSCING ELITR SED DIAM NONUMY IRMOD
+					„I ASSURE YOU THAT YOU AND YOUR WORK ARE THE MODEL CASE FONT WHAT THE BAUHAUS HAS BEEN
+					AFTER”
+					<p class="text-xl font-medium tracking-normal">
+						Walter Gropius (Brief an Wagenfeld vom 14.04.1965)
+					</p>
 				</h1>
-				<hr id="divider" class="float-right -mt-4 mr-2 w-[70%] border-[14px] border-accent" />
+				<hr id="divider" class="float-right -mt-4  w-[45%] border-[14px] border-accent" />
 			</div>
 		</div>
 	</div>
@@ -103,8 +107,8 @@
 		background-attachment: fixed;
 		background-size: cover;
 
-		box-shadow: 0px 22px 29px -10px rgba(255, 3, 237, 0.15) inset;
-		-webkit-box-shadow: 0px 22px 29px -10px rgba(255, 3, 237, 0.15) inset;
-		-moz-box-shadow: 0px 22px 29px -10px rgba(255, 3, 237, 0.15) inset;
+		box-shadow: 15px 25px 29px -5px rgba(255, 3, 237, 0.15) inset;
+		-webkit-box-shadow: 15px 25px 29px -5px rgba(255, 3, 237, 0.15) inset;
+		-moz-box-shadow: 15px 25px 29px -5px rgba(255, 3, 237, 0.15) inset;
 	}
 </style>
