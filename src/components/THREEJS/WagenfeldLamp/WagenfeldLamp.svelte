@@ -9,10 +9,13 @@
 
 	import { gltfLamp } from '../../../store/stores.js';
 	import { Vector2 } from 'three';
+	import CustomEase from 'gsap/CustomEase';
 
 	const { renderer, size, camera, scene } = useThrelte();
 
 	const gltf = $gltfLamp;
+	let animationFinished = false;
+	let effectPass;
 
 	onMount(async () => {
 		// Resize Canvas
@@ -34,6 +37,7 @@
 
 	$: if ($gltfLamp) {
 		registerScrollAnimation();
+		effectPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 0, 1.7, 0);
 	}
 
 	// GSAP ScrollTrigger
@@ -44,7 +48,7 @@
 			x: 1.4,
 			y: 1.4,
 			z: 1.4,
-			duration: 1.2,
+			duration: 2.2,
 			ease: 'Back.easeOut'
 		});
 
@@ -52,8 +56,20 @@
 			x: -0.08,
 			y: 0,
 			z: 0,
-			duration: 1.8,
-			ease: 'Back.easeOut'
+			duration: 2.3,
+			ease: 'Back.easeOut',
+			onComplete: () => {
+				animationFinished = true;
+
+				gsap.to(effectPass, {
+					strength: 0.4,
+					duration: 2.2,
+					ease: CustomEase.create(
+						'custom',
+						'M0,0,C0.071,0.11,0.079,1.167,0.078,1.254,0.136,1.358,0.237,0.401,0.332,0.49,0.332,0.49,0.332,0.49,0.332,0.49,0.333,0.492,0.334,0.494,0.336,0.496,0.384,0.571,0.467,0.696,0.418,0.614,0.501,1.068,0.498,1.126,0.59,1.216,0.737,1.36,0.866,1,1,1'
+					)
+				});
+			}
 		});
 
 		gsap.to(gltf.scene.position, {
@@ -104,9 +120,10 @@
 		rotation={{ x: -0.08, y: 0, z: 0 }}
 		scale={{ x: 1.4, y: 1.4, z: 1.4 }}
 	/> -->
-	<Pass
-		pass={new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 0.28, 2, 0)}
-	/>
+
+	{#if animationFinished}
+		<Pass pass={effectPass} />
+	{/if}
 
 	<Object3DInstance
 		object={gltf.scene}

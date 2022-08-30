@@ -19,7 +19,7 @@
 		gsap.from(
 			'#flicker',
 			{ autoAlpha: 0, duration: 1, stagger: { each: 0.05, from: 'random' }, ease: flickerEase },
-			0.3
+			0.2
 		);
 	});
 </script>

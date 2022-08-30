@@ -7,22 +7,20 @@
 	let popupDismiss = false;
 
 	onMount(() => {
-		gsap.to(document.querySelector('#popupNotice'), {
-			opacity: 1,
-			scale: 1,
-			duration: 0.3,
-			ease: 'Sine.easeOut',
-			transformOrigin: 'center center'
+		gsap.from(document.querySelector('#popupNotice'), {
+			// scale: 1,
+			x: 900,
+			duration: 1.2,
+			ease: 'Power3.easeOut'
+			// transformOrigin: 'center center'
 		});
 	});
 
 	function closePopup() {
 		gsap.to(document.querySelector('#popupNotice'), {
-			scale: 0,
-			opacity: 0,
-			duration: 0.3,
+			x: 900,
+			duration: 0.5,
 			ease: 'Sine.easeOut',
-			transformOrigin: 'center center',
 			onComplete: () => {
 				popupDismiss = true;
 			}
@@ -31,13 +29,12 @@
 </script>
 
 {#if !popupDismiss}
-	<div class="fixed z-50 bottom-8 right-4">
-		<div
-			class="max-w-screen-sm scale-0 rounded-none shadow-lg opacity-0 alert"
+	<div class="fixed z-50 bottom-8 right-4" in:fade={{ duration: 1000 }}>
+		<!-- 			
 			use:clickOutside
-			on:outsideclick={closePopup}
-			id="popupNotice"
-		>
+			on:outsideclick={closePopup} 
+		-->
+		<div class="max-w-screen-sm rounded-none shadow-lg alert" id="popupNotice">
 			<div>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
