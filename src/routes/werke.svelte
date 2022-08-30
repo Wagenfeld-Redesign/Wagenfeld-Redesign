@@ -39,7 +39,6 @@
 		{ letter: 'Y', countImages: 0, titles: ['test'] },
 		{ letter: 'Z', countImages: 0, titles: ['test'] }
 	];
-
 	let pathPictures = import.meta.glob(`./../../static/images/werkePictures/*/*.{png,jpg}`);
 	let currentArray = [{ letter: 'A', countImages: 0, titles: ['test', 'test'] }];
 	let currentLetter = 'A';
