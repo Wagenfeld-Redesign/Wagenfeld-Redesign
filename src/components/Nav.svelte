@@ -33,13 +33,6 @@
 						style="pointer-events: none;"
 					/>
 				</p>
-
-				<!-- <object
-						title="logo"
-						style="width:unset; pointer-events: none;"
-						data="images/Logos/logo_white.svg"
-						height="66.44px"
-					/> -->
 			</div>
 		</div>
 		<div class="hidden navbar-center" />

@@ -49,7 +49,6 @@
 
 	let wrap;
 	let elems = [];
-	let objs = Array(30).fill({ dist: 0 });
 	var timer = null;
 
 	let initOldPathLetter = '.';
@@ -162,11 +161,6 @@
 
 			position.value += speed;
 			speed *= 0.89;
-
-			objs.forEach((o, i) => {
-				o.dist = Math.min(Math.abs(position.value + 4 - i), 1);
-				o.dist = 1 - o.dist ** 2;
-			});
 
 			rounded = Math.round(position.value);
 			let diff = rounded - position.value;
