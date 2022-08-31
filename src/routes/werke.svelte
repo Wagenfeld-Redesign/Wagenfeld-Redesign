@@ -216,7 +216,11 @@
 	<title>Wagenfeld - Werke</title>
 </svelte:head>
 
-<div id="content" class="relative w-screen min-h-screen overflow-hidden" in:fade>
+<div
+	id="content"
+	class="relative w-screen min-h-screen overflow-hidden"
+	in:fade={{ duration: 200 }}
+>
 	<div class="flex justify-center w-screen">
 		<p
 			class="absolute z-40 pt-[3.9rem] font-bold tracking-widest text-center text-white text-xl md:text-8xl  xl:text-8xl"

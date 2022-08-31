@@ -73,7 +73,7 @@ export default class Sketch {
 						setTimeout(() => {
 							navOpen.set(false);
 							showPopup.set(false);
-						}, 100);
+						}, 50);
 					} else {
 						if (this.thirdImageFlipped) {
 							this.thirdImageFlipped = false;
