@@ -69,6 +69,7 @@ export default class Sketch {
 				if (this.links[get(navPosition)] == intersects[0].object.name) {
 					if (this.links[get(navPosition)] != '/info') {
 						goto(intersects[0].object.name);
+						navOpen.set(true);
 
 						setTimeout(() => {
 							navOpen.set(false);
