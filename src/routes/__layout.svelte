@@ -1,10 +1,17 @@
+<!-- <script context="module">
+	export async function load({ fetch }) {
+		const fetchImage = (async () => {
+			const response = await fetch('https://dog.ceo/api/breeds/image/random');
+			return await response.json();
+		})();
+	}
+</script> -->
 <script>
 	import '@fontsource/space-grotesk';
 	import '../app.css';
 
 	import { getGPUTier } from 'detect-gpu';
 	import { onMount } from 'svelte';
-
 	import gsap from 'gsap';
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
@@ -13,11 +20,11 @@
 	import NoGpuNotification from '../components/NoGPUNotification.svelte';
 	import LoadingScreen from '../components/Loadings/PatternLoading.svelte';
 	import { gltfLamp } from '../store/stores';
+	import { page } from '$app/stores';
 	import { useGltf } from 'threlte/extras';
 	const { gltf } = useGltf('3DModels/Wagenfeldlampe/compressed.glb', {
 		useDraco: true
 	});
-	import { page } from '$app/stores';
 
 	let timerLoading = true; //default: true
 	let gpuAvailable = false;
@@ -25,9 +32,9 @@
 	let t1;
 
 	$: if ($gltf) {
-		console.log($gltf);
 		gltfLamp.set($gltf);
 		t1.play();
+	} else {
 	}
 
 	onMount(async () => {
@@ -37,6 +44,8 @@
 	});
 
 	onMount(() => {
+		if (checkIfUserIsVistingFirstTime()) location.reload();
+
 		t1 = gsap.timeline({ paused: true, defaults: { duration: 0.3 } });
 		const loadingScreen = document.getElementById('quoteLoading');
 
@@ -47,7 +56,20 @@
 			}
 		});
 	});
+
+	function checkIfUserIsVistingFirstTime() {
+		if (localStorage.getItem('was_visited')) {
+			return false;
+		}
+		// first_visit = true;
+		localStorage.setItem('was_visited', 1);
+		return true;
+	}
 </script>
+
+<svelte:head>
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+</svelte:head>
 
 <div id="content" style="margin: 0 auto;">
 	<div class="flex flex-col min-h-screen">

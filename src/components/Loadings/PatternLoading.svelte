@@ -1,7 +1,6 @@
 <script>
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
-	import anime from 'animejs';
 
 	onMount(() => {
 		const t1 = gsap.timeline({ paused: true, defaults: { duration: 2 } });

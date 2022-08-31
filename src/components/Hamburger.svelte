@@ -9,7 +9,6 @@
 	function navOpenToggle(open) {
 		document.body.classList.toggle('nav-open');
 
-		// setTimeout(() => {
 		if ($navOpen) {
 			document.body.style.overflowY = 'hidden';
 		} else {
@@ -21,6 +20,8 @@
 	onMount(() => {
 		document.body.classList.toggle('nav-open');
 		document.getElementById('menu-toggle').addEventListener('click', function () {
+			window.scrollTo({ top: 0 });
+
 			navOpen.set(!$navOpen);
 			navPosition.set(0);
 		});

@@ -14,6 +14,8 @@ html {
 	/* For Firefox */
 	scrollbar-color: #ff03ee #050505;
 	scrollbar-width: thin;
+
+	/* scroll-behavior: smooth; */
 }
 
 *,
